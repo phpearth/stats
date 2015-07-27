@@ -1,0 +1,22 @@
+fb_app_id: AddFacebookApplicationIdHere
+fb_app_secret: ChangeThisToYourFacebookAppSecret
+fb_access_token: PasteYourFacebookTokenHere
+group_id: IdOfFacebookGroup
+
+# Number of top users listed in the output report
+top_users_count: 10
+
+# start datetime of the generated report
+start_datetime: '2015-07-20 00:00:00'
+
+# start datetime of the generated report
+end_datetime: '2015-07-26 23:59:59'
+
+#last name of the joined member
+last_member_name: 'John Doe'
+
+# last number of blocked users
+last_blocked_count: 0
+
+# new number of blocked users
+new_blocked_count: 10
