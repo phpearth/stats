@@ -2,7 +2,7 @@
 
 ## About
 
-This is generator for creating stats for our Facebook group.
+This is a generator for creating stats for our Facebook group.
 
 ## Installation
 
