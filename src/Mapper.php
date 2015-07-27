@@ -57,7 +57,7 @@ class Mapper
                     $this->feed[] = $topicArray;
                 }
 
-                if ($pagesCount == 10) {
+                if ($pagesCount == $this->config->get('api_pages')) {
                     break;
                 }
             } while ($feedEdge = $this->fb->next($feedEdge));
@@ -135,7 +135,7 @@ class Mapper
                     $newUsersCount ++;
                 }
 
-                if ($pagesCount == 15) {
+                if ($pagesCount == $this->config->get('api_pages')) {
                     break;
                 }
             } while ($feedEdge = $this->fb->next($feedEdge));

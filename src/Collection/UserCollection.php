@@ -31,7 +31,7 @@ class UserCollection extends Collection
     }
 
     /**
-     * for calling with usort($myArray, [$this, 'sortArray']);
+     * for calling with usort($myArray, [$this, 'sortUsers']);
      * @param $a
      * @param $b
      * @return mixed
