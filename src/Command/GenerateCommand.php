@@ -57,7 +57,6 @@ class GenerateCommand extends Command
             'mostLikedTopicId' => $topics->getMostLikedTopicId(),
             'mostActiveTopicId' => $topics->getMostActiveTopicId(),
             'commitsCount' => 3,
-            'jobsCount' => 12,
         ];
 
         $template = new Template(__DIR__ . '/../../app/templates/report.php');

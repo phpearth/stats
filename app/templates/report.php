@@ -17,9 +17,6 @@ wwphp-fb.github.io/rules.html
 ○ <?= $commitsCount ?> new commits to our GitHub repos:
 git.io/vqLvG
 
-○ <?= $jobsCount ?> new job opportunities:
-fb.com/notes/php/jobs-administrated-document/10151718775065681
-
 ○ Most liked topic of the week:
 fb.com/groups/2204685680/permalink/<?= $mostLikedTopicId ?>
 
