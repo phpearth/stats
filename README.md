@@ -21,7 +21,7 @@ This is a generator for creating stats for our Facebook group.
     Add and edit `app/config/parameters.yaml` file according to your settings:
     
     ```bash
-    $ cp app/config/parameters.yml.sample app/config/parameters.yml
+    $ cp app/config/parameters.yml.dist app/config/parameters.yml
     ```
     
     `parameters.yml` should look like this
