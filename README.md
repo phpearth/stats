@@ -4,6 +4,14 @@
 
 This is a generator for creating stats for our Facebook group.
 
+
+## FAQ
+
+**How are points calculated?**
+
+Each post, each comment and each reply to comment in the group gets you one point.
+
+
 ## Installation
 
 1. Register Facebook Application
@@ -64,7 +72,13 @@ This is a generator for creating stats for our Facebook group.
     
     `api_pages` - how many pages should the data collecting include. Large amount of data from the Facebook Graph API gets returned in multiple pages and Facebook group feed is sorted by updated topics.
 
-4. Generate report
+4. Run tests:
+
+    ```bash
+    $ phpunit -c app/
+    ```
+
+5. Generate report
     
     ```bash
     $ php app/console
