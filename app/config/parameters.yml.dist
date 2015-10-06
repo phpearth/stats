@@ -23,3 +23,9 @@ new_blocked_count: 10
 
 # Number of API pages to fetch
 api_pages: 20
+
+# Staff picked top topics
+top_topics:
+    -
+        title: "20 years of PHP"
+        url: "fb.com/groups/2204685680/permalink/10153439277470681"

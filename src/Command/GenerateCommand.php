@@ -47,14 +47,20 @@ class GenerateCommand extends Command
 
         $date = new \DateTime();
         $data = [
-            'date' => $date->format('Y-m-d'),
+            'startDate' => $startDate->format('Y-m-d'),
+            'endDate' => $endDate->format('Y-m-d'),
             'newUsersCount' => $service->getNewUsersCount(),
+            'topUsersCount' => $this->config->get('top_users_count'),
             'topUsers' => $users->getTopUsers($this->config->get('top_users_count')),
             'bannedCount' => $blockedCount,
             'newTopicsCount' => $topics->getNewTopicsCount(),
+            'newCommentsCount' => 0,
+            'newRepliesCount' => 0,
+            'activeUsersCount' => $users->count(),
             'mostLikedTopicId' => $topics->getMostLikedTopicId(),
             'mostActiveTopicId' => $topics->getMostActiveTopicId(),
             'commitsCount' => 3,
+            'topTopics' => $this->config->get('top_topics')
         ];
 
         $template = new Template(__DIR__ . '/../../app/templates/report.php');
