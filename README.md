@@ -11,8 +11,16 @@ This is a generator for creating stats for our Facebook group.
 
 Each post, each comment and each reply to comment in the group gets you one point.
 
+**What is the benefit of the points?**
+
+We could never possibly thank properly enough for contributions from members in this group. This group is all about
+open source spirit and helping others. These points will help you check your contribution activity in our group compared
+to other members and bring some fun in PHP back. Leetness in the universe is also not excluded for getting higher score
+than other members :)
 
 ## Installation
+
+If you want to install this application locally, do the following:
 
 1. Register Facebook Application
 
@@ -46,6 +54,10 @@ Each post, each comment and each reply to comment in the group gets you one poin
     last_blocked_count: 123
     new_blocked_count: 321
     api_pages: 20
+    top_topics:
+        -
+            title: "20 years of PHP"
+            url: "fb.com/groups/2204685680/permalink/10153439277470681"
     ```
     
     Configuration parameters:
@@ -71,6 +83,8 @@ Each post, each comment and each reply to comment in the group gets you one poin
     `new_blocked_count` - number of blocked accounts on the time of report generation
     
     `api_pages` - how many pages should the data collecting include. Large amount of data from the Facebook Graph API gets returned in multiple pages and Facebook group feed is sorted by updated topics.
+
+    `top_topics:` - array of staff picked topics
 
 4. Run tests:
 

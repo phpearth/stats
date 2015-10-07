@@ -3,6 +3,8 @@
 namespace PHPWorldWide\Stats;
 
 use PHPWorldWide\Stats\Collection\TopicCollection;
+use PHPWorldWide\Stats\Collection\CommentCollection;
+use PHPWorldWide\Stats\Collection\ReplyCollection;
 use PHPWorldWide\Stats\Collection\UserCollection;
 use PHPWorldWide\Stats\Mapper;
 use Symfony\Component\Console\Helper\ProgressBar;
@@ -26,6 +28,22 @@ class Service
         $this->mapper->mapTopics($topics, $startDate, $endDate);
 
         return $topics;
+    }
+
+    public function getComments($startDate, $endDate)
+    {
+        $comments = new CommentCollection();
+        $this->mapper->mapComments($comments, $startDate, $endDate);
+
+        return $comments;
+    }
+
+    public function getReplies($startDate, $endDate)
+    {
+        $replies = new ReplyCollection();
+        $this->mapper->mapReplies($replies, $startDate, $endDate);
+
+        return $replies;
     }
 
     public function getUsers($startDate, $endDate)

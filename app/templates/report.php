@@ -1,3 +1,5 @@
+
+
 Hello, here are weekly group stats from <?= $startDate ?> to <?= $endDate ?>:
 http://wwphp-fb.github.io/
 
@@ -28,6 +30,7 @@ fb.com/groups/2204685680/permalink/<?= $mostActiveTopicId ?>
 <?php foreach ($topTopics as $topic):?>
 - <?= $topic['title'] ?>:
 <?= $topic['url'] ?>
+
 <?php endforeach; ?>
 
 

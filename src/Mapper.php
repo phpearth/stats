@@ -3,8 +3,10 @@
 namespace PHPWorldWide\Stats;
 
 use PHPWorldWide\Stats\Collection\UserCollection;
-use Symfony\Component\Console\Helper\ProgressBar;
 use PHPWorldWide\Stats\Collection\TopicCollection;
+use PHPWorldWide\Stats\Collection\CommentCollection;
+use PHPWorldWide\Stats\Collection\ReplyCollection;
+use Symfony\Component\Console\Helper\ProgressBar;
 use Facebook\Facebook;
 use Facebook\Exceptions\FacebookSDKException;
 use Facebook\Exceptions\FacebookResponseException;
@@ -94,6 +96,20 @@ class Mapper
         }
         file_put_contents('./app/logs/topics.txt', $log);
 
+    }
+
+    public function mapComments(CommentCollection $comments, $startDate, $endDate)
+    {
+        $comments->setStartDate($startDate);
+        $comments->setEndDate($endDate);
+        $comments->addCommentsFromFeed($this->feed);
+    }
+
+    public function mapReplies(ReplyCollection $replies, $startDate, $endDate)
+    {
+        $replies->setStartDate($startDate);
+        $replies->setEndDate($endDate);
+        $replies->addRepliesFromFeed($this->feed);
     }
 
     public function mapUsers(UserCollection $users, $startDate, $endDate)
