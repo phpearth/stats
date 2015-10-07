@@ -56,42 +56,38 @@ class TopicCollection extends Collection
         return $count;
     }
 
-    public function getMostActiveTopicId()
+    public function getMostActiveTopic()
     {
         $commentsTopCount = 0;
-        $topicId = null;
+        $mostActiveTopic = null;
 
         foreach ($this->data as $topic) {
             if ($topic->getCreatedTime() >= $this->getStartDate() && $topic->getCreatedTime() <= $this->getEndDate()) {
                 if ($topic->getCommentsCount() > $commentsTopCount) {
                     $commentsTopCount = $topic->getCommentsCount();
-                    $topicId = $topic->getId();
+                    $mostActiveTopic = $topic;
                 }
             }
         }
 
-        $topicId = str_replace($this->getGroupId() . '_', '', $topicId);
-
-        return $topicId;
+        return $mostActiveTopic;
     }
 
-    public function getMostLikedTopicId()
+    public function getMostLikedTopic()
     {
         $likesTopCount = 0;
-        $topicId = null;
+        $mostLikedTopic = null;
 
         foreach ($this->data as $topic) {
             if ($topic->getCreatedTime() >= $this->getStartDate() && $topic->getCreatedTime() <= $this->getEndDate()) {
                 if ($topic->getLikesCount() > $likesTopCount) {
                     $likesTopCount = $topic->getLikesCount();
-                    $topicId = $topic->getId();
+                    $mostLikedTopic = $topic;
                 }
             }
         }
 
-        $topicId = str_replace($this->getGroupId() . '_', '', $topicId);
-
-        return $topicId;
+        return $mostLikedTopic;
     }
 
     public function addTopicsFromFeed($feed)
@@ -100,7 +96,15 @@ class TopicCollection extends Collection
             $newTopic = new Topic();
             $newTopic->setId($topic['id']);
             $newTopic->setCreatedTime($topic['created_time']);
-            $newTopic->setCommentsCount($topic['commentsCount']);
+            $commentsCount = $topic['commentsCount'];
+            if(isset($topic['comments'])) {
+                foreach ($topic['comments'] as $comment) {
+                    if (isset($comment['comment_count'])) {
+                        $commentsCount += $comment['comment_count'];
+                    }
+                }
+            }
+            $newTopic->setCommentsCount($commentsCount);
             $newTopic->setLikesCount($topic['likesCount']);
 
             $this->add($newTopic, $newTopic->getId());

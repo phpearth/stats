@@ -18,11 +18,11 @@ wwphp-fb.github.io/rules.html
 ○ <?= $commitsCount ?> new commits to our GitHub repos:
 git.io/vqLvG
 
-○ Most liked topic of the week:
+○ Most liked topic of the week with <?= $mostLikesCount ?> likes:
 fb.com/groups/2204685680/permalink/<?= $mostLikedTopicId ?>
 
 
-○ Most active topic of the week:
+○ Most active topic of the week with <?= $mostCommentsCount ?> comments:
 fb.com/groups/2204685680/permalink/<?= $mostActiveTopicId ?>
 
 

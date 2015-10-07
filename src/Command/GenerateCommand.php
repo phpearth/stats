@@ -58,8 +58,10 @@ class GenerateCommand extends Command
             'newCommentsCount' => $comments->count(),
             'newRepliesCount' => $replies->count(),
             'activeUsersCount' => $users->count(),
-            'mostLikedTopicId' => $topics->getMostLikedTopicId(),
-            'mostActiveTopicId' => $topics->getMostActiveTopicId(),
+            'mostLikesCount' => $topics->getMostLikedTopic()->getLikesCount(),
+            'mostLikedTopicId' => $topics->getMostLikedTopic()->getReportId(),
+            'mostCommentsCount' => $topics->getMostActiveTopic()->getCommentsCount(),
+            'mostActiveTopicId' => $topics->getMostActiveTopic()->getReportId(),
             'commitsCount' => 3,
             'topTopics' => $this->config->get('top_topics')
         ];
