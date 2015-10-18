@@ -15,7 +15,8 @@ This is a generator for creating stats for our Facebook group.
     * 11 to 20 likes = 2 points
     * 21 to 30 likes = 3 points
     * and so on until 91 to 100 likes = 10 points
-    * more than 100 likes gets you 15 points
+    * more than 100 likes gets you 11 points
+* More detailed comments or replies with 100 characters or more get you extra points. 
 
 **What is the benefit of the points?**
 

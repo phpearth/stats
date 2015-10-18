@@ -49,11 +49,13 @@ class User
      * Adds points for comment or reply.
      *
      * @param int $likesCount Number of comment likes
+     * @param string $message Message of comment or reply
      */
-    public function addComment($likesCount)
+    public function addComment($likesCount, $message)
     {
         $this->points++;
-        $this->points += ($likesCount >= 100) ? 15 : ceil($likesCount/10);
+        $this->points += ($likesCount > 100) ? 11 : ceil($likesCount/10);
+        $this->points += (strlen($message) > 100) ? 1 :0;
     }
 
     public function getPoints()
