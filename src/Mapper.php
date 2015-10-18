@@ -43,7 +43,7 @@ class Mapper
 
         try {
             $pagesCount = 0;
-            $response = $this->fb->get('/' . $this->config->get('group_id') . '/feed?fields=comments.limit(200).summary(1){like_count,comment_count,from,created_time,comments.limit(200).summary(1){like_count,comment_count,from,created_time}},likes.summary(1),from,created_time&include_hidden=true&limit=100');
+            $response = $this->fb->get('/' . $this->config->get('group_id') . '/feed?fields=comments.limit(200).summary(1){like_count,comment_count,from,created_time,comments.limit(200).summary(1){like_count,comment_count,from,created_time}},likes.limit(0).summary(1),from,created_time&include_hidden=true&limit=100');
 
             $feedEdge = $response->getGraphEdge();
 

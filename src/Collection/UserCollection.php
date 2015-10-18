@@ -54,7 +54,7 @@ class UserCollection extends Collection
                         $this->add($user, $user->getId());
                     }
 
-                    $user->addTopic();
+                    $user->addTopic($topic['likesCount']);
                 }
             }
 
@@ -70,7 +70,7 @@ class UserCollection extends Collection
                             $this->add($user, $user->getId());
                         }
 
-                        $user->addComment();
+                        $user->addComment($comment['like_count']);
                     }
 
                     if (isset($comment['comments'])) {
@@ -85,7 +85,7 @@ class UserCollection extends Collection
                                     $this->add($user, $user->getId());
                                 }
 
-                                $user->addComment();
+                                $user->addComment($reply['like_count']);
                             }
                         }
                     }

@@ -7,9 +7,7 @@ class User
 {
     private $id;
     private $name;
-    private $topicsCount = 0;
-    private $commentsCount = 0;
-    private $likesCount = 0;
+    private $points = 0;
 
     public function __construct($id = null)
     {
@@ -36,38 +34,30 @@ class User
         return $this->name;
     }
 
-    public function addTopic()
+    /**
+     * Adds points for creating a topic.
+     *
+     * @param int $likesCount Number of topic likes
+     */
+    public function addTopic($likesCount)
     {
-        $this->topicsCount ++;
+        $this->points++;
+        $this->points += ($likesCount >= 100) ? 15 : ceil($likesCount/10);
     }
 
-    public function getTopicsCount()
+    /**
+     * Adds points for comment or reply.
+     *
+     * @param int $likesCount Number of comment likes
+     */
+    public function addComment($likesCount)
     {
-        return $this->topicsCount;
-    }
-
-    public function addComment()
-    {
-        $this->commentsCount ++;
-    }
-
-    public function getCommentsCount()
-    {
-        return $this->commentsCount;
-    }
-
-    public function addLike()
-    {
-        $this->likesCount ++;
-    }
-
-    public function getLikesCount()
-    {
-        return $this->likesCount;
+        $this->points++;
+        $this->points += ($likesCount >= 100) ? 15 : ceil($likesCount/10);
     }
 
     public function getPoints()
     {
-        return $this->topicsCount + $this->commentsCount;
+        return $this->points;
     }
 }
