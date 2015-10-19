@@ -8,6 +8,8 @@ class User
     private $id;
     private $name;
     private $points = 0;
+    private $topicsCount = 0;
+    private $commentsCount = 0;
 
     public function __construct($id = null)
     {
@@ -41,6 +43,7 @@ class User
      */
     public function addTopic($likesCount)
     {
+        $this->topicsCount++;
         $this->points++;
         $this->points += ($likesCount >= 100) ? 15 : ceil($likesCount/10);
     }
@@ -53,6 +56,7 @@ class User
      */
     public function addComment($likesCount, $message)
     {
+        $this->commentsCount++;
         $this->points++;
         $this->points += ($likesCount > 100) ? 11 : ceil($likesCount/10);
         $this->points += (strlen($message) > 100) ? 1 :0;
@@ -61,5 +65,15 @@ class User
     public function getPoints()
     {
         return $this->points;
+    }
+
+    public function getTopicsCount()
+    {
+        return $this->topicsCount;
+    }
+
+    public function getCommentsCount()
+    {
+        return $this->commentsCount;
     }
 }

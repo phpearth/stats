@@ -28,7 +28,7 @@ class Mapper
         $this->fb = new Facebook([
             'app_id' => $this->config->get('fb_app_id'),
             'app_secret' => $this->config->get('fb_app_secret'),
-            'default_graph_version' => 'v2.4',
+            'default_graph_version' => 'v2.5',
         ]);
 
         $this->fb->setDefaultAccessToken($this->config->get('fb_access_token'));
@@ -43,13 +43,14 @@ class Mapper
 
         try {
             $pagesCount = 0;
-            $response = $this->fb->get('/' . $this->config->get('group_id') . '/feed?fields=comments.limit(200).summary(1){like_count,comment_count,from,created_time,message,comments.limit(200).summary(1){like_count,comment_count,from,created_time,message}},likes.limit(0).summary(1),from,created_time&include_hidden=true&limit=100');
+            $startDate = \DateTime::createFromFormat('Y-m-d H:i:s', $this->config->get('start_datetime'));
+            $response = $this->fb->get('/' . $this->config->get('group_id') . '/feed?fields=comments.limit(200).summary(1){like_count,comment_count,from,created_time,message,comments.limit(200).summary(1){like_count,comment_count,from,created_time,message}},likes.limit(0).summary(1),from,created_time,updated_time&include_hidden=true&limit=100&since=' . $startDate->getTimestamp());
 
             $feedEdge = $response->getGraphEdge();
 
             do {
                 $pagesCount++;
-                $this->progress->setMessage('Fetching feed from API page ' . $pagesCount . ' and with the topic date ' . $feedEdge[0]->getField('created_time')->format('Y-m-d H:i:s'));
+                $this->progress->setMessage('Fetching feed from API page ' . $pagesCount . ' and with the topic updated ' . $feedEdge[0]->getField('updated_time')->format('Y-m-d H:i:s'));
                 $this->progress->advance();
 
                 foreach ($feedEdge as $topic) {
@@ -57,10 +58,6 @@ class Mapper
                     $topicArray['commentsCount'] = $topic->getField('comments')->getMetaData()['summary']['total_count'];
                     $topicArray['likesCount'] = $topic->getField('likes')->getMetaData()['summary']['total_count'];
                     $this->feed[] = $topicArray;
-                }
-
-                if ($pagesCount == $this->config->get('api_pages')) {
-                    break;
                 }
             } while ($feedEdge = $this->fb->next($feedEdge));
 

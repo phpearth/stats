@@ -5,9 +5,9 @@ http://wwphp-fb.github.io/
 
 ○ Warm welcome to <?= $newUsersCount ?> new members
 
-○ Thanks to top <?= $topUsersCount ?> most active members of the week:
+○ Thanks to top <?= $topUsersCount ?> members of the week:
 <?php foreach ($topUsers as $topUser):?>
-- <?= $topUser->getName() ?> (<?= $topUser->getPoints() ?> points)
+- <?= $topUser->getName() ?> (<?= $topUser->getPoints() ?> points, <?= $topUser->getTopicsCount() ?> topics, <?= $topUser->getCommentsCount()?> comments)
 <?php endforeach; ?>
 
 ○ <?= $newTopicsCount ?> topics, <?= $newCommentsCount ?> comments and <?= $newRepliesCount ?> replies were created by <?= $activeUsersCount ?> active members this week.
