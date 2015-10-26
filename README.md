@@ -9,7 +9,7 @@ This is a generator for creating stats for our Facebook group.
 
 **How are points calculated?**
 
-* Each post, each comment and each reply to comment in the group gets you one point.
+* Each post, each comment and each reply to a comment in the group gets you one point.
 * Number of likes of your topic, comment or reply gets you extra points:
     * 1 to 10 likes = 1 point
     * 11 to 20 likes = 2 points
