@@ -1,14 +1,14 @@
 {
     "name": "wwphp/stats",
     "description": "Statistics generator for Facebook groups",
-    "type": "library",
+    "type": "project",
     "require": {
         "facebook/php-sdk-v4" : "~5.0",
-        "symfony/yaml": "2.7.*",
-        "symfony/console": "2.7.*"
+        "symfony/yaml": "3.0.*",
+        "symfony/console": "3.0.*"
     },
     "require-dev": {
-        "phpunit/phpunit": "5.0.*"
+        "phpunit/phpunit": "5.1.*"
     },
     "license": "MIT",
     "authors": [
