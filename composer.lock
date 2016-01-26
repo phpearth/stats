@@ -13,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/facebook/facebook-php-sdk-v4.git",
-                "reference": "7b39ac93b951b4faed9ae99984be81b22269386e"
+                "reference": "4a57c249fdba2da26b3cebb00152791efb7d09fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facebook/facebook-php-sdk-v4/zipball/7b39ac93b951b4faed9ae99984be81b22269386e",
-                "reference": "7b39ac93b951b4faed9ae99984be81b22269386e",
+                "url": "https://api.github.com/repos/facebook/facebook-php-sdk-v4/zipball/4a57c249fdba2da26b3cebb00152791efb7d09fc",
+                "reference": "4a57c249fdba2da26b3cebb00152791efb7d09fc",
                 "shasum": ""
             },
             "require": {
@@ -60,7 +60,7 @@
                 "facebook",
                 "sdk"
             ],
-            "time": "2015-12-08 13:46:05"
+            "time": "2016-01-22 20:42:27"
         },
         {
             "name": "symfony/console",
@@ -68,12 +68,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "02e4ff0db9ca394fbee8180d081c1457748953e0"
+                "reference": "a82aa95d05fd2d61493b2ef639d783c6229539a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/02e4ff0db9ca394fbee8180d081c1457748953e0",
-                "reference": "02e4ff0db9ca394fbee8180d081c1457748953e0",
+                "url": "https://api.github.com/repos/symfony/console/zipball/a82aa95d05fd2d61493b2ef639d783c6229539a9",
+                "reference": "a82aa95d05fd2d61493b2ef639d783c6229539a9",
                 "shasum": ""
             },
             "require": {
@@ -120,7 +120,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2016-01-03 15:35:16"
+            "time": "2016-01-21 09:55:31"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -128,12 +128,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "c9206b4e785f1b3bf2948ccfafc6620831c69922"
+                "reference": "d7f01c96a4dde264682cf36c28e62086c77a09d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/c9206b4e785f1b3bf2948ccfafc6620831c69922",
-                "reference": "c9206b4e785f1b3bf2948ccfafc6620831c69922",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/d7f01c96a4dde264682cf36c28e62086c77a09d4",
+                "reference": "d7f01c96a4dde264682cf36c28e62086c77a09d4",
                 "shasum": ""
             },
             "require": {
@@ -179,7 +179,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2016-01-01 11:06:21"
+            "time": "2016-01-13 07:16:33"
         },
         {
             "name": "symfony/yaml",
@@ -187,12 +187,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "5a0074f8e42c529f63abfe9879395b467044f939"
+                "reference": "661faea110475c0216cd87855cd98120ff6b11b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/5a0074f8e42c529f63abfe9879395b467044f939",
-                "reference": "5a0074f8e42c529f63abfe9879395b467044f939",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/661faea110475c0216cd87855cd98120ff6b11b0",
+                "reference": "661faea110475c0216cd87855cd98120ff6b11b0",
                 "shasum": ""
             },
             "require": {
@@ -228,7 +228,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2016-01-03 15:35:16"
+            "time": "2016-01-24 11:11:10"
         }
     ],
     "packages-dev": [
@@ -445,12 +445,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "0b327d81069aa41b5147abd33a2c53324557890d"
+                "reference": "64d40a593fc31a8abf4ce3d200147ddf8ca64e52"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/0b327d81069aa41b5147abd33a2c53324557890d",
-                "reference": "0b327d81069aa41b5147abd33a2c53324557890d",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/64d40a593fc31a8abf4ce3d200147ddf8ca64e52",
+                "reference": "64d40a593fc31a8abf4ce3d200147ddf8ca64e52",
                 "shasum": ""
             },
             "require": {
@@ -499,7 +499,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-01-03 15:28:24"
+            "time": "2016-01-11 10:05:34"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -685,12 +685,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "1f44c091efc32e8957ab71ebd3eaf3595a0d800b"
+                "reference": "55cca0f707e0db4a069473d7394bf2f08df33b83"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/1f44c091efc32e8957ab71ebd3eaf3595a0d800b",
-                "reference": "1f44c091efc32e8957ab71ebd3eaf3595a0d800b",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/55cca0f707e0db4a069473d7394bf2f08df33b83",
+                "reference": "55cca0f707e0db4a069473d7394bf2f08df33b83",
                 "shasum": ""
             },
             "require": {
@@ -751,7 +751,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-12-10 16:14:09"
+            "time": "2016-01-24 07:05:23"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
