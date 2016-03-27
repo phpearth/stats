@@ -12,8 +12,8 @@ http://wwphp-fb.github.io/
 
 ○ <?= $newTopicsCount ?> topics, <?= $newCommentsCount ?> comments and <?= $newRepliesCount ?> replies were created by <?= $activeUsersCount ?> active members this week.
 
-○ <?= $bannedCount ?> users were banned for not following the group rules:
-wwphp-fb.github.io/rules.html
+○ <?= $bannedCount ?> users were banned for not following group rules:
+http://wwphp-fb.github.io/code-of-conduct/
 
 ○ <?= $commitsCount ?> new commits to our GitHub repos:
 git.io/vqLvG
