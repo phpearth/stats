@@ -41,7 +41,7 @@ If you want to install this application locally, do the following:
 
 3. Adjust configuration
     
-    Add and edit `app/config/parameters.yaml` file according to your settings:
+    Add and edit `app/config/parameters.yml` file according to your settings:
     
     ```bash
     $ cp app/config/parameters.yml.dist app/config/parameters.yml

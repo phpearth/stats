@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "04424d088c98328c198def8e5d007bc9",
-    "content-hash": "507a2c5cff6fd1313c1de3283bb93422",
+    "hash": "ad26a8f03197d2684a5ac438b17fcfb0",
+    "content-hash": "5fe5d8c8704dde5d38ad7bfa1ffb7ad6",
     "packages": [
         {
             "name": "facebook/php-sdk-v4",
@@ -13,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/facebook/facebook-php-sdk-v4.git",
-                "reference": "4a57c249fdba2da26b3cebb00152791efb7d09fc"
+                "reference": "f950a24a569fcec956d915894110bb1ce43b7656"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facebook/facebook-php-sdk-v4/zipball/4a57c249fdba2da26b3cebb00152791efb7d09fc",
-                "reference": "4a57c249fdba2da26b3cebb00152791efb7d09fc",
+                "url": "https://api.github.com/repos/facebook/facebook-php-sdk-v4/zipball/f950a24a569fcec956d915894110bb1ce43b7656",
+                "reference": "f950a24a569fcec956d915894110bb1ce43b7656",
                 "shasum": ""
             },
             "require": {
@@ -60,7 +60,7 @@
                 "facebook",
                 "sdk"
             ],
-            "time": "2016-01-22 20:42:27"
+            "time": "2016-02-26 14:49:24"
         },
         {
             "name": "symfony/console",
@@ -68,12 +68,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "3c7b1efe3e5da01b7a51743c44b091e53b2bb9f6"
+                "reference": "6b1175135bc2a74c08a28d89761272de8beed8cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/3c7b1efe3e5da01b7a51743c44b091e53b2bb9f6",
-                "reference": "3c7b1efe3e5da01b7a51743c44b091e53b2bb9f6",
+                "url": "https://api.github.com/repos/symfony/console/zipball/6b1175135bc2a74c08a28d89761272de8beed8cd",
+                "reference": "6b1175135bc2a74c08a28d89761272de8beed8cd",
                 "shasum": ""
             },
             "require": {
@@ -120,7 +120,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2016-02-17 06:14:35"
+            "time": "2016-03-16 17:00:50"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -187,12 +187,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "08cb8f78efa963aa7ee0ad42f5e667d57bf047c1"
+                "reference": "0047c8366744a16de7516622c5b7355336afae96"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/08cb8f78efa963aa7ee0ad42f5e667d57bf047c1",
-                "reference": "08cb8f78efa963aa7ee0ad42f5e667d57bf047c1",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/0047c8366744a16de7516622c5b7355336afae96",
+                "reference": "0047c8366744a16de7516622c5b7355336afae96",
                 "shasum": ""
             },
             "require": {
@@ -228,7 +228,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2016-02-18 09:00:02"
+            "time": "2016-03-04 07:55:57"
         }
     ],
     "packages-dev": [
@@ -445,12 +445,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "a58f95ae76fe201b571fad3e8370a50c4368678c"
+                "reference": "9b2a050b8ee982bf4132fa5c8b381f33c7416f2b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/a58f95ae76fe201b571fad3e8370a50c4368678c",
-                "reference": "a58f95ae76fe201b571fad3e8370a50c4368678c",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/9b2a050b8ee982bf4132fa5c8b381f33c7416f2b",
+                "reference": "9b2a050b8ee982bf4132fa5c8b381f33c7416f2b",
                 "shasum": ""
             },
             "require": {
@@ -474,7 +474,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.2.x-dev"
+                    "dev-master": "3.3.x-dev"
                 }
             },
             "autoload": {
@@ -500,7 +500,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-02-18 07:31:12"
+            "time": "2016-03-09 13:32:21"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -682,16 +682,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.1.x-dev",
+            "version": "5.2.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "181fcc690efa1b975d33a41dd5ed68877c0d365d"
+                "reference": "6f0948bab32270352f97d1913d82a49338dcb0da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/181fcc690efa1b975d33a41dd5ed68877c0d365d",
-                "reference": "181fcc690efa1b975d33a41dd5ed68877c0d365d",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/6f0948bab32270352f97d1913d82a49338dcb0da",
+                "reference": "6f0948bab32270352f97d1913d82a49338dcb0da",
                 "shasum": ""
             },
             "require": {
@@ -701,9 +701,9 @@
                 "ext-reflection": "*",
                 "ext-spl": "*",
                 "myclabs/deep-copy": "~1.3",
-                "php": ">=5.6",
+                "php": "^5.6 || ^7.0",
                 "phpspec/prophecy": "^1.3.1",
-                "phpunit/php-code-coverage": "~3.0",
+                "phpunit/php-code-coverage": "^3.3.0",
                 "phpunit/php-file-iterator": "~1.4",
                 "phpunit/php-text-template": "~1.2",
                 "phpunit/php-timer": ">=1.0.6",
@@ -714,7 +714,7 @@
                 "sebastian/exporter": "~1.2",
                 "sebastian/global-state": "~1.0",
                 "sebastian/resource-operations": "~1.0",
-                "sebastian/version": "~1.0",
+                "sebastian/version": "~1.0|~2.0",
                 "symfony/yaml": "~2.1|~3.0"
             },
             "suggest": {
@@ -726,7 +726,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.1.x-dev"
+                    "dev-master": "5.2.x-dev"
                 }
             },
             "autoload": {
@@ -752,7 +752,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-02-11 14:57:50"
+            "time": "2016-03-15 05:59:58"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -760,12 +760,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "c4dd0c9e7fcbf53c6aa48012902be692318c7566"
+                "reference": "7b18bbdad9880e09740959e90eec4b91c35a4aa9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/c4dd0c9e7fcbf53c6aa48012902be692318c7566",
-                "reference": "c4dd0c9e7fcbf53c6aa48012902be692318c7566",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/7b18bbdad9880e09740959e90eec4b91c35a4aa9",
+                "reference": "7b18bbdad9880e09740959e90eec4b91c35a4aa9",
                 "shasum": ""
             },
             "require": {
@@ -808,7 +808,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2015-12-08 08:54:19"
+            "time": "2016-03-24 06:24:17"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -977,12 +977,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/environment.git",
-                "reference": "6e7133793a8e5a5714a551a8324337374be209df"
+                "reference": "dc7a29032cf72b54f36dac15a1ca5b3a1b6029bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/6e7133793a8e5a5714a551a8324337374be209df",
-                "reference": "6e7133793a8e5a5714a551a8324337374be209df",
+                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/dc7a29032cf72b54f36dac15a1ca5b3a1b6029bf",
+                "reference": "dc7a29032cf72b54f36dac15a1ca5b3a1b6029bf",
                 "shasum": ""
             },
             "require": {
@@ -1019,7 +1019,7 @@
                 "environment",
                 "hhvm"
             ],
-            "time": "2015-12-02 08:37:27"
+            "time": "2016-02-26 18:40:46"
         },
         {
             "name": "sebastian/exporter",
@@ -1236,19 +1236,27 @@
         },
         {
             "name": "sebastian/version",
-            "version": "1.0.6",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/version.git",
-                "reference": "58b3a85e7999757d6ad81c787a1fbf5ff6c628c6"
+                "reference": "c829badbd8fdf16a0bad8aa7fa7971c029f1b9c5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/version/zipball/58b3a85e7999757d6ad81c787a1fbf5ff6c628c6",
-                "reference": "58b3a85e7999757d6ad81c787a1fbf5ff6c628c6",
+                "url": "https://api.github.com/repos/sebastianbergmann/version/zipball/c829badbd8fdf16a0bad8aa7fa7971c029f1b9c5",
+                "reference": "c829badbd8fdf16a0bad8aa7fa7971c029f1b9c5",
                 "shasum": ""
             },
+            "require": {
+                "php": ">=5.6"
+            },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
             "autoload": {
                 "classmap": [
                     "src/"
@@ -1267,7 +1275,7 @@
             ],
             "description": "Library that helps with managing the version number of Git-hosted PHP projects",
             "homepage": "https://github.com/sebastianbergmann/version",
-            "time": "2015-06-21 13:59:46"
+            "time": "2016-02-04 12:56:52"
         }
     ],
     "aliases": [],
@@ -1275,6 +1283,8 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": ">=5.6.0"
+    },
     "platform-dev": []
 }

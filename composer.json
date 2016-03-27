@@ -3,12 +3,13 @@
     "description": "Statistics generator for Facebook groups",
     "type": "project",
     "require": {
+        "php": ">=5.6.0",
         "facebook/php-sdk-v4" : "~5.0",
         "symfony/yaml": "3.0.*",
         "symfony/console": "3.0.*"
     },
     "require-dev": {
-        "phpunit/phpunit": "5.1.*"
+        "phpunit/phpunit": "5.2.*"
     },
     "license": "MIT",
     "authors": [
