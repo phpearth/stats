@@ -1,28 +1,38 @@
+# Facebook application ID
 fb_app_id: AddFacebookApplicationIdHere
+
+# Facebook application secret key
 fb_app_secret: ChangeThisToYourFacebookAppSecret
+
+# Facebook access token
 fb_access_token: PasteYourFacebookTokenHere
-group_id: IdOfFacebookGroup
+
+# Default Facebook Graph API version
+default_graph_version: 'v2.6'
+
+# Group ID
+group_id: 2204685680
 
 # Number of top users listed in the output report
 top_users_count: 10
 
-# start datetime of the generated report
+# Start datetime of the generated report
 start_datetime: '2015-07-20 00:00:00'
 
-# start datetime of the generated report
+# Start datetime of the generated report
 end_datetime: '2015-07-26 23:59:59'
 
-#last name of the joined member
+# Last name of the joined member
 last_member_name: 'John Doe'
 
-# last number of blocked users
+# Last number of blocked users
 last_blocked_count: 0
 
-# new number of blocked users
+# New number of blocked users
 new_blocked_count: 10
 
-# Number of API pages to fetch
-api_pages: 20
+# Maximum number of API pages to paginate when retrieving members
+api_pages: 10
 
 # Staff picked top topics
 top_topics:

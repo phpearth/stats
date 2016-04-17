@@ -28,10 +28,9 @@ class Mapper
         $this->fb = new Facebook([
             'app_id' => $this->config->get('fb_app_id'),
             'app_secret' => $this->config->get('fb_app_secret'),
-            'default_graph_version' => 'v2.5',
+            'default_graph_version' => $this->config->get('default_graph_version'),
+            'default_access_token' => $this->config->get('fb_access_token'),
         ]);
-
-        $this->fb->setDefaultAccessToken($this->config->get('fb_access_token'));
     }
 
     public function fetchFeed()
@@ -133,13 +132,14 @@ class Mapper
         $pagesCount = 0;
 
         try {
-            $response = $this->fb->get('/' . $this->config->get('group_id') . '/members?fields=id,name&limit=100');
+            $response = $this->fb->get('/' . $this->config->get('group_id') . '/members?fields=id,name&limit=1000');
 
             $feedEdge = $response->getGraphEdge();
             do {
                 $pagesCount ++;
                 $this->progress->setMessage('Retrieving members from API page ' . $pagesCount);
                 $this->progress->advance();
+
 
                 foreach ($feedEdge as $status) {
                     if ($status->asArray()['name'] == $this->config->get('last_member_name')) {
