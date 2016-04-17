@@ -97,7 +97,7 @@ If you want to install this application locally, do the following:
 4. Run tests:
 
     ```bash
-    $ phpunit -c app/
+    $ phpunit
     ```
 
 5. Generate report
