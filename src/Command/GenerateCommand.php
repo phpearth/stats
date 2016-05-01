@@ -17,12 +17,16 @@ class GenerateCommand extends Command
 
     protected function configure()
     {
-        $this->config = new Config(__DIR__.'/../../app/config/parameters.yml');
+        try {
+            $this->config = new Config(__DIR__.'/../../app/config/parameters.yml');
 
-        $this
-            ->setName('generate_command')
-            ->setDescription('Generates Facebook group report')
-        ;
+            $this
+                ->setName('generate_command')
+                ->setDescription('Generates Facebook group report')
+            ;
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -31,7 +35,7 @@ class GenerateCommand extends Command
         $this->progress->setFormat(" %message%\n %current%/%max% [%bar%] %percent:3s%% %elapsed:6s%/%estimated:-6s% %memory:6s%\n\n");
         $this->progress->setMessage('Starting...');
         $this->progress->setProgressCharacter("\xF0\x9F\x8D\xBA");
-        $output->writeln('Generating report for the from ' . $this->config->get('start_datetime') . ' till now');
+        $output->writeln('Generating report for the from '.$this->config->get('start_datetime').' till now');
         $this->progress->start();
 
         $service = new Service($this->config, $this->progress);
@@ -63,10 +67,10 @@ class GenerateCommand extends Command
             'mostCommentsCount' => $topics->getMostActiveTopic()->getCommentsCount(),
             'mostActiveTopicId' => $topics->getMostActiveTopic()->getReportId(),
             'commitsCount' => 3,
-            'topTopics' => $this->config->get('top_topics')
+            'topTopics' => $this->config->get('top_topics'),
         ];
 
-        $template = new Template(__DIR__ . '/../../app/templates/report.php');
+        $template = new Template(__DIR__.'/../../app/templates/report.php');
         foreach ($data as $key => $value) {
             $template->$key = $value;
         }

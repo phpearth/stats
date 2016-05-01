@@ -76,7 +76,7 @@ class Topic
         $count = 0;
         foreach ($this->comments as $comment) {
             if ($comment->getCreatedTime() >= $startDate && $comment->getCreatedTime() <= $endDate) {
-                $count ++;
+                ++$count;
             }
         }
 
@@ -87,10 +87,10 @@ class Topic
      * Unique Facebook post ID in groups is in format of group ID followed by underscore, followed by topic ID. This
      * method returns only the last topic ID that is needed for URL.
      *
-     * @return integer
+     * @return int
      */
     public function getReportId()
     {
-        return substr($this->getId(), strpos($this->getId(), "_") + 1);
+        return substr($this->getId(), strpos($this->getId(), '_') + 1);
     }
 }

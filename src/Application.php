@@ -9,12 +9,12 @@ use PHPWorldWide\Stats\Command\GenerateCommand;
 class Application extends BaseApplication
 {
     /**
-    * Gets the name of the command based on input.
-    *
-    * @param InputInterface $input The input interface
-    *
-    * @return string The command name
-    */
+     * Gets the name of the command based on input.
+     *
+     * @param InputInterface $input The input interface
+     *
+     * @return string The command name
+     */
     protected function getCommandName(InputInterface $input)
     {
         // This should return the name of your command.
@@ -22,10 +22,10 @@ class Application extends BaseApplication
     }
 
     /**
-    * Gets the default commands that should always be available.
-    *
-    * @return array An array of default Command instances
-    */
+     * Gets the default commands that should always be available.
+     *
+     * @return array An array of default Command instances
+     */
     protected function getDefaultCommands()
     {
         // Keep the core default commands to have the HelpCommand
@@ -38,9 +38,9 @@ class Application extends BaseApplication
     }
 
     /**
-    * Overridden so that the application doesn't expect the command
-    * name to be the first argument.
-    */
+     * Overridden so that the application doesn't expect the command
+     * name to be the first argument.
+     */
     public function getDefinition()
     {
         $inputDefinition = parent::getDefinition();

@@ -33,6 +33,7 @@ class Template
      * Gets variable.
      *
      * @param $key
+     *
      * @return mixed
      */
     public function __get($key)

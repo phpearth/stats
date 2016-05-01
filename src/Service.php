@@ -6,7 +6,7 @@ use PHPWorldWide\Stats\Collection\TopicCollection;
 use PHPWorldWide\Stats\Collection\CommentCollection;
 use PHPWorldWide\Stats\Collection\ReplyCollection;
 use PHPWorldWide\Stats\Collection\UserCollection;
-use PHPWorldWide\Stats\Mapper;
+use PHPWorldWide\Stats\Mapper as BaseMapper;
 use Symfony\Component\Console\Helper\ProgressBar;
 
 class Service
@@ -19,7 +19,7 @@ class Service
     {
         $this->config = $config;
         $this->progress = $progress;
-        $this->mapper = new Mapper($this->config, $this->progress);
+        $this->mapper = new BaseMapper($this->config, $this->progress);
     }
 
     public function getTopics($startDate, $endDate)

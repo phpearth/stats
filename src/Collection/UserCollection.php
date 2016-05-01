@@ -31,12 +31,15 @@ class UserCollection extends Collection
     }
 
     /**
-     * for calling with usort($myArray, [$this, 'sortUsers']);
+     * for calling with usort($myArray, [$this, 'sortUsers']);.
+     *
      * @param $a
      * @param $b
+     *
      * @return mixed
      */
-    private function sortUsers($a, $b){
+    private function sortUsers($a, $b)
+    {
         return $a->getPoints() - $b->getPoints();
     }
 

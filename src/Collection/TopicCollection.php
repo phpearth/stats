@@ -49,7 +49,7 @@ class TopicCollection extends Collection
 
         foreach ($this->data as $topic) {
             if ($topic->getCreatedTime() >= $this->startDate && $topic->getCreatedTime() <= $this->endDate) {
-                $count ++;
+                ++$count;
             }
         }
 
@@ -97,7 +97,7 @@ class TopicCollection extends Collection
             $newTopic->setId($topic['id']);
             $newTopic->setCreatedTime($topic['created_time']);
             $commentsCount = $topic['commentsCount'];
-            if(isset($topic['comments'])) {
+            if (isset($topic['comments'])) {
                 foreach ($topic['comments'] as $comment) {
                     if (isset($comment['comment_count'])) {
                         $commentsCount += $comment['comment_count'];
