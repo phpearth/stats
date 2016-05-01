@@ -3,6 +3,7 @@
 namespace PHPWorldWide\Stats;
 
 use Symfony\Component\Yaml\Parser;
+use Symfony\Component\Yaml\Exception\ParseException;
 
 class Config
 {

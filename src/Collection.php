@@ -19,7 +19,7 @@ class Collection implements \Countable, \Iterator
      */
     public function add($obj, $key = null)
     {
-        if ($key == null) {
+        if ($key === null) {
             $this->data[] = $obj;
         } else {
             if (isset($this->data[$key])) {

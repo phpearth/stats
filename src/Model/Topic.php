@@ -2,6 +2,8 @@
 
 namespace PHPWorldWide\Stats\Model;
 
+use PHPWorldWide\Stats\Collection\CommentCollection;
+
 class Topic
 {
     private $id;

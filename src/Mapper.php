@@ -62,12 +62,10 @@ class Mapper
 
         } catch (FacebookResponseException $e) {
             // When Graph returns an error
-            echo 'Graph returned an error: ' . $e->getMessage();
-            exit;
+            throw new \Exception('Graph returned an error: ' . $e->getMessage());
         } catch (FacebookSDKException $e) {
             // When validation fails or other local issues
-            echo 'Facebook SDK returned an error: ' . $e->getMessage();
-            exit;
+            throw new \Exception('Facebook SDK returned an error: ' . $e->getMessage());
         }
 
         $this->progress->setMessage('Adding topics to collection...');
@@ -140,7 +138,6 @@ class Mapper
                 $this->progress->setMessage('Retrieving members from API page ' . $pagesCount);
                 $this->progress->advance();
 
-
                 foreach ($feedEdge as $status) {
                     if ($status->asArray()['name'] == $this->config->get('last_member_name')) {
                         break 2;
@@ -154,12 +151,10 @@ class Mapper
             } while ($feedEdge = $this->fb->next($feedEdge));
         } catch(FacebookResponseException $e) {
             // When Graph returns an error
-            echo 'Graph returned an error: ' . $e->getMessage();
-            exit;
+            throw new \Exception('Graph returned an error: ' . $e->getMessage());
         } catch(FacebookSDKException $e) {
             // When validation fails or other local issues
-            echo 'Facebook SDK returned an error: ' . $e->getMessage();
-            exit;
+            throw new \Exception('Facebook SDK returned an error: ' . $e->getMessage());
         }
 
         $this->progress->advance();
