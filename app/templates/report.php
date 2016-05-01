@@ -7,7 +7,13 @@ http://wwphp-fb.github.io/
 
 ○ Thanks to top <?= $topUsersCount ?> members of the week:
 <?php foreach ($topUsers as $topUser):?>
-- <?= $topUser->getName() ?> (<?= $topUser->getPoints() ?> points, <?= $topUser->getTopicsCount() ?> topics, <?= $topUser->getCommentsCount()?> comments)
+<?php if ($topUser->getTopicsCount() === 0) {
+        $topics = '';
+    } else if ($topUser->getTopicsCount() === 1) {
+        $topics = ', 1 topic';
+    } else {
+        $topics =  ', '.$topUser->getTopicsCount().' topics';
+    }?>- <?= $topUser->getName() ?> (<?= $topUser->getPoints() ?> points, <?= $topUser->getCommentsCount()?> comments<?= $topics?>)
 <?php endforeach; ?>
 
 ○ <?= $newTopicsCount ?> topics, <?= $newCommentsCount ?> comments and <?= $newRepliesCount ?> replies were created by <?= $activeUsersCount ?> active members this week.
