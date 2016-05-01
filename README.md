@@ -1,5 +1,9 @@
 # Stats generator for Facebook group
 
+[![Latest Version](https://img.shields.io/github/release/wwphp-fb/stats.svg?style=plastic)](https://github.com/wwphp-fb/stats/releases)
+[![Build Status](https://travis-ci.org/wwphp-fb/stats.svg?branch=master)](https://travis-ci.org/wwphp-fb/stats)
+[![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=plastic)](LICENSE.md)
+
 PHP application for generating stats for International PHP Facebook group.
 
 ## FAQ
@@ -25,7 +29,7 @@ not excluded for getting higher score than other members :)
 
 ## Installation
 
-If you want to install this application locally, do the following:
+To install this application locally, do the following:
 
 1. Register Facebook Application
 
@@ -110,5 +114,5 @@ If you want to install this application locally, do the following:
 
 This repository is released under the [MIT license](LICENSE).
 
-Contributions and improvement suggestions are welcome by opening an
-[issue](https://github.com/wwphp-fb/stats/issues) or sending pull request.
+You are welcome to suggest improvements or open a ticket. More info in the 
+[CONTRIBUTING](CONTRIBUTING.md) file.

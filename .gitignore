@@ -2,4 +2,4 @@
 /app/config/parameters.yml
 /app/logs/*
 !app/logs/.gitkeep
-/app/phpunit.xml
+/phpunit.xml
