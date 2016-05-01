@@ -128,6 +128,7 @@ class Mapper
         $this->progress->advance();
         $newUsersCount = 0;
         $pagesCount = 0;
+        $log = '';
 
         try {
             $response = $this->fb->get('/' . $this->config->get('group_id') . '/members?fields=id,name&limit=1000');
@@ -139,6 +140,10 @@ class Mapper
                 $this->progress->advance();
 
                 foreach ($feedEdge as $status) {
+                    // log new users
+                    $log .= $status->asArray()['id'] . "\t";
+                    $log .= $status->asArray()['name'] . "\n";
+
                     if ($status->asArray()['name'] == $this->config->get('last_member_name')) {
                         break 2;
                     }
@@ -149,6 +154,8 @@ class Mapper
                     break;
                 }
             } while ($feedEdge = $this->fb->next($feedEdge));
+
+            file_put_contents('./app/logs/newusers.txt', $log);
         } catch(FacebookResponseException $e) {
             // When Graph returns an error
             throw new \Exception('Graph returned an error: ' . $e->getMessage());
