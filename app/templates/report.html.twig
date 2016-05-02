@@ -1,44 +1,32 @@
-
-
-Hello, here are weekly group stats from <?= $startDate ?> to <?= $endDate ?>:
+Hello, here are weekly group stats from {{ start_date }}?> to {{ end_date }}:
 http://wwphp-fb.github.io/
 
-○ Warm welcome to <?= $newUsersCount ?> new members
+○ Warm welcome to {{ new_users_count }} new members
 
-○ Thanks to top <?= $topUsersCount ?> members of the week:
-<?php foreach ($topUsers as $topUser):?>
-<?php if ($topUser->getTopicsCount() === 0) {
-        $topics = '';
-    } else if ($topUser->getTopicsCount() === 1) {
-        $topics = ', 1 topic';
-    } else {
-        $topics =  ', '.$topUser->getTopicsCount().' topics';
-    }?>- <?= $topUser->getName() ?> (<?= $topUser->getPoints() ?> points, <?= $topUser->getCommentsCount()?> comments<?= $topics?>)
-<?php endforeach; ?>
+○ Thanks to top {{ top_users_count }} members of the week:
+{% for user in top_users %}
+- {{ user.getName()|raw }} ({{ user.getPoints() }} points{% if user.getTopicsCount() == 1 %}, 1 topic{% elseif user.getTopicsCount() > 1 %}, {{ user.getTopicsCount() }} topics{% endif %}, {{ user.getCommentsCount() }} comments)
+{% endfor %}
 
-○ <?= $newTopicsCount ?> topics, <?= $newCommentsCount ?> comments and <?= $newRepliesCount ?> replies were created by <?= $activeUsersCount ?> active members this week.
+○ {{ new_topics_count }} topics, {{ new_comments_count }} comments and {{ new_replies_count }} replies were created by {{ active_users_count }} active members this week.
 
-○ <?= $bannedCount ?> users were banned for not following group rules:
+○ {{ banned_count }} users were banned for not following the group Code of Conduct:
 http://wwphp-fb.github.io/code-of-conduct/
 
-○ <?= $commitsCount ?> new commits to our GitHub repos:
+○ {{ commits_count }} new commits to our GitHub repos:
 git.io/vqLvG
 
-○ Most liked topic of the week with <?= $mostLikesCount ?> likes:
-fb.com/groups/2204685680/permalink/<?= $mostLikedTopicId ?>
+○ Most liked topic of the week with {{ most_likes_count }} likes:
+fb.com/groups/2204685680/permalink/{{ most_liked_topic_id }}
 
-
-○ Most active topic of the week with <?= $mostCommentsCount ?> comments:
-fb.com/groups/2204685680/permalink/<?= $mostActiveTopicId ?>
-
+○ Most active topic of the week with {{ most_comments_count }} comments:
+fb.com/groups/2204685680/permalink/{{ most_active_topic_id }}
 
 ○ PHP related topics you should check out (staff pick):
-<?php foreach ($topTopics as $topic):?>
-- <?= $topic['title'] ?>:
-<?= $topic['url'] ?>
-
-<?php endforeach; ?>
-
+{% for topic in top_topics %}
+- {{ topic['title'] }}:
+{{ topic['url'] }}
+{% endfor %}
 
 Your help is appreciated, get involved and contribute.
 http://wwphp-fb.github.io/contribute.html
