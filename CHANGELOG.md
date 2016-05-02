@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file. This projec
 ### Added
 
 * Coding Style fixed
+* Twig template engine
 * ...
 
 

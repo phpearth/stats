@@ -11,12 +11,20 @@ use PHPWorldWide\Stats\Service;
 use Twig_Loader_Filesystem;
 use Twig_Environment;
 use Twig_Template;
-use Twig_Extensions_Extension_I18n;
 
 class GenerateCommand extends Command
 {
+
+    /**
+     * @var Config
+     */
     private $config;
+
+    /**
+     * @var ProgressBar
+     */
     private $progress;
+
     /**
      * @var Twig_Template
      */
@@ -32,19 +40,8 @@ class GenerateCommand extends Command
 
             $twigLoader = new Twig_Loader_Filesystem(__DIR__.'/../../app/templates');
             $twig = new Twig_Environment($twigLoader);
-            $twig->addExtension(new Twig_Extensions_Extension_I18n());
 
-            // Set language to English
-            putenv('LC_ALL=en_US');
-            setlocale(LC_ALL, 'en_US');
-
-            // Specify the location of the translation tables
-            bindtextdomain('myAppPhp', 'includes/locale');
-            bind_textdomain_codeset('myAppPhp', 'UTF-8');
-
-            // Choose domain
-            textdomain('myAppPhp');
-            $this->template = $twig->loadTemplate('report.html.twig');
+            $this->template = $twig->loadTemplate('report.txt.twig');
             $this
                 ->setName('generate_command')
                 ->setDescription('Generates Facebook group report')
