@@ -6,45 +6,15 @@ use PHPWorldWide\Stats\Collection;
 use PHPWorldWide\Stats\Model\Reply;
 
 /**
- * Class ReplyCollection
- * @package PHPWorldWide\Stats\Collection
+ * Class ReplyCollection.
  */
 class ReplyCollection extends Collection
 {
     /**
-     * @var \DateTime
-     */
-    private $startDate;
-
-    /**
-     * @var \DateTime
-     */
-    private $endDate;
-
-    /**
-     * Set Start date of fetched period.
-     *
-     * @param \DateTime $startDate
-     */
-    public function setStartDate(\DateTime $startDate)
-    {
-        $this->startDate = $startDate;
-    }
-
-    /**
-     * Set end date of fetched period.
-     *
-     * @param \DateTime $endDate
-     */
-    public function setEndDate(\DateTime $endDate)
-    {
-        $this->endDate = $endDate;
-    }
-
-    /**
      * Fill collection from fetched API data feed.
      *
      * @param array $feed Fetched topics
+     *
      * @throws \Exception
      */
     public function addRepliesFromFeed($feed)

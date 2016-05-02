@@ -5,44 +5,39 @@ namespace PHPWorldWide\Stats\Collection;
 use PHPWorldWide\Stats\Collection;
 use PHPWorldWide\Stats\Model\Topic;
 
+/**
+ * Class TopicCollection.
+ */
 class TopicCollection extends Collection
 {
-    private $startDate;
-
-    private $endDate;
-
+    /**
+     * @var int
+     */
     private $groupId;
 
-    public function setStartDate(\DateTime $startDate)
-    {
-        $this->startDate = $startDate;
-    }
-
-    public function getStartDate()
-    {
-        return $this->startDate;
-    }
-
-    public function setEndDate(\DateTime $endDate)
-    {
-        $this->endDate = $endDate;
-    }
-
-    public function getEndDate()
-    {
-        return $this->endDate;
-    }
-
+    /**
+     * Set group id.
+     *
+     * @param $groupId
+     */
     public function setGroupId($groupId)
     {
         $this->groupId = $groupId;
     }
 
+    /**
+     * Get group id.
+     *
+     * @return mixed
+     */
     public function getGroupId()
     {
         return $this->groupId;
     }
 
+    /**
+     * @return int
+     */
     public function getNewTopicsCount()
     {
         $count = 0;
@@ -56,6 +51,11 @@ class TopicCollection extends Collection
         return $count;
     }
 
+    /**
+     * Get most active topic.
+     *
+     * @return null|Topic
+     */
     public function getMostActiveTopic()
     {
         $commentsTopCount = 0;
@@ -73,6 +73,11 @@ class TopicCollection extends Collection
         return $mostActiveTopic;
     }
 
+    /**
+     * Get most liked topic.
+     *
+     * return null|Topic
+     */
     public function getMostLikedTopic()
     {
         $likesTopCount = 0;
@@ -90,6 +95,13 @@ class TopicCollection extends Collection
         return $mostLikedTopic;
     }
 
+    /**
+     * Fill collection with topics from API data feed array.
+     *
+     * @param $feed
+     *
+     * @throws \Exception
+     */
     public function addTopicsFromFeed($feed)
     {
         foreach ($feed as $topic) {

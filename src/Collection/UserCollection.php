@@ -8,38 +8,11 @@ use PHPWorldWide\Stats\Model\Topic;
 use PHPWorldWide\Stats\Model\Comment;
 use PHPWorldWide\Stats\Model\Reply;
 
+/**
+ * Class UserCollection.
+ */
 class UserCollection extends Collection
 {
-    /**
-     * @var \DateTime
-     */
-    private $startDate;
-
-    /**
-     * @var \DateTime
-     */
-    private $endDate;
-
-    /**
-     * Sets start date of the data capturing.
-     *
-     * @param \DateTime $startDate
-     */
-    public function setStartDate(\DateTime $startDate)
-    {
-        $this->startDate = $startDate;
-    }
-
-    /**
-     * Sets end date of the data capturing.
-     *
-     * @param \DateTime $endDate
-     */
-    public function setEndDate(\DateTime $endDate)
-    {
-        $this->endDate = $endDate;
-    }
-
     /**
      * Returns top active members of the given period.
      *
@@ -92,7 +65,9 @@ class UserCollection extends Collection
 
                     $topicModel = new Topic();
                     $topicModel->setId($topic['id']);
-                    $topicModel->setMessage($topic['message']);
+                    if (isset($topic['message'])) {
+                        $topicModel->setMessage($topic['message']);
+                    }
                     $topicModel->setLikesCount($topic['likesCount']);
 
                     $user->addTopic($topicModel);
