@@ -89,9 +89,9 @@ class GenerateCommand extends Command
                 'active_users_count' => $users->count(),
                 'banned_count' => $blockedCount,
                 'most_likes_count' => $topics->getMostLikedTopic()->getLikesCount(),
-                'most_liked_topic_id' => $topics->getMostLikedTopic()->getReportId(),
+                'most_liked_topic_id' => $topics->getMostLikedTopic()->getPermalinkPostId(),
                 'most_comments_count' => $topics->getMostActiveTopic()->getCommentsCount(),
-                'most_active_topic_id' => $topics->getMostActiveTopic()->getReportId(),
+                'most_active_topic_id' => $topics->getMostActiveTopic()->getPermalinkPostId(),
                 'commits_count' => 3,
                 'top_topics' => $this->config->get('top_topics'),
             ]));
