@@ -40,6 +40,11 @@ class Topic
     private $comments;
 
     /**
+     * @var string
+     */
+    private $message = '';
+
+    /**
      * Set topic id.
      *
      * @param $id
@@ -147,6 +152,26 @@ class Topic
     public function setComments(CommentCollection $comments)
     {
         $this->comments = $comments;
+    }
+
+    /**
+     * Set topic's message.
+     *
+     * @param string $message
+     */
+    public function setMessage($message)
+    {
+        $this->message = $message;
+    }
+
+    /**
+     * Get topic's message.
+     *
+     * @return string
+     */
+    public function getMessage()
+    {
+        return $this->message;
     }
 
     /**

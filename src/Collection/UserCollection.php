@@ -4,23 +4,49 @@ namespace PHPWorldWide\Stats\Collection;
 
 use PHPWorldWide\Stats\Collection;
 use PHPWorldWide\Stats\Model\User;
+use PHPWorldWide\Stats\Model\Topic;
+use PHPWorldWide\Stats\Model\Comment;
+use PHPWorldWide\Stats\Model\Reply;
 
 class UserCollection extends Collection
 {
+    /**
+     * @var \DateTime
+     */
     private $startDate;
 
+    /**
+     * @var \DateTime
+     */
     private $endDate;
 
+    /**
+     * Sets start date of the data capturing.
+     *
+     * @param \DateTime $startDate
+     */
     public function setStartDate(\DateTime $startDate)
     {
         $this->startDate = $startDate;
     }
 
+    /**
+     * Sets end date of the data capturing.
+     *
+     * @param \DateTime $endDate
+     */
     public function setEndDate(\DateTime $endDate)
     {
         $this->endDate = $endDate;
     }
 
+    /**
+     * Returns top active members of the given period.
+     *
+     * @param string|null $limit
+     *
+     * @return mixed
+     */
     public function getTopUsers($limit = null)
     {
         $topUsers = $this->data;
@@ -31,7 +57,7 @@ class UserCollection extends Collection
     }
 
     /**
-     * for calling with usort($myArray, [$this, 'sortUsers']);.
+     * For calling with usort($myArray, [$this, 'sortUsers']);.
      *
      * @param $a
      * @param $b
@@ -43,6 +69,13 @@ class UserCollection extends Collection
         return $a->getPoints() - $b->getPoints();
     }
 
+    /**
+     * Fill the users collection from captured API data.
+     *
+     * @param array $feed All captured API data as array.
+     *
+     * @throws \Exception
+     */
     public function addUsersFromFeed($feed)
     {
         foreach ($feed as $topic) {
@@ -57,7 +90,12 @@ class UserCollection extends Collection
                         $this->add($user, $user->getId());
                     }
 
-                    $user->addTopic($topic['likesCount']);
+                    $topicModel = new Topic();
+                    $topicModel->setId($topic['id']);
+                    $topicModel->setMessage($topic['message']);
+                    $topicModel->setLikesCount($topic['likesCount']);
+
+                    $user->addTopic($topicModel);
                 }
             }
 
@@ -73,7 +111,12 @@ class UserCollection extends Collection
                             $this->add($user, $user->getId());
                         }
 
-                        $user->addComment($comment['like_count'], $comment['message']);
+                        $commentModel = new Comment();
+                        $commentModel->setId($comment['id']);
+                        $commentModel->setMessage($comment['message']);
+                        $commentModel->setLikesCount($comment['like_count']);
+
+                        $user->addComment($commentModel);
                     }
 
                     if (isset($comment['comments'])) {
@@ -88,7 +131,11 @@ class UserCollection extends Collection
                                     $this->add($user, $user->getId());
                                 }
 
-                                $user->addComment($reply['like_count'], $reply['message']);
+                                $replyModel = new Reply();
+                                $replyModel->setId($reply['id']);
+                                $replyModel->setMessage($reply['message']);
+                                $replyModel->setLikesCount($reply['like_count']);
+                                $user->addReply($replyModel);
                             }
                         }
                     }
