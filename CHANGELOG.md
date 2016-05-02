@@ -11,6 +11,8 @@ All notable changes to this project will be documented in this file. This projec
 
 * Coding Style fixed
 * Twig template engine
+* Code quality improvements
+* Monolog logging
 * ...
 
 

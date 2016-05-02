@@ -10,6 +10,7 @@ use Symfony\Component\Console\Helper\ProgressBar;
 use Facebook\Facebook;
 use Facebook\Exceptions\FacebookSDKException;
 use Facebook\Exceptions\FacebookResponseException;
+use PHPWorldWide\Stats\Log;
 
 /**
  * Class Mapper.
@@ -37,6 +38,11 @@ class Mapper
     protected $feed = [];
 
     /**
+     * @var Log
+     */
+    protected $log;
+
+    /**
      * Mapper constructor.
      *
      * @param Config      $config
@@ -55,6 +61,8 @@ class Mapper
             'default_graph_version' => $this->config->get('default_graph_version'),
             'default_access_token' => $this->config->get('fb_access_token'),
         ]);
+
+        $this->log = new Log();
     }
 
     /**
@@ -121,13 +129,12 @@ class Mapper
         $topics->addTopicsFromFeed($this->fetchFeed());
 
         // log topics
-        $log = '';
         foreach ($topics as $id => $topic) {
-            $log .= $id."\t";
+            $log = $id."\t";
             $log .= ' Likes: '.$topic->getLikesCount()."\t";
             $log .= ' Comments: '.$topic->getCommentsCount()."\n";
+            $this->log->logTopic($log);
         }
-        file_put_contents('./app/logs/topics.txt', $log);
     }
 
     /**
@@ -171,14 +178,13 @@ class Mapper
         $users->setEndDate($endDate);
         $users->addUsersFromFeed($this->feed);
 
-        // log users
-        $log = '';
+        // log all contributors
         foreach ($users->getTopUsers() as $id => $user) {
-            $log .= $id."\t";
+            $log = $id."\t";
             $log .= $user->getName()."\t";
             $log .= $user->getPoints()."\n";
+            $this->log->logContributor($log);
         }
-        file_put_contents('./app/logs/users.txt', $log);
     }
 
     /**
@@ -194,7 +200,6 @@ class Mapper
         $this->progress->advance();
         $newUsersCount = 0;
         $pagesCount = 0;
-        $log = '';
 
         try {
             $response = $this->fb->get('/'.$this->config->get('group_id').'/members?fields=id,name&limit=1000');
@@ -207,8 +212,9 @@ class Mapper
 
                 foreach ($feedEdge as $status) {
                     // log new users
-                    $log .= $status->asArray()['id']."\t";
+                    $log = $status->asArray()['id']."\t";
                     $log .= $status->asArray()['name']."\n";
+                    $this->log->logNewUser($log);
 
                     if ($status->asArray()['name'] == $this->config->get('last_member_name')) {
                         break 2;
@@ -220,8 +226,6 @@ class Mapper
                     break;
                 }
             } while ($feedEdge = $this->fb->next($feedEdge));
-
-            file_put_contents('./app/logs/newusers.txt', $log);
         } catch (FacebookResponseException $e) {
             // When Graph returns an error
             throw new \Exception('Graph returned an error: '.$e->getMessage());

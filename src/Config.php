@@ -5,6 +5,10 @@ namespace PHPWorldWide\Stats;
 use Symfony\Component\Yaml\Parser;
 use Symfony\Component\Yaml\Exception\ParseException;
 
+/**
+ * Class Config
+ * @package PHPWorldWide\Stats
+ */
 class Config
 {
     /**

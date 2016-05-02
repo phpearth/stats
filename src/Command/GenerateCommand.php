@@ -12,9 +12,12 @@ use Twig_Loader_Filesystem;
 use Twig_Environment;
 use Twig_Template;
 
+/**
+ * Class GenerateCommand
+ * @package PHPWorldWide\Stats\Command
+ */
 class GenerateCommand extends Command
 {
-
     /**
      * @var Config
      */
@@ -57,7 +60,7 @@ class GenerateCommand extends Command
         $this->progress->setFormat(" %message%\n %current%/%max% [%bar%] %percent:3s%% %elapsed:6s%/%estimated:-6s% %memory:6s%\n\n");
         $this->progress->setMessage('Starting...');
         $this->progress->setProgressCharacter("\xF0\x9F\x8D\xBA");
-        $output->writeln('Generating report for the from '.$this->config->get('start_datetime').' till now');
+        $output->writeln('Generating report for the from '.$this->config->get('start_datetime')." till now\n");
         $this->progress->start();
 
         try {

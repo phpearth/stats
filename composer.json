@@ -1,6 +1,12 @@
 {
     "name": "wwphp/stats",
     "description": "Statistics generator for Facebook groups",
+    "keywords": [
+        "facebook",
+        "statistics",
+        "groups"
+    ],
+    "homepage": "https://github.com/wwphp-fb/stats",
     "type": "project",
     "license": "MIT",
     "require": {
@@ -8,10 +14,12 @@
         "facebook/php-sdk-v4" : "^5.1",
         "symfony/yaml": "^3.0",
         "symfony/console": "^3.0",
-        "twig/twig": "~1.0"
+        "twig/twig": "~1.0",
+        "monolog/monolog": "^1.19"
     },
     "require-dev": {
-        "phpunit/phpunit": "^5.3"
+        "phpunit/phpunit": "^5.3",
+        "mikey179/vfsStream": "^1"
     },
     "autoload": {
         "psr-4": {"PHPWorldWide\\Stats\\": "src/"}
