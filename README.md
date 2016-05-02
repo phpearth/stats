@@ -4,6 +4,8 @@
 [![Build Status](https://travis-ci.org/wwphp-fb/stats.svg?branch=master)](https://travis-ci.org/wwphp-fb/stats)
 [![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=plastic)](LICENSE.md)
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/c317a2f5-1fbe-4d76-a93c-8f0d98e61ef6/big.png)](https://insight.sensiolabs.com/projects/c317a2f5-1fbe-4d76-a93c-8f0d98e61ef6)
+
 PHP application for generating stats for International PHP Facebook group.
 
 ## FAQ
