@@ -8,9 +8,9 @@ use Symfony\Component\Yaml\Exception\ParseException;
 class Config
 {
     /**
-     * @var array
+     * @var mixed
      */
-    private $values = [];
+    private $values;
 
     /**
      * Config constructor. Sets up config parameters from YAML file.
