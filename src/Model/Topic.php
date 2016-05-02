@@ -33,12 +33,7 @@ class Topic
      * @var int
      */
     private $commentsCount = 0;
-
-    /**
-     * @var CommentCollection
-     */
-    private $comments;
-
+    
     /**
      * @var string
      */
@@ -142,16 +137,6 @@ class Topic
     public function getCommentsCount()
     {
         return $this->commentsCount;
-    }
-
-    /**
-     * Set topic's comments collection.
-     *
-     * @param CommentCollection $comments
-     */
-    public function setComments(CommentCollection $comments)
-    {
-        $this->comments = $comments;
     }
 
     /**

@@ -20,11 +20,6 @@ class User
     private $name;
 
     /**
-     * @var int
-     */
-    private $pointsCount = 0;
-
-    /**
      * @var Points
      */
     private $points;
