@@ -2,8 +2,6 @@
 
 namespace PHPWorldWide\Stats\Model;
 
-use PHPWorldWide\Stats\Collection\CommentCollection;
-
 /**
  * Class Topic.
  */
@@ -33,7 +31,7 @@ class Topic
      * @var int
      */
     private $commentsCount = 0;
-    
+
     /**
      * @var string
      */
