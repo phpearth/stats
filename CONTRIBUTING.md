@@ -1,7 +1,7 @@
 # Contribution Guidelines
 
-You are most welcome to suggest improvements, or send a pull
-requests. In case you find an issue, please report an
+You are most welcome to suggest improvements, or send a pull requests. In case
+you find an issue, please report an
 [issue](https://github.com/wwphp-fb/stats/issues)
 
 * Fork this repository over GitHub
@@ -38,5 +38,5 @@ released by the following release process:
 
 * **2. Tag new release:**
 
-    Tag a new version on [GitHub](https://github.com/wwphp-fb/stats/releases) with
-    description of notable changes.
+    Tag a new version on [GitHub](https://github.com/wwphp-fb/stats/releases)
+    with description of notable changes.
