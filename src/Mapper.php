@@ -10,7 +10,6 @@ use Symfony\Component\Console\Helper\ProgressBar;
 use Facebook\Facebook;
 use Facebook\Exceptions\FacebookSDKException;
 use Facebook\Exceptions\FacebookResponseException;
-use PHPWorldWide\Stats\Log;
 
 /**
  * Class Mapper.
@@ -45,24 +44,17 @@ class Mapper
     /**
      * Mapper constructor.
      *
-     * @param Config      $config
+     * @param Config $config
      * @param ProgressBar $progress
+     * @param Facebook $fb
+     * @param Log $log
      */
-    public function __construct(Config $config, ProgressBar $progress)
+    public function __construct(Config $config, ProgressBar $progress, Facebook $fb, Log $log)
     {
         $this->config = $config;
         $this->progress = $progress;
-        $this->progress->setMessage('Setting up Facebook connection ...');
-        $this->progress->advance();
-
-        $this->fb = new Facebook([
-            'app_id' => $this->config->get('fb_app_id'),
-            'app_secret' => $this->config->get('fb_app_secret'),
-            'default_graph_version' => $this->config->get('default_graph_version'),
-            'default_access_token' => $this->config->get('fb_access_token'),
-        ]);
-
-        $this->log = new Log();
+        $this->fb = $fb;
+        $this->log = $log;
     }
 
     /**

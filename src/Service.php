@@ -8,6 +8,7 @@ use PHPWorldWide\Stats\Collection\ReplyCollection;
 use PHPWorldWide\Stats\Collection\UserCollection;
 use PHPWorldWide\Stats\Mapper as BaseMapper;
 use Symfony\Component\Console\Helper\ProgressBar;
+use Facebook\Facebook;
 
 /**
  * Class Service.
@@ -32,14 +33,16 @@ class Service
     /**
      * Service constructor.
      *
-     * @param Config      $config
+     * @param Config $config
      * @param ProgressBar $progress
+     * @param Facebook $fb
+     * @param Log $log
      */
-    public function __construct(Config $config, ProgressBar $progress)
+    public function __construct(Config $config, ProgressBar $progress, Facebook $fb, Log $log)
     {
         $this->config = $config;
         $this->progress = $progress;
-        $this->mapper = new BaseMapper($this->config, $this->progress);
+        $this->mapper = new BaseMapper($this->config, $this->progress, $fb, $log);
     }
 
     /**

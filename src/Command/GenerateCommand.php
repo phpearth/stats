@@ -6,7 +6,10 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Helper\ProgressBar;
+use Symfony\Component\Console\Question\Question;
+use PHPWorldWide\Stats\Auth;
 use PHPWorldWide\Stats\Config;
+use PHPWorldWide\Stats\Log;
 use PHPWorldWide\Stats\Service;
 use Twig_Loader_Filesystem;
 use Twig_Environment;
@@ -63,8 +66,37 @@ class GenerateCommand extends Command
         $output->writeln('Generating report for the from '.$this->config->get('start_datetime')." till now\n");
         $this->progress->start();
 
+        $this->progress->setMessage('Setting up Facebook service...');
+        $auth = new Auth($this->config);
+
+        if (!$auth->isValid()) {
+            $helper = $this->getHelper('question');
+
+            $question = new Question($auth->getError() . ' Enter a new access token:');
+            $question->setValidator(function ($token) use ($auth) {
+                if (trim($token) == '') {
+                    throw new \Exception('The token can not be empty');
+                }
+
+                $auth->setToken($token);
+
+                if (!$auth->isValid()) {
+                    throw new \Exception($auth->getError());
+                }
+
+                return $token;
+            });
+            $question->setHidden(true);
+            $question->setMaxAttempts(20);
+
+            $helper->ask($input, $output, $question);
+        }
+
+        $this->progress->advance();
+
         try {
-            $service = new Service($this->config, $this->progress);
+            $log = new Log;
+            $service = new Service($this->config, $this->progress, $auth->fb, $log);
 
             $startDate = \DateTime::createFromFormat('Y-m-d H:i:s', $this->config->get('start_datetime'));
             $endDate = \DateTime::createFromFormat('Y-m-d H:i:s', $this->config->get('end_datetime'));
