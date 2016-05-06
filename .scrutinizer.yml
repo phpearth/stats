@@ -20,9 +20,10 @@ tools:
         runs: 3
     php_analyzer: true
     php_code_coverage: false
-    php_code_sniffer:
+    php_cs_fixer:
+        enabled: true
         config:
-            standard: PSR2
+            level: psr2
         filter:
             paths: ['src']
     php_loc:
