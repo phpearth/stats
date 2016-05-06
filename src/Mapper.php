@@ -174,7 +174,7 @@ class Mapper
         foreach ($users->getTopUsers() as $id => $user) {
             $log = $id."\t";
             $log .= $user->getName()."\t";
-            $log .= $user->getPoints()."\n";
+            $log .= $user->getPointsCount()."\n";
             $this->log->logContributor($log);
         }
     }

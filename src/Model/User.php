@@ -27,6 +27,11 @@ class User
     /**
      * @var int
      */
+    private $pointsCount = 0;
+
+    /**
+     * @var int
+     */
     private $topicsCount = 0;
 
     /**
@@ -97,7 +102,7 @@ class User
     public function addTopic(Topic $topic)
     {
         ++$this->topicsCount;
-        $this->points->addPointsForTopic($topic);
+        $this->pointsCount += $this->points->addPointsForTopic($topic);
     }
 
     /**
@@ -108,7 +113,7 @@ class User
     public function addComment(Comment $comment)
     {
         ++$this->commentsCount;
-        $this->points->addPointsForComment($comment);
+        $this->pointsCount += $this->points->addPointsForComment($comment);
     }
 
     /**
@@ -119,7 +124,7 @@ class User
     public function addReply(Reply $reply)
     {
         ++$this->repliesCount;
-        $this->points->addPointsForReply($reply);
+        $this->pointsCount += $this->points->addPointsForReply($reply);
     }
 
     /**
@@ -127,9 +132,9 @@ class User
      *
      * @return int
      */
-    public function getPoints()
+    public function getPointsCount()
     {
-        return $this->points->getPointsCount();
+        return $this->pointsCount;
     }
 
     /**

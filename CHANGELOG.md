@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file. This projec
 * Twig template engine
 * Code quality improvements
 * Monolog logging
+* URLs with additional points
 * ...
 
 

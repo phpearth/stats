@@ -4,7 +4,7 @@ Hello, here are weekly group stats from {{ start_date }}?> to {{ end_date }}:
 
 ○ Thanks to top {{ top_users_count }} members of the week:
 {% for user in top_users %}
-- {{ user.getName()|raw }} ({{ user.getPoints() }} points{% if user.getTopicsCount() == 1 %}, 1 topic{% elseif user.getTopicsCount() > 1 %}, {{ user.getTopicsCount() }} topics{% endif %}, {{ user.getCommentsCount() }} comments)
+- {{ user.getName()|raw }} ({{ user.getPointsCount() }} points{% if user.getTopicsCount() == 1 %}, 1 topic{% elseif user.getTopicsCount() > 1 %}, {{ user.getTopicsCount() }} topics{% endif %}, {{ user.getCommentsCount() }} comments)
 {% endfor %}
 
 ○ {{ new_topics_count }} topics, {{ new_comments_count }} comments and {{ new_replies_count }} replies were created by {{ active_users_count }} active members this week.

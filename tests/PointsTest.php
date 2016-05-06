@@ -10,11 +10,12 @@ use PHPWorldWide\Stats\Model\Reply;
 
 class PointsTest extends \PHPUnit_Framework_TestCase
 {
-    private $config;
+    private $points;
 
     protected function setUp()
     {
-        $this->config = new Config(__DIR__.'/../app/config/parameters.yml');
+        $config = new Config(__DIR__.'/../app/config/parameters.yml.dist');
+        $this->points = new Points($config);
     }
 
     protected static function getMethod($name)
@@ -26,58 +27,77 @@ class PointsTest extends \PHPUnit_Framework_TestCase
         return $method;
     }
 
-    public function testAddPointsForTopic()
+    /**
+     * @dataProvider topicsProvider
+     */
+    public function testAddPointsForTopic($message, $likes, $expectedPoints)
     {
-        $points = new Points($this->config);
         $topic = new Topic();
         $topic->setId(1);
-        $topic->setMessage('Lorem ipsum dolor sit amet.');
-        $topic->setLikesCount(0);
+        $topic->setMessage($message);
+        $topic->setLikesCount($likes);
 
-        $points->addPointsForTopic($topic);
-
-        $this->assertEquals(1, $points->getPointsCount());
+        $this->assertEquals($expectedPoints, $this->points->addPointsForTopic($topic));
     }
 
-    public function testAddPointsForComment()
+    /**
+     * @dataProvider commentsAndRepliesProvider
+     */
+    public function testAddPointsForComment($message, $likes, $expectedPoints)
     {
-        $points = new Points($this->config);
         $comment = new Comment();
         $comment->setId(1);
-        $comment->setMessage('Lorem ipsum dolor sit amet.');
-        $comment->setLikesCount(0);
-
-        $points->addPointsForComment($comment);
-        $this->assertEquals(1, $points->getPointsCount());
-
-        $comment_2 = new Comment();
-        $comment_2->setId(2);
-        $comment_2->setMessage('Lorem ipsum dolor sit amet.');
-        $comment_2->setLikesCount(0);
-        $points->addPointsForComment($comment_2);
-        $this->assertEquals(2, $points->getPointsCount());
+        $comment->setMessage($message);
+        $comment->setLikesCount($likes);
+        $this->assertEquals($expectedPoints, $this->points->addPointsForComment($comment));
     }
 
-    public function testAddPointsForReply()
+    /**
+     * @dataProvider commentsAndRepliesProvider
+     */
+    public function testAddPointsForReply($message, $likes, $expectedPoints)
     {
-        $points = new Points($this->config);
         $reply = new Reply();
         $reply->setId(1);
-        $reply->setMessage('Lorem ipsum dolor sit amet.');
-        $reply->setLikesCount(0);
-
-        $points->addPointsForReply($reply);
-
-        $this->assertEquals(1, $points->getPointsCount());
+        $reply->setMessage($message);
+        $reply->setLikesCount($likes);
+        $this->assertEquals($expectedPoints, $this->points->addPointsForReply($reply));
     }
 
-    public function testAddPointsForLinks()
+    /**
+     * @dataProvider linksProvider
+     */
+    public function testAddPointsForLinks($message, $expectedPoints)
     {
         $method = self::getMethod('addPointsForLinks');
-        $points = new Points($this->config);
-        $message = 'http://wwphp-fb.github.io';
-        $method->invoke($points, $message);
 
-        $this->assertEquals(20, $points->getPointsCount());
+        $this->assertEquals($expectedPoints, $method->invoke($this->points, $message));
+    }
+
+    public function topicsProvider()
+    {
+        return [
+            ['Lorem ipsum dolor sit amet.', 0, 1],
+            ['Lorem ipsum dolor sit amet', 5, 2],
+            ['Lorem ipsum dolor sit amet', 11, 3],
+        ];
+    }
+
+    public function commentsAndRepliesProvider()
+    {
+        return [
+            ['Lorem ipsum dolor sit amet.', 0, 1],
+            ['Lorem ipsum dolor sit amet', 5, 2],
+            ['Lorem ipsum dolor sit amet', 11, 3],
+        ];
+    }
+
+    public function linksProvider()
+    {
+        return [
+            ['http://wwwphp-fb.github.io', 20],
+            ['Lorem ipsum dolor stackoverflow.com sit amet.', 5],
+            ['http://wwwphp-fb.github.io and php.net', 20],
+        ];
     }
 }

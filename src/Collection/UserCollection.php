@@ -53,7 +53,7 @@ class UserCollection extends Collection
      */
     private function sortUsers($a, $b)
     {
-        return $a->getPoints() - $b->getPoints();
+        return $a->getPointsCount() - $b->getPointsCount();
     }
 
     /**
@@ -65,13 +65,14 @@ class UserCollection extends Collection
      */
     public function addUsersFromFeed($feed)
     {
+        $points = new Points($this->config);
+
         foreach ($feed as $topic) {
             if ($topic['created_time'] >= $this->startDate && $topic['created_time'] <= $this->endDate) {
                 if (isset($topic['from'])) {
                     if ($this->keyExists($topic['from']['id'])) {
                         $user = $this->get($topic['from']['id']);
                     } else {
-                        $points = new Points($this->config);
                         $user = new User($points);
                         $user->setId($topic['from']['id']);
                         $user->setName($topic['from']['name']);
@@ -95,7 +96,6 @@ class UserCollection extends Collection
                         if ($this->keyExists($comment['from']['id'])) {
                             $user = $this->get($comment['from']['id']);
                         } else {
-                            $points = new Points($this->config);
                             $user = new User($points);
                             $user->setId($comment['from']['id']);
                             $user->setName($comment['from']['name']);
@@ -116,7 +116,6 @@ class UserCollection extends Collection
                                 if ($this->keyExists($reply['from']['id'])) {
                                     $user = $this->get($reply['from']['id']);
                                 } else {
-                                    $points = new Points($this->config);
                                     $user = new User($points);
                                     $user->setId($reply['from']['id']);
                                     $user->setName($reply['from']['name']);

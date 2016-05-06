@@ -17,11 +17,6 @@ class Points
     private $config;
 
     /**
-     * @var int
-     */
-    private $pointsCount = 0;
-
-    /**
      * Points constructor.
      *
      * @param Config $config
@@ -32,77 +27,82 @@ class Points
     }
 
     /**
-     * Get number of points.
-     *
-     * @return int
-     */
-    public function getPointsCount()
-    {
-        return $this->pointsCount;
-    }
-
-    /**
      * Add points based on creating a topic.
      *
      * @param Topic $topic
+     *
+     * @return int
      */
     public function addPointsForTopic(Topic $topic)
     {
         // Add 1 point for creating a topic
-        ++$this->pointsCount;
+        $points = 1;
 
         // Add points based on the topic likes
-        $this->pointsCount += ($topic->getLikesCount() >= 100) ? 15 : ceil($topic->getLikesCount() / 10);
+        $points += ($topic->getLikesCount() >= 100) ? 15 : ceil($topic->getLikesCount() / 10);
 
         // Add points for using recommended links
-        $this->addPointsForLinks($topic->getMessage());
+        $points += $this->addPointsForLinks($topic->getMessage());
+
+        return $points;
     }
 
     /**
      * Add points based on comment.
      *
      * @param Comment $comment
+     *
+     * @return int
      */
     public function addPointsForComment(Comment $comment)
     {
-        ++$this->pointsCount;
-        $this->pointsCount += ($comment->getLikesCount() > 100) ? 11 : ceil($comment->getLikesCount() / 10);
-        $this->pointsCount += (strlen($comment->getMessage()) > 100) ? 1 : 0;
+        $points = 1;
+        $points += ($comment->getLikesCount() > 100) ? 11 : ceil($comment->getLikesCount() / 10);
+        $points += (strlen($comment->getMessage()) > 100) ? 1 : 0;
 
         // Add points for using recommended links
-        $this->addPointsForLinks($comment->getMessage());
+        $points += $this->addPointsForLinks($comment->getMessage());
+
+        return $points;
     }
 
     /**
      * Add points based on reply.
      * 
      * @param Reply $reply
+     *
+     * @return int
      */
     public function addPointsForReply(Reply $reply)
     {
-        ++$this->pointsCount;
-        $this->pointsCount += ($reply->getLikesCount() > 100) ? 11 : ceil($reply->getLikesCount() / 10);
-        $this->pointsCount += (strlen($reply->getMessage()) > 100) ? 1 : 0;
+        $points = 1;
+        $points += ($reply->getLikesCount() > 100) ? 11 : ceil($reply->getLikesCount() / 10);
+        $points += (strlen($reply->getMessage()) > 100) ? 1 : 0;
 
         // Add points for using recommended links
-        $this->addPointsForLinks($reply->getMessage());
+        $points += $this->addPointsForLinks($reply->getMessage());
+
+        return $points;
     }
 
     /**
      * Add points for attaching recommended links.
      *
      * @param string $message
+     *
+     * @return int
      */
     private function addPointsForLinks($message)
     {
+        $points = 0;
         if (isset($message)) {
-            $top = 0;
             foreach ($this->config->get('urls') as $url) {
                 if (false !== strpos($message, $url[0])) {
-                    $top = ($top > $url[1]) ? $top : $url[1];
+                    $points = ($points > $url[1]) ? $points : $url[1];
                 }
             }
-            $this->pointsCount += $top;
         }
+
+        return $points;
     }
 }
