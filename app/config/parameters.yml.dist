@@ -34,6 +34,18 @@ new_blocked_count: 10
 # Maximum number of API pages to paginate when retrieving members
 api_pages: 10
 
+# Links for additional points [url, points]
+urls:
+  - [github.com, 10]
+  - [github.io, 10]
+  - [php.net, 20]
+  - [wwphp-fb.github.io, 20]
+  - [packagist.org, 10]
+  - [getcomposer.org, 10]
+  - [sitepoint.com, 5]
+  - [phpclasses.org, 5]
+  - [stackoverflow.com, 5]
+
 # Staff picked top topics
 top_topics:
     -

@@ -42,12 +42,11 @@ class User
     /**
      * User constructor.
      *
-     * @param int|null $id
+     * @param Points $points
      */
-    public function __construct($id = null)
+    public function __construct(Points $points)
     {
-        $this->id = $id;
-        $this->points = new Points();
+        $this->points = $points;
     }
 
     /**

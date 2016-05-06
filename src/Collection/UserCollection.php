@@ -7,12 +7,26 @@ use PHPWorldWide\Stats\Model\User;
 use PHPWorldWide\Stats\Model\Topic;
 use PHPWorldWide\Stats\Model\Comment;
 use PHPWorldWide\Stats\Model\Reply;
+use PHPWorldWide\Stats\Points;
+use PHPWorldWide\Stats\Config;
 
 /**
  * Class UserCollection.
  */
 class UserCollection extends Collection
 {
+    /**
+     * @var Config
+     */
+    private $config;
+
+    /**
+     * @param Config $config
+     */
+    public function setConfig(Config $config)
+    {
+        $this->config = $config;
+    }
     /**
      * Returns top active members of the given period.
      *
@@ -57,7 +71,8 @@ class UserCollection extends Collection
                     if ($this->keyExists($topic['from']['id'])) {
                         $user = $this->get($topic['from']['id']);
                     } else {
-                        $user = new User();
+                        $points = new Points($this->config);
+                        $user = new User($points);
                         $user->setId($topic['from']['id']);
                         $user->setName($topic['from']['name']);
                         $this->add($user, $user->getId());
@@ -80,7 +95,8 @@ class UserCollection extends Collection
                         if ($this->keyExists($comment['from']['id'])) {
                             $user = $this->get($comment['from']['id']);
                         } else {
-                            $user = new User();
+                            $points = new Points($this->config);
+                            $user = new User($points);
                             $user->setId($comment['from']['id']);
                             $user->setName($comment['from']['name']);
                             $this->add($user, $user->getId());
@@ -100,7 +116,8 @@ class UserCollection extends Collection
                                 if ($this->keyExists($reply['from']['id'])) {
                                     $user = $this->get($reply['from']['id']);
                                 } else {
-                                    $user = new User();
+                                    $points = new Points($this->config);
+                                    $user = new User($points);
                                     $user->setId($reply['from']['id']);
                                     $user->setName($reply['from']['name']);
                                     $this->add($user, $user->getId());

@@ -22,6 +22,14 @@ PHP application for generating stats for International PHP Facebook group.
     * and so on until 91 to 100 likes = 10 points
     * more than 100 likes gets you 11 points
 * More detailed comments or replies with 100 characters or more get you extra points.
+* Messages and topics with special links get you extra points:
+    * GitHub: 10 points
+    * PHP.net: 20 points
+    * wwphp-fb.github.io: 20 points
+    * Composer and packagist: 10 points
+    * Sitepoint: 5 points
+    * PHP Classes: 5 points
+    * StackOverflow: 5 points
 
 **What is the benefit of the points?**
 
@@ -99,6 +107,8 @@ To install this application locally, do the following:
     `new_blocked_count` - number of blocked accounts on the time of report generation
 
     `api_pages` - how many pages should the data collecting include. Large amount of data from the Facebook Graph API gets returned in multiple pages and Facebook group feed is sorted by updated topics.
+
+    `urls:` - array of links which give extra points, format is array [link, points]
 
     `top_topics:` - array of staff picked topics
 

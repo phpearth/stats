@@ -104,6 +104,7 @@ class Service
     public function getUsers($startDate, $endDate)
     {
         $users = new UserCollection();
+        $users->setConfig($this->config);
         $this->mapper->mapUsers($users, $startDate, $endDate);
 
         return $users;
