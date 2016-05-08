@@ -11,31 +11,6 @@ use PHPWorldWide\Stats\Model\Topic;
 class TopicCollection extends Collection
 {
     /**
-     * @var int
-     */
-    private $groupId;
-
-    /**
-     * Set group id.
-     *
-     * @param $groupId
-     */
-    public function setGroupId($groupId)
-    {
-        $this->groupId = $groupId;
-    }
-
-    /**
-     * Get group id.
-     *
-     * @return mixed
-     */
-    public function getGroupId()
-    {
-        return $this->groupId;
-    }
-
-    /**
      * @return int
      */
     public function getNewTopicsCount()

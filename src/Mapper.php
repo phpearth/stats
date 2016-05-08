@@ -117,7 +117,6 @@ class Mapper
     {
         $topics->setStartDate($startDate);
         $topics->setEndDate($endDate);
-        $topics->setGroupId($this->config->get('group_id'));
         $topics->addTopicsFromFeed($this->fetchFeed());
 
         // log topics
