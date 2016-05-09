@@ -9,13 +9,17 @@ All notable changes to this project will be documented in this file. This projec
 
 ### Added
 
-* Coding Style fixed
+* Dependency injection container
+* ...
+
+
+## [0.2.0] - 2016-05-09
+
+* Coding style fixed
 * Twig template engine
 * Code quality improvements
 * Monolog logging
 * URLs with additional points
-* ...
-
 
 ## [0.1.0] - 2016-05-02
 
