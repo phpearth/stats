@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPWorldWide\Stats\Test;
+namespace PHPWorldWide\Stats\Tests;
 
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamWrapper;

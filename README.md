@@ -67,15 +67,11 @@ To install this application locally, do the following:
     fb_app_id: 123456789012312
     fb_app_secret: 9xdlsd93kdcd3jkd
     fb_access_token: xyz
-    default_graph_version: 'v2.6'
-    group_id: 2204685680
-    top_users_count: 10
     start_datetime: '2015-07-20 00:00:00'
     end_datetime: '2015-07-26 23:59:59'
     last_member_name: 'John Doe'
     last_blocked_count: 123
     new_blocked_count: 321
-    api_pages: 20
     top_topics:
         -
             title: "20 years of PHP"
@@ -90,12 +86,6 @@ To install this application locally, do the following:
 
     `fb_access_token` - Facebook access token should be copied from your Facebook application [Graph Api Explorer](https://developers.facebook.com/tools/explorer)
 
-    `default_graph_version` - Default Facebook Graph API version
-
-    `group_id` - Facebook group id
-
-    `top_users_count` - how many top users should be shown in the generated report
-
     `start_datetime` - start datetime string of the report
 
     `end_datetime` - end datetime string of the report
@@ -106,11 +96,20 @@ To install this application locally, do the following:
 
     `new_blocked_count` - number of blocked accounts on the time of report generation
 
-    `api_pages` - how many pages should the data collecting include. Large amount of data from the Facebook Graph API gets returned in multiple pages and Facebook group feed is sorted by updated topics.
+    `top_topics:` - array of staff picked topics
+    
+    Optional configuration parameters:
 
+    `default_graph_version` - Default Facebook Graph API version
+
+    `top_users_count` - how many top users should be shown in the generated report
+    
+    `group_id` - Facebook group id
+    
+    `api_pages` - how many pages should the data collecting include. Large amount of data from the Facebook Graph API gets returned in multiple pages and Facebook group feed is sorted by updated topics.
+    
     `urls:` - array of links which give extra points, format is array [link, points]
 
-    `top_topics:` - array of staff picked topics
 
 4. Run tests:
 

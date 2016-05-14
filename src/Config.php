@@ -7,28 +7,45 @@ use Symfony\Component\Yaml\Exception\ParseException;
 
 /**
  * Class Config
- * @package PHPWorldWide\Stats
  */
 class Config
 {
     /**
-     * @var mixed
+     * @var array Yaml files with configuration values.
      */
-    private $values;
+    private $files = [];
+
+    /**
+     * @var array
+     */
+    private $values = [];
 
     /**
      * Config constructor. Sets up config parameters from YAML file.
      *
      * @param string $file YAML file location
-     *
-     * @throws \Exception
      */
     public function __construct($file)
     {
+        $this->addFile($file);
+    }
+
+    /**
+     * Add file, later added files overwrite config values.
+     *
+     * @param string $file YAML file location.
+     *
+     * @throws \Exception
+     */
+    public function addFile($file)
+    {
+        $this->files[] = $file;
+
         $parser = new Parser();
 
         try {
-            $this->values = $parser->parse(file_get_contents($file));
+            $values = $parser->parse(file_get_contents($file));
+            $this->values = array_merge($this->values, $values);
         } catch (ParseException $e) {
             throw new \Exception('Unable to parse the YAML string: '.$e->getMessage());
         }

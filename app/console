@@ -19,7 +19,8 @@ use PHPWorldWide\Stats\Application;
 $container = new Conjurer();
 
 $container->register(new Service(Config::class));
-$config = $container->make(Config::class, [__DIR__.'/config/parameters.yml']);
+$config = $container->make(Config::class, [__DIR__.'/config/parameters.yml.dist']);
+$config->addFile(__DIR__.'/config/parameters.yml');
 
 $container->register(new Service(Log::class));
 $log = $container->make(Log::class);
