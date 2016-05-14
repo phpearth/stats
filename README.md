@@ -30,6 +30,10 @@ PHP application for generating stats for International PHP Facebook group.
     * Sitepoint: 5 points
     * PHP Classes: 5 points
     * StackOverflow: 5 points
+    * PHP-FIG.org: 5 points
+    * phpunit.de: 5 points
+    * PHP The Right Way: 10 points
+* Offensive messages get negative points.
 
 **What is the benefit of the points?**
 
@@ -109,6 +113,8 @@ To install this application locally, do the following:
     `api_pages` - how many pages should the data collecting include. Large amount of data from the Facebook Graph API gets returned in multiple pages and Facebook group feed is sorted by updated topics.
     
     `urls:` - array of links which give extra points, format is array [link, points]
+    
+    `offensive_words:` - array of words which give negative points, format is array [string, points]
 
 
 4. Run tests:

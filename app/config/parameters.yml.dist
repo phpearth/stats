@@ -14,7 +14,7 @@ default_graph_version: 'v2.6'
 group_id: 2204685680
 
 # Number of top users listed in the output report
-top_users_count: 10
+top_users_count: 20
 
 # Start datetime of the generated report
 start_datetime: '2015-07-20 00:00:00'
@@ -36,15 +36,37 @@ api_pages: 10
 
 # Links for additional points [url, points]
 urls:
-  - [github.com, 10]
-  - [github.io, 10]
-  - [php.net, 20]
-  - [wwphp-fb.github.io, 20]
-  - [packagist.org, 10]
-  - [getcomposer.org, 10]
-  - [sitepoint.com, 5]
-  - [phpclasses.org, 5]
-  - [stackoverflow.com, 5]
+    - [github.com, 10]
+    - [github.io, 10]
+    - [php.net, 20]
+    - [wwphp-fb.github.io, 20]
+    - [packagist.org, 10]
+    - [getcomposer.org, 10]
+    - [phptherightway.com, 10]
+    - [sitepoint.com, 5]
+    - [phpclasses.org, 5]
+    - [stackoverflow.com, 5]
+    - [phpunit.de, 5]
+    - [php-fig.org, 5]
+
+# Words and combinations of words that counts as offensive or low quality
+offensive_words:
+    - ['you idiot', -20]
+    - ['fuck you', -20]
+    - ['fuck u', -20]
+    - ['fuck', -20]
+    - ['go fuck yourself', -20]
+    - ['you''re an idiot', -20]
+    - ['you are an idiot', -20]
+    - ['you are dumb', -20]
+    - ['you''re dumb', -20]
+    - ['go to hell', -20]
+    - ['stop being lazy', -20]
+    - ['don''t be lazy', -20]
+    - ['shit', -20]
+    - ['asshole', -20]
+    - ['lmgtfy.com', -20]
+    - ['w3schools.com', -20]
 
 # Staff picked top topics
 top_topics:

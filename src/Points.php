@@ -44,6 +44,9 @@ class Points
         // Add points for using recommended links
         $points += $this->addPointsForLinks($topic->getMessage());
 
+        // Remove points for using offensive words
+        $points += $this->getOffensivePoints($topic->getMessage());
+
         return $points;
     }
 
@@ -62,6 +65,9 @@ class Points
 
         // Add points for using recommended links
         $points += $this->addPointsForLinks($comment->getMessage());
+
+        // Remove points for using offensive words
+        $points += $this->getOffensivePoints($comment->getMessage());
 
         return $points;
     }
@@ -82,6 +88,9 @@ class Points
         // Add points for using recommended links
         $points += $this->addPointsForLinks($reply->getMessage());
 
+        // Remove points for using offensive words
+        $points += $this->getOffensivePoints($reply->getMessage());
+
         return $points;
     }
 
@@ -97,8 +106,29 @@ class Points
         $points = 0;
         if (isset($message)) {
             foreach ($this->config->get('urls') as $url) {
-                if (false !== strpos($message, $url[0])) {
+                if (false !== stripos($message, $url[0])) {
                     $points = ($points > $url[1]) ? $points : $url[1];
+                }
+            }
+        }
+
+        return $points;
+    }
+
+    /**
+     * Remove points for using offensive and inappropriate keywords.
+     *
+     * @param string $message
+     *
+     * @return int
+     */
+    private function getOffensivePoints($message)
+    {
+        $points = 0;
+        if (isset($message)) {
+            foreach ($this->config->get('offensive_words') as $keyword) {
+                if (false !== stripos($message, $keyword[0])) {
+                    $points = ($points < $keyword[1]) ? $points : $keyword[1];
                 }
             }
         }

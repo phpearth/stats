@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPWorldWide\Stats\Test;
+namespace PHPWorldWide\Stats\Tests;
 
 use PHPWorldWide\Stats\Config;
 use PHPWorldWide\Stats\Points;
@@ -74,6 +74,16 @@ class PointsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expectedPoints, $method->invoke($this->points, $message));
     }
 
+    /**
+     * @dataProvider offensiveWordsProvider
+     */
+    public function testGetOffensivePoints($message, $expectedPoints)
+    {
+        $method = self::getMethod('getOffensivePoints');
+
+        $this->assertEquals($expectedPoints, $method->invoke($this->points, $message));
+    }
+
     public function topicsProvider()
     {
         return [
@@ -98,6 +108,16 @@ class PointsTest extends \PHPUnit_Framework_TestCase
             ['http://wwwphp-fb.github.io', 20],
             ['Lorem ipsum dolor stackoverflow.com sit amet.', 5],
             ['http://wwwphp-fb.github.io and php.net', 20],
+        ];
+    }
+
+    public function offensiveWordsProvider()
+    {
+        return [
+            ['fuck', -20],
+            ["don't be lazy", -20],
+            ['go fuck yourself', -20],
+            ['Lorem ipsum dolor sit amet go To HelL yes', -20],
         ];
     }
 }
