@@ -25,7 +25,7 @@
         "psr-4": {"PHPWorldWide\\Stats\\": "src/"}
     },
     "autoload-dev": {
-        "psr-4": { "Tests\\": "tests/" }
+        "psr-4": { "PHPWorldWide\\Stats\\Tests\\": "tests/" }
     },
     "authors": [
         {
