@@ -10,12 +10,13 @@
     "type": "project",
     "license": "MIT",
     "require": {
-        "php": ">=5.6.0",
+        "php": ">=7.0.0",
         "facebook/php-sdk-v4" : "^5.1",
         "symfony/yaml": "^3.0",
         "symfony/console": "^3.0",
         "twig/twig": "~1.0",
-        "monolog/monolog": "^1.19"
+        "monolog/monolog": "^1.19",
+        "crey/conjurer": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.3",
@@ -31,6 +32,12 @@
         {
             "name": "Peter Kokot",
             "email": "peterkokot@gmail.com"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/crey-framework/conjurer"
         }
     ]
 }

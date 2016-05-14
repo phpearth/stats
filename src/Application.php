@@ -4,7 +4,6 @@ namespace PHPWorldWide\Stats;
 
 use Symfony\Component\Console\Application as BaseApplication;
 use Symfony\Component\Console\Input\InputInterface;
-use PHPWorldWide\Stats\Command\GenerateCommand;
 
 class Application extends BaseApplication
 {
@@ -31,8 +30,6 @@ class Application extends BaseApplication
         // Keep the core default commands to have the HelpCommand
         // which is used when using the --help option
         $defaultCommands = parent::getDefaultCommands();
-
-        $defaultCommands[] = new GenerateCommand();
 
         return $defaultCommands;
     }

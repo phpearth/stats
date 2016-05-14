@@ -11,7 +11,6 @@ use PHPWorldWide\Stats\Auth;
 use PHPWorldWide\Stats\Config;
 use PHPWorldWide\Stats\Log;
 use PHPWorldWide\Stats\Service;
-use Twig_Loader_Filesystem;
 use Twig_Environment;
 use Twig_Template;
 
@@ -21,11 +20,6 @@ use Twig_Template;
  */
 class GenerateCommand extends Command
 {
-    /**
-     * @var Config
-     */
-    private $config;
-
     /**
      * @var ProgressBar
      */
@@ -37,17 +31,64 @@ class GenerateCommand extends Command
     private $template;
 
     /**
+     * @var Config
+     */
+    private $config;
+
+    /**
+     * @var Auth
+     */
+    private $auth;
+
+    /**
+     * @var Log
+     */
+    private $log;
+
+    /**
+     * Set configuration.
+     *
+     * @param Config $config
+     */
+    public function setConfig(Config $config)
+    {
+        $this->config = $config;
+    }
+
+    /**
+     * Set template.
+     *
+     * @param Twig_Environment $twig
+     */
+    public function setTemplate(Twig_Environment $twig)
+    {
+        $this->template = $twig->loadTemplate('report.txt.twig');
+    }
+
+    /**
+     * Set authentication.
+     *
+     * @param Auth $auth
+     */
+    public function setAuth(Auth $auth)
+    {
+        $this->auth = $auth;
+    }
+
+    /**
+     * @param Log $log
+     */
+    public function setLog(Log $log)
+    {
+        $this->log = $log;
+    }
+
+    /**
      * Configures generate command for Console component.
      */
     protected function configure()
     {
         try {
-            $this->config = new Config(__DIR__.'/../../app/config/parameters.yml');
-
-            $twigLoader = new Twig_Loader_Filesystem(__DIR__.'/../../app/templates');
-            $twig = new Twig_Environment($twigLoader);
-
-            $this->template = $twig->loadTemplate('report.txt.twig');
             $this
                 ->setName('generate_command')
                 ->setDescription('Generates Facebook group report')
@@ -57,6 +98,9 @@ class GenerateCommand extends Command
         }
     }
 
+    /**
+     * @inheritdoc
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $this->progress = new ProgressBar($output, 40);
@@ -67,12 +111,12 @@ class GenerateCommand extends Command
         $this->progress->start();
 
         $this->progress->setMessage('Setting up Facebook service...');
-        $auth = new Auth($this->config);
 
-        if (!$auth->isValid()) {
+        if (!$this->auth->isValid()) {
             $helper = $this->getHelper('question');
 
-            $question = new Question($auth->getError() . ' Enter a new access token:');
+            $question = new Question($this->auth->getError() . ' Enter a new access token:');
+            $auth = $this->auth;
             $question->setValidator(function ($token) use ($auth) {
                 if (trim($token) == '') {
                     throw new \Exception('The token can not be empty');
@@ -86,6 +130,7 @@ class GenerateCommand extends Command
 
                 return $token;
             });
+
             $question->setHidden(true);
             $question->setMaxAttempts(20);
 
@@ -95,8 +140,7 @@ class GenerateCommand extends Command
         $this->progress->advance();
 
         try {
-            $log = new Log;
-            $service = new Service($this->config, $this->progress, $auth->fb, $log);
+            $service = new Service($this->config, $this->progress, $this->auth->fb, $this->log);
 
             $startDate = \DateTime::createFromFormat('Y-m-d H:i:s', $this->config->get('start_datetime'));
             $endDate = \DateTime::createFromFormat('Y-m-d H:i:s', $this->config->get('end_datetime'));
@@ -106,8 +150,8 @@ class GenerateCommand extends Command
             $users = $service->getUsers($startDate, $endDate);
 
             $this->progress->setMessage('Calculating number of blocked members...');
-            $this->progress->advance();
             $blockedCount = $this->config->get('new_blocked_count') - $this->config->get('last_blocked_count');
+            $this->progress->advance();
 
             $this->progress->finish();
             $output->writeln("\n");

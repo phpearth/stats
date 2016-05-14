@@ -5,7 +5,42 @@ set_time_limit(0);
 
 require_once __DIR__.'/../vendor/autoload.php';
 
+use Crey\Conjurer\{
+    Conjurer,
+    Service
+};
+
+use PHPWorldWide\Stats\Config;
+use PHPWorldWide\Stats\Log;
+use PHPWorldWide\Stats\Auth;
+use PHPWorldWide\Stats\Command\GenerateCommand;
 use PHPWorldWide\Stats\Application;
 
-$application = new Application();
+$container = new Conjurer();
+
+$container->register(new Service(Config::class));
+$config = $container->make(Config::class, [__DIR__.'/config/parameters.yml']);
+
+$container->register(new Service(Log::class));
+$log = $container->make(Log::class);
+
+$container->register(new Service(Auth::class));
+$auth = $container->make(Auth::class, [$config]);
+
+$container->register(new Service(Twig_Loader_Filesystem::class));
+$twigLoader = $container->make(Twig_Loader_Filesystem::class, [__DIR__.'/templates']);
+
+$container->register(new Service(Twig_Environment::class));
+$twig = $container->make(Twig_Environment::class, [$twigLoader]);
+
+$container->register(new Service(GenerateCommand::class));
+$generateCommand = $container->make(GenerateCommand::class);
+$generateCommand->setConfig($config);
+$generateCommand->setTemplate($twig);
+$generateCommand->setAuth($auth);
+$generateCommand->setLog($log);
+
+$application = new Application('Stats generator', 'v0.2.0');
+$application->add($generateCommand);
+$application->setDefaultCommand($generateCommand->getName());
 $application->run();

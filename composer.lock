@@ -4,9 +4,45 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ded0676b068e333aca63fa19ea8a3e69",
-    "content-hash": "9788823030ae80236b8f8e04d77b91fe",
+    "hash": "1fe57d6425e8283ea094ca198a54a616",
+    "content-hash": "9dd6e3325591050c60eedbaf43fa37f5",
     "packages": [
+        {
+            "name": "crey/conjurer",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/crey-framework/conjurer.git",
+                "reference": "6799b936fb8aea16e06d5a6837f1d503b0c3123d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/crey-framework/conjurer/zipball/6799b936fb8aea16e06d5a6837f1d503b0c3123d",
+                "reference": "6799b936fb8aea16e06d5a6837f1d503b0c3123d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Crey\\Conjurer\\": "./src/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Matthias Kaschubowski",
+                    "role": "inventor"
+                }
+            ],
+            "description": "CREY Framework Service Management Component",
+            "support": {
+                "source": "https://github.com/crey-framework/conjurer/tree/master",
+                "issues": "https://github.com/crey-framework/conjurer/issues"
+            },
+            "time": "2016-05-13 02:24:58"
+        },
         {
             "name": "facebook/php-sdk-v4",
             "version": "5.1.4",
@@ -1552,11 +1588,13 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "crey/conjurer": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.6.0"
+        "php": ">=7.0.0"
     },
     "platform-dev": []
 }
