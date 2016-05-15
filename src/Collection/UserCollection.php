@@ -27,6 +27,7 @@ class UserCollection extends Collection
     {
         $this->config = $config;
     }
+
     /**
      * Returns top active members of the given period.
      *
@@ -36,9 +37,16 @@ class UserCollection extends Collection
      */
     public function getTopUsers($limit = null)
     {
-        $topUsers = $this->data;
-        usort($topUsers, [$this, 'sortUsers']);
-        $topUsers = array_reverse($topUsers, true);
+        $users = $this->data;
+        usort($users, [$this, 'sortUsers']);
+        $users = array_reverse($users, true);
+
+        $topUsers = [];
+        foreach ($users as $user) {
+            if (!in_array($user->getName(), $this->config->get('ignored_users'))) {
+                $topUsers[] = $user;
+            }
+        }
 
         return array_slice($topUsers, 0, $limit);
     }

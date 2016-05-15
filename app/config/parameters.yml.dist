@@ -75,3 +75,6 @@ top_topics:
     -
         title: "20 years of PHP"
         url: "fb.com/groups/2204685680/permalink/10153439277470681"
+
+# Omit users in the report
+ignored_users: []

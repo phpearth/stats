@@ -119,6 +119,8 @@ To install this application locally, do the following:
 
     `closed_topic_points` - points for topics with comments turned off
 
+    `ignored_users` - users not present in the report output
+
 
 4. Run tests:
 
