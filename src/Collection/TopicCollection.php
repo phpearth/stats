@@ -11,24 +11,6 @@ use PHPWorldWide\Stats\Model\Topic;
 class TopicCollection extends Collection
 {
     /**
-     * Get number of new topics.
-     *
-     * @return int
-     */
-    public function getNewTopicsCount()
-    {
-        $count = 0;
-
-        foreach ($this->data as $topic) {
-            if ($topic->getCreatedTime() >= $this->startDate && $topic->getCreatedTime() <= $this->endDate) {
-                ++$count;
-            }
-        }
-
-        return $count;
-    }
-
-    /**
      * Get most active topic.
      *
      * @return null|Topic
@@ -39,11 +21,9 @@ class TopicCollection extends Collection
         $mostActiveTopic = null;
 
         foreach ($this->data as $topic) {
-            if ($topic->getCreatedTime() >= $this->getStartDate() && $topic->getCreatedTime() <= $this->getEndDate()) {
-                if ($topic->getCommentsCount() > $commentsTopCount) {
-                    $commentsTopCount = $topic->getCommentsCount();
-                    $mostActiveTopic = $topic;
-                }
+            if ($topic->getCommentsCount() > $commentsTopCount) {
+                $commentsTopCount = $topic->getCommentsCount();
+                $mostActiveTopic = $topic;
             }
         }
 
@@ -61,44 +41,13 @@ class TopicCollection extends Collection
         $mostLikedTopic = null;
 
         foreach ($this->data as $topic) {
-            if ($topic->getCreatedTime() >= $this->getStartDate() && $topic->getCreatedTime() <= $this->getEndDate()) {
-                if ($topic->getLikesCount() > $likesTopCount) {
-                    $likesTopCount = $topic->getLikesCount();
-                    $mostLikedTopic = $topic;
-                }
+            if ($topic->getLikesCount() > $likesTopCount) {
+                $likesTopCount = $topic->getLikesCount();
+                $mostLikedTopic = $topic;
             }
         }
 
         return $mostLikedTopic;
-    }
-
-    /**
-     * Fill collection with topics from API data feed array.
-     *
-     * @param $feed
-     *
-     * @throws \Exception
-     */
-    public function addTopicsFromFeed($feed)
-    {
-        foreach ($feed as $topic) {
-            $newTopic = new Topic();
-            $newTopic->setId($topic['id']);
-            $newTopic->setCreatedTime($topic['created_time']);
-            $commentsCount = $topic['commentsCount'];
-            if (isset($topic['comments'])) {
-                foreach ($topic['comments'] as $comment) {
-                    if (isset($comment['comment_count'])) {
-                        $commentsCount += $comment['comment_count'];
-                    }
-                }
-            }
-            $newTopic->setCommentsCount($commentsCount);
-            $newTopic->setLikesCount($topic['likesCount']);
-            $newTopic->setCanComment($topic['canComment']);
-
-            $this->add($newTopic, $newTopic->getId());
-        }
     }
 
     /**
@@ -111,7 +60,7 @@ class TopicCollection extends Collection
         $count = 0;
 
         foreach ($this->data as $topic) {
-            if ($topic->getCreatedTime() >= $this->startDate && $topic->getCreatedTime() <= $this->endDate && !$topic->getCanComment()) {
+            if (!$topic->getCanComment()) {
                 ++$count;
             }
         }

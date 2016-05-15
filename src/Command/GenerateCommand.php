@@ -2,6 +2,7 @@
 
 namespace PHPWorldWide\Stats\Command;
 
+use PHPWorldWide\Stats\Fetcher;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -10,7 +11,7 @@ use Symfony\Component\Console\Question\Question;
 use PHPWorldWide\Stats\Auth;
 use PHPWorldWide\Stats\Config;
 use PHPWorldWide\Stats\Log;
-use PHPWorldWide\Stats\Service;
+use PHPWorldWide\Stats\Mapper;
 use Twig_Environment;
 use Twig_Template;
 
@@ -107,7 +108,7 @@ class GenerateCommand extends Command
         $this->progress->setFormat(" %message%\n %current%/%max% [%bar%] %percent:3s%% %elapsed:6s%/%estimated:-6s% %memory:6s%\n\n");
         $this->progress->setMessage('Starting...');
         $this->progress->setProgressCharacter("\xF0\x9F\x8D\xBA");
-        $output->writeln('Generating report for the from '.$this->config->get('start_datetime')." till now\n");
+        $output->writeln('Generating report from '.$this->config->get('start_datetime')->format('Y-m-d H:i:s')." till now\n");
         $this->progress->start();
 
         $this->progress->setMessage('Setting up Facebook service...');
@@ -140,14 +141,15 @@ class GenerateCommand extends Command
         $this->progress->advance();
 
         try {
-            $service = new Service($this->config, $this->progress, $this->auth->fb, $this->log);
+            $fetcher = new Fetcher($this->config, $this->progress, $this->auth->fb, $this->log);
+            $feed = $fetcher->getFeed();
+            $newUsersCount = $fetcher->getNewUsersCount();
 
-            $startDate = \DateTime::createFromFormat('Y-m-d H:i:s', $this->config->get('start_datetime'));
-            $endDate = \DateTime::createFromFormat('Y-m-d H:i:s', $this->config->get('end_datetime'));
-            $topics = $service->getTopics($startDate, $endDate);
-            $comments = $service->getComments($startDate, $endDate);
-            $replies = $service->getReplies($startDate, $endDate);
-            $users = $service->getUsers($startDate, $endDate);
+            $mapper = new Mapper($this->config, $feed, $this->log);
+            $topics = $mapper->getTopics();
+            $comments = $mapper->getComments();
+            $replies = $mapper->getReplies();
+            $users = $mapper->getUsers();
 
             $this->progress->setMessage('Calculating number of blocked members...');
             $blockedCount = $this->config->get('new_blocked_count') - $this->config->get('last_blocked_count');
@@ -157,12 +159,12 @@ class GenerateCommand extends Command
             $output->writeln("\n");
 
             $output->writeln($this->template->render([
-                'start_date' => $startDate->format('Y-m-d'),
-                'end_date' => $endDate->format('Y-m-d'),
-                'new_users_count' => $service->getNewUsersCount(),
+                'start_date' => $this->config->get('start_datetime')->format('Y-m-d'),
+                'end_date' => $this->config->get('end_datetime')->format('Y-m-d'),
+                'new_users_count' => $newUsersCount,
                 'top_users_count' => $this->config->get('top_users_count'),
-                'top_users' => $users->getTopUsers($this->config->get('top_users_count')),
-                'new_topics_count' => $topics->getNewTopicsCount(),
+                'top_users' => $users->getTopUsers($this->config->get('top_users_count'), $this->config->get('ignored_users')),
+                'new_topics_count' => $topics->count(),
                 'closed_topics_count' => $topics->getClosedTopicsCount(),
                 'new_comments_count' => $comments->count(),
                 'new_replies_count' => $replies->count(),

@@ -3,7 +3,6 @@
 namespace PHPWorldWide\Stats\Collection;
 
 use PHPWorldWide\Stats\Collection;
-use PHPWorldWide\Stats\Model\Reply;
 
 /**
  * Class ReplyCollection.
@@ -11,29 +10,34 @@ use PHPWorldWide\Stats\Model\Reply;
 class ReplyCollection extends Collection
 {
     /**
-     * Fill collection from fetched API data feed.
+     * Merge replies created by the same user.
      *
-     * @param array $feed Fetched topics
+     * @param int $userId
      *
-     * @throws \Exception
+     * @return array
      */
-    public function addRepliesFromFeed($feed)
+    public function getMergedRepliesByUserId($userId)
     {
-        foreach ($feed as $topic) {
-            if (isset($topic['comments'])) {
-                foreach ($topic['comments'] as $comment) {
-                    if (isset($comment['comments'])) {
-                        foreach ($comment['comments'] as $reply) {
-                            if ($reply['created_time'] >= $this->startDate && $reply['created_time'] <= $this->endDate && isset($reply['from'])) {
-                                $replyModel = new Reply();
-                                $replyModel->setId($reply['id']);
-                                $replyModel->setMessage($reply['message']);
-                                $this->add($replyModel, $replyModel->getId());
-                            }
-                        }
-                    }
+        $comments = array_values($this->data);
+        $mergedComments = [];
+        $i = 0;
+        foreach ($comments as $comment) {
+            if ($comment->getUser()->getId() == $userId) {
+                if (isset($comments[$i-1]) && $comments[$i-1]->getUser()->getId() == $userId) {
+                    $comment->setMessage($comments[$i-1]->getMessage().$comment->getMessage());
+                    $comment->setLikesCount(max($comment->getLikesCount(), $comments[$i-1]->getLikesCount()));
+                    unset($mergedComments[$i-1]);
                 }
+                $mergedComments[$i] = $comment;
             }
+            $i++;
         }
+
+        $comments = [];
+        foreach ($mergedComments as $comment) {
+            $comments[$comment->getId()] = $comment;
+        }
+
+        return $comments;
     }
 }

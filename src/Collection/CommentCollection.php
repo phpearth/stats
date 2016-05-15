@@ -3,7 +3,6 @@
 namespace PHPWorldWide\Stats\Collection;
 
 use PHPWorldWide\Stats\Collection;
-use PHPWorldWide\Stats\Model\Comment;
 
 /**
  * Class CommentCollection.
@@ -11,25 +10,34 @@ use PHPWorldWide\Stats\Model\Comment;
 class CommentCollection extends Collection
 {
     /**
-     * Add comments from fetched API data feed.
+     * Merge comments created by the same user.
      *
-     * @param array $feed
+     * @param int $userId
      *
-     * @throws \Exception
+     * @return array
      */
-    public function addCommentsFromFeed($feed)
+    public function getMergedCommentsByUserId($userId)
     {
-        foreach ($feed as $topic) {
-            if (isset($topic['comments'])) {
-                foreach ($topic['comments'] as $comment) {
-                    if ($comment['created_time'] >= $this->startDate && $comment['created_time'] <= $this->endDate && isset($comment['from'])) {
-                        $commentModel = new Comment();
-                        $commentModel->setId($comment['id']);
-                        $commentModel->setMessage($comment['message']);
-                        $this->add($commentModel, $commentModel->getId());
-                    }
+        $comments = array_values($this->data);
+        $mergedComments = [];
+        $i = 0;
+        foreach ($comments as $comment) {
+            if ($comment->getUser()->getId() == $userId) {
+                if (isset($comments[$i-1]) && $comments[$i-1]->getUser()->getId() == $userId) {
+                    $comment->setMessage($comments[$i-1]->getMessage().$comment->getMessage());
+                    $comment->setLikesCount(max($comment->getLikesCount(), $comments[$i-1]->getLikesCount()));
+                    unset($mergedComments[$i-1]);
                 }
+                $mergedComments[$i] = $comment;
             }
+            $i++;
         }
+
+        $comments = [];
+        foreach ($mergedComments as $comment) {
+            $comments[$comment->getId()] = $comment;
+        }
+
+        return $comments;
     }
 }

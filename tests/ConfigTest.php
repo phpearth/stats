@@ -37,8 +37,8 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
             ['fb_app_id', 'changethisvalue'],
             ['fb_app_secret', 'appsecret'],
             ['urls', [['url_1', 1], ['url_2', 2], ['url_3', 3]]],
-            ['start_datetime', '2015-01-01 00:00:00'],
-            ['end_datetime', '2015-02-02 23:59:59'],
+            ['start_datetime', \DateTime::createFromFormat('Y-m-d H:i:s', '2015-01-01 00:00:00')],
+            ['end_datetime', \DateTime::createFromFormat('Y-m-d H:i:s', '2015-02-02 23:59:59')],
         ];
     }
 
@@ -48,8 +48,8 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
             ['fb_app_id', '123456789012345'],
             ['fb_app_secret', '12345'],
             ['urls', [['url_1', 1], ['url_2', 2], ['url_3', 3]]],
-            ['start_datetime', '2016-05-15 00:00:00'],
-            ['end_datetime', '2016-05-22 23:59:59'],
+            ['start_datetime', \DateTime::createFromFormat('Y-m-d H:i:s', '2016-05-15 00:00:00')],
+            ['end_datetime', \DateTime::createFromFormat('Y-m-d H:i:s', '2016-05-22 23:59:59')],
         ];
     }
 }

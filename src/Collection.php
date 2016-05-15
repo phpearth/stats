@@ -13,16 +13,6 @@ class Collection implements \Countable, \Iterator
     protected $data = [];
 
     /**
-     * @var \DateTime
-     */
-    protected $startDate;
-
-    /**
-     * @var \DateTime
-     */
-    protected $endDate;
-
-    /**
      * Adds object to collection with key.
      *
      * @param $obj
@@ -154,45 +144,5 @@ class Collection implements \Countable, \Iterator
         $data = ($key !== null && $key !== false);
 
         return $data;
-    }
-
-    /**
-     * Set start date for fetching period.
-     *
-     * @param \DateTime $startDate
-     */
-    public function setStartDate(\DateTime $startDate)
-    {
-        $this->startDate = $startDate;
-    }
-
-    /**
-     * Get start date for fetching period.
-     *
-     * @return \DateTime
-     */
-    public function getStartDate()
-    {
-        return $this->startDate;
-    }
-
-    /**
-     * Set end date for fetching period.
-     *
-     * @param \DateTime $endDate
-     */
-    public function setEndDate(\DateTime $endDate)
-    {
-        $this->endDate = $endDate;
-    }
-
-    /**
-     * Get end date for fetching period.
-     *
-     * @return \DateTime
-     */
-    public function getEndDate()
-    {
-        return $this->endDate;
     }
 }

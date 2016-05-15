@@ -3,6 +3,9 @@
 namespace PHPWorldWide\Stats\Model;
 
 use PHPWorldWide\Stats\Points;
+use PHPWorldWide\Stats\Collection;
+use PHPWorldWide\Stats\Collection\CommentCollection;
+use PHPWorldWide\Stats\Collection\ReplyCollection;
 
 /**
  * Class User.
@@ -30,19 +33,29 @@ class User
     private $pointsCount = 0;
 
     /**
-     * @var int
+     * @var Collection
      */
-    private $topicsCount = 0;
+    private $topics;
 
     /**
-     * @var int
+     * @var Collection
      */
-    private $commentsCount = 0;
+    private $comments;
 
     /**
-     * @var int
+     * @var Collection
      */
-    private $repliesCount = 0;
+    private $replies;
+
+    /**
+     * @var CommentCollection
+     */
+    private $feedComments;
+
+    /**
+     * @var ReplyCollection
+     */
+    private $feedReplies;
 
     /**
      * User constructor.
@@ -52,6 +65,19 @@ class User
     public function __construct(Points $points)
     {
         $this->points = $points;
+        $this->topics = new Collection();
+        $this->comments = new Collection();
+        $this->replies = new Collection();
+    }
+
+    public function setFeedComments(CommentCollection $feedComments)
+    {
+        $this->feedComments = $feedComments;
+    }
+
+    public function setFeedReplies(ReplyCollection $feedReplies)
+    {
+        $this->feedReplies = $feedReplies;
     }
 
     /**
@@ -101,8 +127,7 @@ class User
      */
     public function addTopic(Topic $topic)
     {
-        ++$this->topicsCount;
-        $this->pointsCount += $this->points->addPointsForTopic($topic);
+        $this->topics->add($topic, $topic->getId());
     }
 
     /**
@@ -112,8 +137,7 @@ class User
      */
     public function addComment(Comment $comment)
     {
-        ++$this->commentsCount;
-        $this->pointsCount += $this->points->addPointsForComment($comment);
+        $this->comments->add($comment, $comment->getId());
     }
 
     /**
@@ -123,8 +147,7 @@ class User
      */
     public function addReply(Reply $reply)
     {
-        ++$this->repliesCount;
-        $this->pointsCount += $this->points->addPointsForReply($reply);
+        $this->replies->add($reply, $reply->getId());
     }
 
     /**
@@ -134,6 +157,27 @@ class User
      */
     public function getPointsCount()
     {
+        if ($this->pointsCount === 0) {
+            $pointsCount = 0;
+
+            foreach ($this->topics as $topic) {
+                $pointsCount += $this->points->addPointsForTopic($topic);
+            }
+
+            $mergedComments = $this->feedComments->getMergedCommentsByUserId($this->getId());
+
+            foreach ($mergedComments as $comment) {
+                $pointsCount += $this->points->addPointsForComment($comment);
+            }
+
+            $mergedReplies = $this->feedReplies->getMergedRepliesByUserId($this->getId());
+            foreach ($mergedReplies as $reply) {
+                $pointsCount += $this->points->addPointsForReply($reply);
+            }
+
+            $this->pointsCount = $pointsCount;
+        }
+
         return $this->pointsCount;
     }
 
@@ -144,7 +188,7 @@ class User
      */
     public function getTopicsCount()
     {
-        return $this->topicsCount;
+        return $this->topics->count();
     }
 
     /**
@@ -154,6 +198,6 @@ class User
      */
     public function getCommentsCount()
     {
-        return $this->commentsCount + $this->repliesCount;
+        return $this->comments->count() + $this->replies->count();
     }
 }

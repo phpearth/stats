@@ -6,172 +6,36 @@ use PHPWorldWide\Stats\Collection\UserCollection;
 use PHPWorldWide\Stats\Collection\TopicCollection;
 use PHPWorldWide\Stats\Collection\CommentCollection;
 use PHPWorldWide\Stats\Collection\ReplyCollection;
-use Symfony\Component\Console\Helper\ProgressBar;
-use Facebook\Facebook;
-use Facebook\Exceptions\FacebookSDKException;
-use Facebook\Exceptions\FacebookResponseException;
+use PHPWorldWide\Stats\Model\Topic;
+use PHPWorldWide\Stats\Model\User;
+use PHPWorldWide\Stats\Model\Reply;
+use PHPWorldWide\Stats\Model\Comment;
 
-/**
- * Class Mapper.
- */
 class Mapper
 {
     /**
-     * @var Facebook
-     */
-    protected $fb;
-
-    /**
-     * @var Config
-     */
-    protected $config;
-
-    /**
-     * @var ProgressBar
-     */
-    protected $progress;
-
-    /**
-     * @var array
-     */
-    protected $feed = [];
-
-    /**
-     * @var Log
-     */
-    protected $log;
-
-    /**
      * Mapper constructor.
      *
-     * @param Config $config
-     * @param ProgressBar $progress
-     * @param Facebook $fb
-     * @param Log $log
+     * @param $config
+     * @param $feed
+     * @param $log
      */
-    public function __construct(Config $config, ProgressBar $progress, Facebook $fb, Log $log)
+    public function __construct($config, $feed, $log)
     {
         $this->config = $config;
-        $this->progress = $progress;
-        $this->fb = $fb;
+        $this->topics = new TopicCollection();
+        $this->comments = new CommentCollection();
+        $this->replies = new ReplyCollection();
+        $this->users = new UserCollection();
+        $this->points = new Points($this->config);
         $this->log = $log;
-    }
+        $this->startDate = $this->config->get('start_datetime');
+        $this->endDate = $this->config->get('end_datetime');
 
-    /**
-     * Fetch feed from API data.
-     *
-     * @return array
-     *
-     * @throws \Exception
-     */
-    private function fetchFeed()
-    {
-        $this->progress->setMessage('Fetching feed...');
-        $this->progress->advance();
-
-        $this->feed = [];
-
-        try {
-            $pagesCount = 0;
-            $startDate = \DateTime::createFromFormat('Y-m-d H:i:s', $this->config->get('start_datetime'));
-            $response = $this->fb->get('/'.$this->config->get('group_id').'/feed?fields=comments.limit(200).summary(1){like_count,comment_count,from,created_time,message,can_comment,comments.limit(200).summary(1){like_count,comment_count,from,created_time,message}},likes.limit(0).summary(1),from,created_time,updated_time,message&include_hidden=true&limit=100&since='.$startDate->getTimestamp());
-
-            $feedEdge = $response->getGraphEdge();
-
-            do {
-                ++$pagesCount;
-                $this->progress->setMessage('Fetching feed from API page '.$pagesCount.' and with the topic updated '.$feedEdge[0]->getField('updated_time')->format('Y-m-d H:i:s'));
-                $this->progress->advance();
-
-                foreach ($feedEdge as $topic) {
-                    $topicArray = $topic->asArray();
-                    $topicArray['commentsCount'] = $topic->getField('comments')->getMetaData()['summary']['total_count'];
-                    $topicArray['likesCount'] = $topic->getField('likes')->getMetaData()['summary']['total_count'];
-                    $topicArray['canComment'] = $topic->getField('comments')->getMetaData()['summary']['can_comment'];
-                    $this->feed[] = $topicArray;
-                }
-            } while ($feedEdge = $this->fb->next($feedEdge));
-        } catch (FacebookResponseException $e) {
-            // When Graph returns an error
-            throw new \Exception('Graph returned an error: '.$e->getMessage());
-        } catch (FacebookSDKException $e) {
-            // When validation fails or other local issues
-            throw new \Exception('Facebook SDK returned an error: '.$e->getMessage());
-        }
-
-        $this->progress->setMessage('Adding topics to collection...');
-        $this->progress->advance();
-
-        return $this->feed;
-    }
-
-    /**
-     * Map topics from fetched feed array to topics collection.
-     *
-     * @param TopicCollection $topics
-     * @param $startDate
-     * @param $endDate
-     *
-     * @throws \Exception
-     */
-    public function mapTopics(TopicCollection $topics, $startDate, $endDate)
-    {
-        $topics->setStartDate($startDate);
-        $topics->setEndDate($endDate);
-        $topics->addTopicsFromFeed($this->fetchFeed());
-
-        // log topics
-        foreach ($topics as $id => $topic) {
-            $log = $id."\t";
-            $log .= ' Likes: '.$topic->getLikesCount()."\t";
-            $log .= ' Comments: '.$topic->getCommentsCount()."\n";
-            $this->log->logTopic($log);
-        }
-    }
-
-    /**
-     * Map comments from fetched feed to comments collection.
-     *
-     * @param CommentCollection $comments
-     * @param $startDate
-     * @param $endDate
-     */
-    public function mapComments(CommentCollection $comments, $startDate, $endDate)
-    {
-        $comments->setStartDate($startDate);
-        $comments->setEndDate($endDate);
-        $comments->addCommentsFromFeed($this->feed);
-    }
-
-    /**
-     * Map replies from fetched feed to replies collection.
-     *
-     * @param ReplyCollection $replies
-     * @param $startDate
-     * @param $endDate
-     */
-    public function mapReplies(ReplyCollection $replies, $startDate, $endDate)
-    {
-        $replies->setStartDate($startDate);
-        $replies->setEndDate($endDate);
-        $replies->addRepliesFromFeed($this->feed);
-    }
-
-    /**
-     * Map users from fetched feed to users collection.
-     *
-     * @param UserCollection $users
-     * @param $startDate
-     * @param $endDate
-     */
-    public function mapUsers(UserCollection $users, $startDate, $endDate)
-    {
-        $users->setStartDate($startDate);
-        $users->setEndDate($endDate);
-        $users->addUsersFromFeed($this->feed);
+        $this->mapFeed($feed);
 
         // log all contributors
-        foreach ($users->getTopUsers() as $id => $user) {
+        foreach ($this->users->getTopUsers() as $id => $user) {
             $log = $id."\t";
             $log .= $user->getName()."\t";
             $log .= 'Points: '.$user->getPointsCount()."\t";
@@ -182,54 +46,191 @@ class Mapper
     }
 
     /**
-     * Get number of new users since the user's name set in app configuration.
+     * Fill the collections from captured API data.
      *
-     * @return int
+     * @param array $feed All captured API data as array.
      *
      * @throws \Exception
      */
-    public function getNewUsersCount()
+    private function mapFeed($feed)
     {
-        $this->progress->setMessage('Retrieving members...');
-        $this->progress->advance();
-        $newUsersCount = 0;
-        $pagesCount = 0;
+        foreach ($feed as $topic) {
+            if ($topic['created_time'] >= $this->startDate && $topic['created_time'] <= $this->endDate) {
+                $this->mapTopic($topic);
+            }
 
-        try {
-            $response = $this->fb->get('/'.$this->config->get('group_id').'/members?fields=id,name&limit=1000');
-
-            $feedEdge = $response->getGraphEdge();
-            do {
-                ++$pagesCount;
-                $this->progress->setMessage('Retrieving members from API page '.$pagesCount);
-                $this->progress->advance();
-
-                foreach ($feedEdge as $status) {
-                    // log new users
-                    $log = $status->asArray()['id']."\t";
-                    $log .= $status->asArray()['name']."\n";
-                    $this->log->logNewUser($log);
-
-                    if ($status->asArray()['name'] == $this->config->get('last_member_name')) {
-                        break 2;
+            if (isset($topic['comments'])) {
+                foreach ($topic['comments'] as $comment) {
+                    if ($comment['created_time'] >= $this->startDate && $comment['created_time'] <= $this->endDate) {
+                        $this->mapComment($comment);
                     }
-                    ++$newUsersCount;
-                }
 
-                if ($pagesCount == $this->config->get('api_pages')) {
-                    break;
+                    if (isset($comment['comments'])) {
+                        foreach ($comment['comments'] as $reply) {
+                            if ($reply['created_time'] >= $this->startDate && $reply['created_time'] <= $this->endDate) {
+                                $this->mapReply($reply);
+                            }
+                        }
+                    }
                 }
-            } while ($feedEdge = $this->fb->next($feedEdge));
-        } catch (FacebookResponseException $e) {
-            // When Graph returns an error
-            throw new \Exception('Graph returned an error: '.$e->getMessage());
-        } catch (FacebookSDKException $e) {
-            // When validation fails or other local issues
-            throw new \Exception('Facebook SDK returned an error: '.$e->getMessage());
+            }
+        }
+    }
+
+    /**
+     * Maps topic data to topic object.
+     *
+     * @param $topic
+     *
+     * @return Topic
+     *
+     * @throws \Exception
+     */
+    private function mapTopic($topic)
+    {
+        $newTopic = new Topic();
+        $commentsCount = $topic['commentsCount'];
+        if (array_key_exists('comments', $topic)) {
+            foreach ($topic['comments'] as $comment) {
+                if (isset($comment['comment_count'])) {
+                    $commentsCount += $comment['comment_count'];
+                }
+            }
+        }
+        $newTopic->setCommentsCount($commentsCount);
+        $newTopic->setId($topic['id']);
+        $newTopic->setCreatedTime($topic['created_time']);
+        if (array_key_exists('message', $topic)) {
+            $newTopic->setMessage($topic['message']);
+        }
+        $newTopic->setLikesCount($topic['likesCount']);
+        $newTopic->setCanComment($topic['canComment']);
+
+        if (array_key_exists('from', $topic)) {
+            $user = $this->mapUser($topic['from']);
+            $user->addTopic($newTopic);
+            $newTopic->setUser($user);
         }
 
-        $this->progress->advance();
+        // Add topic to collection
+        $this->topics->add($newTopic, $newTopic->getId());
 
-        return $newUsersCount;
+        // Log topic
+        $log = $newTopic->getId()."\t";
+        $log .= ' Likes: '.$newTopic->getLikesCount()."\t";
+        $log .= ' Comments: '.$newTopic->getCommentsCount()."\n";
+        $this->log->logTopic($log);
+
+        return $newTopic;
+    }
+
+    /**
+     * Maps comment data to comment object.
+     *
+     * @param array $comment
+     *
+     * @return Comment
+     *
+     * @throws \Exception
+     */
+    private function mapComment($comment)
+    {
+        $newComment = new Comment();
+        $newComment->setId($comment['id']);
+        $newComment->setMessage($comment['message']);
+        $newComment->setLikesCount($comment['like_count']);
+
+        if (array_key_exists('from', $comment)) {
+            $user = $this->mapUser($comment['from']);
+            $user->addComment($newComment);
+
+            $newComment->setUser($user);
+        }
+
+        // Add comment to collection
+        $this->comments->add($newComment, $newComment->getId());
+
+        return $newComment;
+    }
+
+    /**
+     * Map reply data to reply object.
+     *
+     * @param $reply
+     *
+     * @return Reply
+     *
+     * @throws \Exception
+     */
+    private function mapReply($reply)
+    {
+        $newReply = new Reply();
+        $newReply->setId($reply['id']);
+        $newReply->setMessage($reply['message']);
+        $newReply->setLikesCount($reply['like_count']);
+
+        if (array_key_exists('from', $reply)) {
+            $user = $this->mapUser($reply['from']);
+            $user->addReply($newReply);
+
+            $newReply->setUser($user);
+        }
+
+        $this->replies->add($newReply, $newReply->getId());
+
+        return $newReply;
+    }
+
+    /**
+     * @param $userData
+     * @return mixed|User
+     * @throws \Exception
+     */
+    private function mapUser($userData)
+    {
+        if ($this->users->keyExists($userData['id'])) {
+            $user = $this->users->get($userData['id']);
+        } else {
+            $user = new User($this->points);
+            $user->setId($userData['id']);
+            $user->setName($userData['name']);
+            $user->setFeedComments($this->comments);
+            $user->setFeedReplies($this->replies);
+            $this->users->add($user, $user->getId());
+        }
+
+        return $user;
+    }
+
+    /**
+     * @return TopicCollection
+     */
+    public function getTopics()
+    {
+        return $this->topics;
+    }
+
+    /**
+     * @return CommentCollection
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * @return ReplyCollection
+     */
+    public function getReplies()
+    {
+        return $this->replies;
+    }
+
+    /**
+     * @return UserCollection
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 }
