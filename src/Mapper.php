@@ -27,11 +27,6 @@ class Mapper
     private $topics;
 
     /**
-     * @var TopicCollection
-     */
-    private $topics;
-
-    /**
      * @var CommentCollection
      */
     private $comments;
