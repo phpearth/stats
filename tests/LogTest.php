@@ -45,4 +45,27 @@ class LogTest extends \PHPUnit_Framework_TestCase
         }
         $this->assertTrue($this->root->hasChild($this->log->getTimestamp().'/newUsers.log'));
     }
+
+    public function testClearLogs()
+    {
+        $structure = [
+            '.gitkeep' => '',
+            '20160516000000' => [],
+            '20160516000001' => [
+                'topics.log' => ''
+            ],
+        ];
+
+        vfsStream::create($structure);
+
+        $this->assertFileExists(vfsStream::url('logroot/.gitkeep'));
+        $this->assertTrue($this->root->hasChild('20160516000000'));
+        $this->assertFileExists(vfsStream::url('logroot/20160516000001/topics.log'));
+
+        $this->log->clearLogs();
+
+        $this->assertFileExists(vfsStream::url('logroot/.gitkeep'));
+        $this->assertFalse($this->root->hasChild('20160516000000'));
+        $this->assertFalse($this->root->hasChild('20160516000001'));
+    }
 }

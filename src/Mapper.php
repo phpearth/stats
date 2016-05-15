@@ -64,7 +64,7 @@ class Mapper
      *
      * @throws \Exception
      */
-    public function fetchFeed()
+    private function fetchFeed()
     {
         $this->progress->setMessage('Fetching feed...');
         $this->progress->advance();

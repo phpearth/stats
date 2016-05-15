@@ -14,7 +14,8 @@ use PHPWorldWide\Stats\Config;
 use PHPWorldWide\Stats\Log;
 use PHPWorldWide\Stats\Auth;
 use PHPWorldWide\Stats\Command\GenerateCommand;
-use PHPWorldWide\Stats\Application;
+use PHPWorldWide\Stats\Command\ClearLogsCommand;
+use Symfony\Component\Console\Application;
 
 $container = new Conjurer();
 
@@ -41,7 +42,11 @@ $generateCommand->setTemplate($twig);
 $generateCommand->setAuth($auth);
 $generateCommand->setLog($log);
 
-$application = new Application('Stats generator', 'v0.2.0');
+$container->register(new Service(ClearLogsCommand::class));
+$clearLogsCommand = $container->make(ClearLogsCommand::class);
+$clearLogsCommand->setLog($log);
+
+$application = new Application('Stats generator', 'v0.3.0');
 $application->add($generateCommand);
-$application->setDefaultCommand($generateCommand->getName());
+$application->add($clearLogsCommand);
 $application->run();

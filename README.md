@@ -129,8 +129,17 @@ To install this application locally, do the following:
 5. Generate report
 
     ```bash
-    $ php app/console
+    $ php app/console generate
     ```
+
+## Other useful commands
+
+* Clear all generated logs in the log folder `app/logs`:
+
+```bash
+$ php app/console clearlogs
+```
+
 
 ## License and Contributing
 

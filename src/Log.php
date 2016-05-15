@@ -31,6 +31,11 @@ class Log
     private $timestamp;
 
     /**
+     * @var string
+     */
+    private $logDir;
+
+    /**
      * Log constructor.
      * 
      * @param array $config
@@ -45,16 +50,16 @@ class Log
             'new_users_log' => '/'.$this->timestamp.'/newUsers.log',
         ], $config);
 
-        mkdir($config['log_dir'].'/'.$this->timestamp);
+        $this->logDir = $config['log_dir'];
 
         $this->topicsLogger = new Logger('topics_logger');
-        $this->topicsLogger->pushHandler(new StreamHandler($config['log_dir'].$config['topics_log'], Logger::INFO));
+        $this->topicsLogger->pushHandler(new StreamHandler($this->logDir.$config['topics_log'], Logger::INFO));
 
         $this->contributorsLogger = new Logger('contributors_logger');
-        $this->contributorsLogger->pushHandler(new StreamHandler($config['log_dir'].$config['contributors_log'], Logger::INFO));
+        $this->contributorsLogger->pushHandler(new StreamHandler($this->logDir.$config['contributors_log'], Logger::INFO));
 
         $this->newUsersLogger = new Logger('new_users_logger');
-        $this->newUsersLogger->pushHandler(new StreamHandler($config['log_dir'].$config['new_users_log'], Logger::INFO));
+        $this->newUsersLogger->pushHandler(new StreamHandler($this->logDir.$config['new_users_log'], Logger::INFO));
     }
 
     /**
@@ -64,6 +69,7 @@ class Log
      */
     public function logTopic($message)
     {
+        $this->warm();
         $this->topicsLogger->addInfo($message);
     }
 
@@ -74,6 +80,7 @@ class Log
      */
     public function logContributor($message)
     {
+        $this->warm();
         $this->contributorsLogger->addInfo($message);
     }
 
@@ -84,6 +91,7 @@ class Log
      */
     public function logNewUser($message)
     {
+        $this->warm();
         $this->newUsersLogger->addInfo($message);
     }
 
@@ -95,5 +103,30 @@ class Log
     public function getTimestamp()
     {
         return $this->timestamp;
+    }
+
+    /**
+     * Creates log folder if it is missing.
+     */
+    private function warm()
+    {
+        if (!file_exists($this->logDir.'/'.$this->timestamp)) {
+            mkdir($this->logDir.'/'.$this->timestamp);
+        }
+    }
+
+    /**
+     * Remove log folders.
+     */
+    public function clearLogs()
+    {
+        $dirs = array_diff(scandir($this->logDir), ['..', '.', '.gitkeep']);
+        foreach ($dirs as $dir) {
+            $files = array_diff(scandir($this->logDir.'/'.$dir), ['..', '.']);
+            foreach($files as $file) {
+                unlink($this->logDir.'/'.$dir.'/'.$file);
+            }
+            rmdir($this->logDir.'/'.$dir);
+        }
     }
 }

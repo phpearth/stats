@@ -90,7 +90,7 @@ class GenerateCommand extends Command
     {
         try {
             $this
-                ->setName('generate_command')
+                ->setName('generate')
                 ->setDescription('Generates Facebook group report')
             ;
         } catch (\Exception $e) {
