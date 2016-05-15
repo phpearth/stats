@@ -85,6 +85,7 @@ class UserCollection extends Collection
                         $topicModel->setMessage($topic['message']);
                     }
                     $topicModel->setLikesCount($topic['likesCount']);
+                    $topicModel->setCanComment($topic['canComment']);
 
                     $user->addTopic($topicModel);
                 }

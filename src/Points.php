@@ -47,6 +47,9 @@ class Points
         // Remove points for using offensive words
         $points += $this->getOffensivePoints($topic->getMessage());
 
+        // Remove points if topic is closed for comments
+        $points += $this->getClosedTopicPoints($topic);
+
         return $points;
     }
 
@@ -131,6 +134,23 @@ class Points
                     $points = ($points < $keyword[1]) ? $points : $keyword[1];
                 }
             }
+        }
+
+        return $points;
+    }
+
+    /**
+     * Get points for topics with comments turned off.
+     *
+     * @param Topic $topic
+     *
+     * @return int
+     */
+    private function getClosedTopicPoints(Topic $topic)
+    {
+        $points = 0;
+        if (!$topic->getCanComment()) {
+            $points = $this->config->get('closed_topic_points');
         }
 
         return $points;

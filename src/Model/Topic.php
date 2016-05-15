@@ -38,6 +38,11 @@ class Topic
     private $message = '';
 
     /**
+     * @var bool
+     */
+    private $canComment = true;
+
+    /**
      * Set topic id.
      *
      * @param $id
@@ -155,6 +160,26 @@ class Topic
     public function getMessage()
     {
         return $this->message;
+    }
+
+    /**
+     * Set the boolean value whether the commenting is turned off or not.
+     *
+     * @param bool $canComment
+     */
+    public function setCanComment($canComment)
+    {
+        $this->canComment = $canComment;
+    }
+
+    /**
+     * Get boolean value whether topic has comments turned off or not.
+     *
+     * @return bool
+     */
+    public function getCanComment()
+    {
+        return $this->canComment;
     }
 
     /**

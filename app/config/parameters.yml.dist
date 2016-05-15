@@ -68,6 +68,8 @@ offensive_words:
     - ['lmgtfy.com', -20]
     - ['w3schools.com', -20]
 
+closed_topic_points: -20
+
 # Staff picked top topics
 top_topics:
     -

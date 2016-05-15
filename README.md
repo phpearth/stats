@@ -34,6 +34,7 @@ PHP application for generating stats for International PHP Facebook group.
     * phpunit.de: 5 points
     * PHP The Right Way: 10 points
 * Offensive messages get negative points.
+* Topics with comments turned off get negative points.
 
 **What is the benefit of the points?**
 
@@ -101,20 +102,22 @@ To install this application locally, do the following:
     `new_blocked_count` - number of blocked accounts on the time of report generation
 
     `top_topics:` - array of staff picked topics
-    
+
     Optional configuration parameters:
 
     `default_graph_version` - Default Facebook Graph API version
 
     `top_users_count` - how many top users should be shown in the generated report
-    
+
     `group_id` - Facebook group id
-    
+
     `api_pages` - how many pages should the data collecting include. Large amount of data from the Facebook Graph API gets returned in multiple pages and Facebook group feed is sorted by updated topics.
-    
+
     `urls:` - array of links which give extra points, format is array [link, points]
-    
+
     `offensive_words:` - array of words which give negative points, format is array [string, points]
+
+    `closed_topic_points` - points for topics with comments turned off
 
 
 4. Run tests:

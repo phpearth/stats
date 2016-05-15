@@ -84,6 +84,18 @@ class PointsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expectedPoints, $method->invoke($this->points, $message));
     }
 
+    public function testGetClosedTopicPoints()
+    {
+        $method = self::getMethod('getClosedTopicPoints');
+
+        $openedTopic = new Topic();
+        $closedTopic = new Topic();
+        $closedTopic->setCanComment(false);
+
+        $this->assertEquals(0, $method->invoke($this->points, $openedTopic));
+        $this->assertEquals(-20, $method->invoke($this->points, $closedTopic));
+    }
+
     public function topicsProvider()
     {
         return [

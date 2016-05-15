@@ -93,6 +93,7 @@ class TopicCollection extends Collection
             }
             $newTopic->setCommentsCount($commentsCount);
             $newTopic->setLikesCount($topic['likesCount']);
+            $newTopic->setCanComment($topic['canComment']);
 
             $this->add($newTopic, $newTopic->getId());
         }

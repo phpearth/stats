@@ -74,7 +74,7 @@ class Mapper
         try {
             $pagesCount = 0;
             $startDate = \DateTime::createFromFormat('Y-m-d H:i:s', $this->config->get('start_datetime'));
-            $response = $this->fb->get('/'.$this->config->get('group_id').'/feed?fields=comments.limit(200).summary(1){like_count,comment_count,from,created_time,message,comments.limit(200).summary(1){like_count,comment_count,from,created_time,message}},likes.limit(0).summary(1),from,created_time,updated_time,message&include_hidden=true&limit=100&since='.$startDate->getTimestamp());
+            $response = $this->fb->get('/'.$this->config->get('group_id').'/feed?fields=comments.limit(200).summary(1){like_count,comment_count,from,created_time,message,can_comment,comments.limit(200).summary(1){like_count,comment_count,from,created_time,message}},likes.limit(0).summary(1),from,created_time,updated_time,message&include_hidden=true&limit=100&since='.$startDate->getTimestamp());
 
             $feedEdge = $response->getGraphEdge();
 
@@ -87,6 +87,7 @@ class Mapper
                     $topicArray = $topic->asArray();
                     $topicArray['commentsCount'] = $topic->getField('comments')->getMetaData()['summary']['total_count'];
                     $topicArray['likesCount'] = $topic->getField('likes')->getMetaData()['summary']['total_count'];
+                    $topicArray['canComment'] = $topic->getField('comments')->getMetaData()['summary']['can_comment'];
                     $this->feed[] = $topicArray;
                 }
             } while ($feedEdge = $this->fb->next($feedEdge));
@@ -173,7 +174,9 @@ class Mapper
         foreach ($users->getTopUsers() as $id => $user) {
             $log = $id."\t";
             $log .= $user->getName()."\t";
-            $log .= $user->getPointsCount()."\n";
+            $log .= 'Points: '.$user->getPointsCount()."\t";
+            $log .= 'Topics: '.$user->getTopicsCount()."\t";
+            $log .= 'Comments: '.$user->getCommentsCount();
             $this->log->logContributor($log);
         }
     }
