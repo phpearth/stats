@@ -9,14 +9,22 @@ All notable changes to this project will be documented in this file. This projec
 
 ### Added
 
+* ...
+
+
+## [0.3.0] - 2016-05-16
+
+### Added
+
 * Dependency injection container
 * Configuration overriding
 * Offensive speech detection
 * Comments merging
-* ...
 
 
 ## [0.2.0] - 2016-05-09
+
+### Added
 
 * Coding style fixed
 * Twig template engine
