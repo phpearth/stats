@@ -6,7 +6,6 @@ use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamWrapper;
 use PHPWorldWide\Stats\Log;
 
-
 class LogTest extends \PHPUnit_Framework_TestCase
 {
     private $log;

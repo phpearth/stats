@@ -54,9 +54,9 @@ class Mapper
     /**
      * Mapper constructor.
      *
-     * @param $config
-     * @param $feed
-     * @param $log
+     * @param Config $config
+     * @param array $feed
+     * @param Log $log
      */
     public function __construct($config, $feed, $log)
     {
