@@ -11,6 +11,8 @@ use PHPWorldWide\Stats\Model\Topic;
 class TopicCollection extends Collection
 {
     /**
+     * Get number of new topics.
+     *
      * @return int
      */
     public function getNewTopicsCount()
@@ -97,5 +99,23 @@ class TopicCollection extends Collection
 
             $this->add($newTopic, $newTopic->getId());
         }
+    }
+
+    /**
+     * Get number of closed topics.
+     *
+     * @return int
+     */
+    public function getClosedTopicsCount()
+    {
+        $count = 0;
+
+        foreach ($this->data as $topic) {
+            if ($topic->getCreatedTime() >= $this->startDate && $topic->getCreatedTime() <= $this->endDate && !$topic->getCanComment()) {
+                ++$count;
+            }
+        }
+
+        return $count;
     }
 }

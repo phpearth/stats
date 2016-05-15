@@ -163,6 +163,7 @@ class GenerateCommand extends Command
                 'top_users_count' => $this->config->get('top_users_count'),
                 'top_users' => $users->getTopUsers($this->config->get('top_users_count')),
                 'new_topics_count' => $topics->getNewTopicsCount(),
+                'closed_topics_count' => $topics->getClosedTopicsCount(),
                 'new_comments_count' => $comments->count(),
                 'new_replies_count' => $replies->count(),
                 'active_users_count' => $users->count(),
