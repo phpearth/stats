@@ -123,7 +123,7 @@ class Log
         $dirs = array_diff(scandir($this->logDir), ['..', '.', '.gitkeep']);
         foreach ($dirs as $dir) {
             $files = array_diff(scandir($this->logDir.'/'.$dir), ['..', '.']);
-            foreach($files as $file) {
+            foreach ($files as $file) {
                 unlink($this->logDir.'/'.$dir.'/'.$file);
             }
             rmdir($this->logDir.'/'.$dir);

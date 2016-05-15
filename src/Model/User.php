@@ -70,11 +70,21 @@ class User
         $this->replies = new Collection();
     }
 
+    /**
+     * Set entire comments collection.
+     *
+     * @param CommentCollection $feedComments
+     */
     public function setFeedComments(CommentCollection $feedComments)
     {
         $this->feedComments = $feedComments;
     }
 
+    /**
+     * Set entire replies collection.
+     *
+     * @param ReplyCollection $feedReplies
+     */
     public function setFeedReplies(ReplyCollection $feedReplies)
     {
         $this->feedReplies = $feedReplies;

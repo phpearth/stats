@@ -10,7 +10,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->config = $config = new Config(__DIR__.'/Fixtures/parameters.yml.dist');
+        $this->config = new Config(__DIR__.'/Fixtures/parameters.yml.dist');
     }
 
     /**

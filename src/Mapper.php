@@ -11,8 +11,51 @@ use PHPWorldWide\Stats\Model\User;
 use PHPWorldWide\Stats\Model\Reply;
 use PHPWorldWide\Stats\Model\Comment;
 
+/**
+ * Class Mapper
+ */
 class Mapper
 {
+    /**
+     * @var Config
+     */
+    private $config;
+
+    /**
+     * @var TopicCollection
+     */
+    private $topics;
+
+    /**
+     * @var TopicCollection
+     */
+    private $topics;
+
+    /**
+     * @var CommentCollection
+     */
+    private $comments;
+
+    /**
+     * @var ReplyCollection
+     */
+    private $replies;
+
+    /**
+     * @var UserCollection
+     */
+    private $users;
+
+    /**
+     * @var Points
+     */
+    private $points;
+
+    /**
+     * @var Log
+     */
+    private $log;
+
     /**
      * Mapper constructor.
      *
@@ -29,8 +72,6 @@ class Mapper
         $this->users = new UserCollection();
         $this->points = new Points($this->config);
         $this->log = $log;
-        $this->startDate = $this->config->get('start_datetime');
-        $this->endDate = $this->config->get('end_datetime');
 
         $this->mapFeed($feed);
 
@@ -54,20 +95,23 @@ class Mapper
      */
     private function mapFeed($feed)
     {
+        $startDate = $this->config->get('start_datetime');
+        $endDate = $this->config->get('end_datetime');
+
         foreach ($feed as $topic) {
-            if ($topic['created_time'] >= $this->startDate && $topic['created_time'] <= $this->endDate) {
+            if ($topic['created_time'] >= $startDate && $topic['created_time'] <= $endDate) {
                 $this->mapTopic($topic);
             }
 
             if (isset($topic['comments'])) {
                 foreach ($topic['comments'] as $comment) {
-                    if ($comment['created_time'] >= $this->startDate && $comment['created_time'] <= $this->endDate) {
+                    if ($comment['created_time'] >= $startDate && $comment['created_time'] <= $endDate) {
                         $this->mapComment($comment);
                     }
 
                     if (isset($comment['comments'])) {
                         foreach ($comment['comments'] as $reply) {
-                            if ($reply['created_time'] >= $this->startDate && $reply['created_time'] <= $this->endDate) {
+                            if ($reply['created_time'] >= $startDate && $reply['created_time'] <= $endDate) {
                                 $this->mapReply($reply);
                             }
                         }
@@ -78,9 +122,9 @@ class Mapper
     }
 
     /**
-     * Maps topic data to topic object.
+     * Maps topic data from API feed to Topic object.
      *
-     * @param $topic
+     * @param array $topic
      *
      * @return Topic
      *
@@ -125,7 +169,7 @@ class Mapper
     }
 
     /**
-     * Maps comment data to comment object.
+     * Maps comment data from API feed to Comment object.
      *
      * @param array $comment
      *
@@ -147,16 +191,15 @@ class Mapper
             $newComment->setUser($user);
         }
 
-        // Add comment to collection
         $this->comments->add($newComment, $newComment->getId());
 
         return $newComment;
     }
 
     /**
-     * Map reply data to reply object.
+     * Map reply data from API feed to Reply object.
      *
-     * @param $reply
+     * @param array $reply
      *
      * @return Reply
      *
@@ -182,8 +225,12 @@ class Mapper
     }
 
     /**
-     * @param $userData
-     * @return mixed|User
+     * Map user's data from API feed to User object.
+     *
+     * @param array $userData
+     *
+     * @return User
+     *
      * @throws \Exception
      */
     private function mapUser($userData)
@@ -196,6 +243,7 @@ class Mapper
             $user->setName($userData['name']);
             $user->setFeedComments($this->comments);
             $user->setFeedReplies($this->replies);
+
             $this->users->add($user, $user->getId());
         }
 
@@ -203,6 +251,8 @@ class Mapper
     }
 
     /**
+     * Get mapped topics collection.
+     *
      * @return TopicCollection
      */
     public function getTopics()
@@ -211,6 +261,8 @@ class Mapper
     }
 
     /**
+     * Get mapped comments collection.
+     *
      * @return CommentCollection
      */
     public function getComments()
@@ -219,6 +271,8 @@ class Mapper
     }
 
     /**
+     * Get mapped replies collection.
+     *
      * @return ReplyCollection
      */
     public function getReplies()
@@ -227,6 +281,8 @@ class Mapper
     }
 
     /**
+     * Get mapped users collection.
+     *
      * @return UserCollection
      */
     public function getUsers()

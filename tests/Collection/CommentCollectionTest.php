@@ -18,8 +18,9 @@ class CommentCollectionTest extends \PHPUnit_Framework_TestCase
         $userIds = [1,5,3,5,5,5,6,7,8,9,5,5,11,12,13,14,5,5];
         $config = new Config(__DIR__.'/../../app/config/parameters.yml.dist');
         $points = new Points($config);
+        $limit = sizeof($userIds);
 
-        for ($i = 0; $i < sizeof($userIds); $i++) {
+        for ($i = 0; $i < $limit; $i++) {
             $user = new User($points);
             $user->setFeedComments($comments);
             $user->setFeedReplies($replies);
