@@ -22,6 +22,7 @@ PHP application for generating stats for International PHP Facebook group.
     * and so on until 91 to 100 likes = 10 points
     * more than 100 likes gets you 11 points
 * More detailed comments or replies with 100 characters or more get you extra points.
+* Sequential comments and replies are merged.
 * Messages and topics with special links get you extra points:
     * GitHub: 10 points
     * PHP.net: 20 points
@@ -33,7 +34,7 @@ PHP application for generating stats for International PHP Facebook group.
     * PHP-FIG.org: 5 points
     * phpunit.de: 5 points
     * PHP The Right Way: 10 points
-* Offensive messages get negative points.
+* Offensive messages and inappropriate links get negative points.
 * Topics with comments turned off get negative points.
 
 **What is the benefit of the points?**
