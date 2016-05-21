@@ -15,6 +15,8 @@ class PointsTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $config = new Config(__DIR__.'/../app/config/parameters.yml.dist');
+        $config->addFile(__DIR__.'/../app/config/points.yml');
+        $config->addFile(__DIR__.'/../app/config/offensive_words.yml');
         $this->points = new Points($config);
     }
 
@@ -30,13 +32,14 @@ class PointsTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider topicsProvider
      */
-    public function testAddPointsForTopic($message, $likes, $type, $expectedPoints)
+    public function testAddPointsForTopic($message, $likes, $type, $canComment, $expectedPoints)
     {
         $topic = new Topic();
         $topic->setId(1);
         $topic->setMessage($message);
         $topic->setLikesCount($likes);
         $topic->setType($type);
+        $topic->setCanComment($canComment);
 
         $this->assertEquals($expectedPoints, $this->points->addPointsForTopic($topic));
     }
@@ -85,27 +88,17 @@ class PointsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expectedPoints, $method->invoke($this->points, $message));
     }
 
-    public function testGetClosedTopicPoints()
-    {
-        $method = self::getMethod('getClosedTopicPoints');
-
-        $openedTopic = new Topic();
-        $closedTopic = new Topic();
-        $closedTopic->setCanComment(false);
-
-        $this->assertEquals(0, $method->invoke($this->points, $openedTopic));
-        $this->assertEquals(-20, $method->invoke($this->points, $closedTopic));
-    }
-
     public function topicsProvider()
     {
         return [
-            ['Lorem ipsum dolor sit amet.', 0, 'status', 1],
-            ['Lorem ipsum dolor sit amet', 5, 'status', 2],
-            ['Lorem ipsum dolor sit amet', 11, 'status', 3],
-            ['Lorem ipsum dolor sit amet', 11, 'photo', 3],
-            ['', 11, 'photo', 0],
-            ['', 11, 'animated_image_share', 0],
+            'topic' => ['Lorem ipsum dolor sit amet.', 0, 'status', true, 1],
+            'topic_with_likes' => ['Lorem ipsum dolor sit amet', 5, 'status', true, 2],
+            'topic_with_more_likes' => ['Lorem ipsum dolor sit amet', 11, 'status', true, 3],
+            'topic_with_a_lot_likes' => ['Lorem ipsum dolor sit amet', 1000, 'status', true, 16],
+            'photo_with_description' => ['Lorem ipsum dolor sit amet', 11, 'photo', true, 3],
+            'photo_only' => ['', 11, 'photo', true, 0],
+            'gif' => ['', 11, 'animated_image_share', true, 0],
+            'closed_topic' => ['Lorem ipsum dolor sit amet', 50, 'status', false, 0],
         ];
     }
 
@@ -124,6 +117,8 @@ class PointsTest extends \PHPUnit_Framework_TestCase
             ['http://wwwphp-fb.github.io', 20],
             ['Lorem ipsum dolor stackoverflow.com sit amet.', 5],
             ['http://wwwphp-fb.github.io and php.net', 20],
+            ['http://lmgtfy.com', -10],
+            ['http://lmgtfy.com http://wwwphp-fb.github.io', 10],
         ];
     }
 

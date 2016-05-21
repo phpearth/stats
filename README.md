@@ -12,33 +12,6 @@ PHP application for generating stats for International PHP Facebook group.
 
 ## FAQ
 
-**How are points calculated?**
-
-* Each post, each comment and each reply to a comment in the group gets you one point.
-* Number of likes of your topic, comment or reply gets you extra points:
-    * 1 to 10 likes = 1 point
-    * 11 to 20 likes = 2 points
-    * 21 to 30 likes = 3 points
-    * and so on until 91 to 100 likes = 10 points
-    * more than 100 likes gets you 11 points
-* More detailed comments or replies with 100 characters or more get you extra points.
-* Sequential comments and replies are merged.
-* Messages and topics with special links get you extra points:
-    * GitHub: 10 points
-    * PHP.net: 20 points
-    * wwphp-fb.github.io: 20 points
-    * Composer and packagist: 10 points
-    * Sitepoint: 5 points
-    * PHP Classes: 5 points
-    * StackOverflow: 5 points
-    * PHP-FIG.org: 5 points
-    * phpunit.de: 5 points
-    * PHP The Right Way: 10 points
-* Offensive messages and inappropriate links get negative points.
-* Topics with comments turned off get negative points.
-* Topics with only image and no description or question are not calculated in
-  points.
-
 **What is the benefit of the points?**
 
 We could never possibly thank properly enough for contributions from members in
@@ -46,6 +19,40 @@ this group. This group is all about open source spirit and helping others. These
 points will help you check your contribution activity in our group compared to
 other members and bring some fun in PHP back. Leetness in the universe is also
 not excluded for getting higher score than other members :)
+
+**How are points calculated?**
+
+* Each post, each comment and each reply to a comment in the group gets you one point.
+* Number of likes of your topic, comment or reply gets you extra points.
+* More detailed comments and replies get you extra points.
+* Sequential comments and replies on topic from same members are merged and calculated as one.
+* Topics, comments and replies with recommended links get you extra points.
+* Topics with only image and lacky description or question aren't rewarded with
+  points.
+* Topics with disabled comments aren't rewarded with points. Comments are in
+  most cases turned off by administrators for various reasons, such as not
+  following the group's code of conduct or low quality.
+* Offensive messages and inappropriate links can get you negative points.
+
+**What is the default points configuration and why such configuration for calculation?**
+
+Configuration for calculating the points aims to encourages the group code of
+conduct and recommended netiquette for online communication in internet communities
+such as this. All the configuration parameters are described in details in the
+[points.yml](app/config/points.yml) and
+[offensive_words.yml](app/config/offensive_words.yml) files and have been
+carefully set for this group.
+
+**Why some sites are not recommended and get negative points?**
+
+[Answering other people's questions](http://dev-human.com/~mauriciojr/growing-your-experience-with-community-participation).
+is a very important part of being a member in development community. Group aims
+for quality discussions and not every answer and resource is always the best for
+the given situation. To promote the best possible answers, some links are not
+recommended and get you negative points. Every developer should know how to use
+search engines but question was probably asked for a reason. More experienced
+users might suggest better resource than those listed on the first pages of the
+search engines.
 
 ## Installation
 
@@ -63,13 +70,7 @@ To install this application locally, do the following:
 
 3. Adjust configuration
 
-    Add and edit `app/config/parameters.yml` file according to your settings:
-
-    ```bash
-    $ cp app/config/parameters.yml.dist app/config/parameters.yml
-    ```
-
-    `parameters.yml` should look like this
+    Add `app/config/parameters.yml` file for your settings:
 
     ```bash
     fb_app_id: 123456789012312
@@ -86,46 +87,8 @@ To install this application locally, do the following:
             url: "fb.com/groups/2204685680/permalink/10153439277470681"
     ```
 
-    Configuration parameters:
-
-    `fb_app_id` - id of the Facebook application from step 1. You can get it in the dashboard [settings](https://developers.facebook.com/apps/) of your Facebook application.
-
-    `fb_app_secret` - secret string of the Facebook application from step 1. You can get it in the dashboard [settings](https://developers.facebook.com/apps/) of your Facebook application.
-
-    `fb_access_token` - Facebook access token should be copied from your Facebook application [Graph Api Explorer](https://developers.facebook.com/tools/explorer)
-
-    `start_datetime` - start datetime string of the report
-
-    `end_datetime` - end datetime string of the report
-
-    `last_member_name` - you should provide a name of added member from previous generated report
-
-    `last_blocked_count` - number of blocked accounts from previous report
-
-    `new_blocked_count` - number of blocked accounts on the time of report generation
-
-    `top_topics:` - array of staff picked topics
-
-    Optional configuration parameters:
-
-    `default_graph_version` - Default Facebook Graph API version
-
-    `top_users_count` - how many top users should be shown in the generated report
-
-    `group_id` - Facebook group id
-
-    `api_pages` - how many pages should the data collecting include. Large amount of data from the Facebook Graph API gets returned in multiple pages and Facebook group feed is sorted by updated topics.
-
-    `urls:` - array of links which give extra points, format is array [link, points]
-
-    `offensive_words:` - array of words which give negative points, format is array [string, points]
-
-    `closed_topic_points` - points for topics with comments turned off
-
-    `points_for_only_photo_share` - points for topics with only images
-
-    `ignored_users` - users not present in the report output
-
+    Configuration parameters are described in comments in [parameters.yml.dist](app/config/parameters.yml.dist)
+    and other default configuration files.
 
 4. Run tests:
 

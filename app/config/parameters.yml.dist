@@ -1,10 +1,17 @@
 # Facebook application ID
+# You can find it in the application's dashboard settings
+# (https://developers.facebook.com/apps/) of your Facebook application.
 fb_app_id: AddFacebookApplicationIdHere
 
 # Facebook application secret key
+# Secret string of the Facebook application. You can find it in the application's
+# dashboard settings (https://developers.facebook.com/apps/).
 fb_app_secret: ChangeThisToYourFacebookAppSecret
 
 # Facebook access token
+# It should be copied from your Facebook application from Graph API Explorer
+# (https://developers.facebook.com/tools/explorer). When the token expires, the
+# script asks you for a new one.
 fb_access_token: PasteYourFacebookTokenHere
 
 # Default Facebook Graph API version
@@ -23,61 +30,27 @@ start_datetime: '2015-07-20 00:00:00'
 end_datetime: '2015-07-26 23:59:59'
 
 # Last name of the joined member
+# For calculating the number of new members since previous report. Facebook Graph
+# API currently doesn't provide chronological limit or dates when users joined the
+# group.
 last_member_name: 'John Doe'
 
-# Last number of blocked users
+# Number of blocked users from previous report
 last_blocked_count: 0
 
-# New number of blocked users
+# New number of blocked users for current report
 new_blocked_count: 10
 
 # Maximum number of API pages to paginate when retrieving members
+# Safety limit when retrieving members in case last_member_name is not found.
 api_pages: 10
 
-# Links for additional points [url, points]
-urls:
-    - [github.com, 10]
-    - [github.io, 10]
-    - [php.net, 20]
-    - [wwphp-fb.github.io, 20]
-    - [packagist.org, 10]
-    - [getcomposer.org, 10]
-    - [phptherightway.com, 10]
-    - [sitepoint.com, 5]
-    - [phpclasses.org, 5]
-    - [stackoverflow.com, 5]
-    - [phpunit.de, 5]
-    - [php-fig.org, 5]
-
-# Words and combinations of words that counts as offensive or low quality
-offensive_words:
-    - ['you idiot', -20]
-    - ['fuck you', -20]
-    - ['fuck u', -20]
-    - ['fuck', -20]
-    - ['go fuck yourself', -20]
-    - ['you''re an idiot', -20]
-    - ['you are an idiot', -20]
-    - ['you are dumb', -20]
-    - ['you''re dumb', -20]
-    - ['go to hell', -20]
-    - ['stop being lazy', -20]
-    - ['don''t be lazy', -20]
-    - ['shit', -20]
-    - ['asshole', -20]
-    - ['lmgtfy.com', -20]
-    - ['w3schools.com', -20]
-
-closed_topic_points: -20
-
-# Topics with only image (such as bumped images from album topics) are reset to 0 points
-points_for_only_photo_share: 0
-
-# Staff picked top topics
+# Array of staff picked top topics with title and URL.
 top_topics:
     -
         title: "20 years of PHP"
         url: "fb.com/groups/2204685680/permalink/10153439277470681"
 
-# Omit users in the report
+# Array of users not shown in the stats report. This is set to administrator(s)
+# who generate and post the report.
 ignored_users: []

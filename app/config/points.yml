@@ -1,0 +1,44 @@
+# Points configuration for Expression Language component evaluation
+
+# Additional points for length of comment or reply.
+points_message_length: 'strlen(message) > 100 ? 1 : 0'
+
+# Points for number of likes on comment or reply
+points_for_likes: '(likes > 100) ? 11 : ceil(likes / 10)'
+
+# Points for topics with only image or animated image (such as bumped images from
+# album topics and images without much description).
+points_for_image: '(strlen(topic.getMessage()) <= 5 && topic.getType() in ["photo", "animated_image_share"]) ? 0 : points'
+
+# Points for topics with comments turned off.
+points_for_closed_topic: '!topic.getCanComment() ? 0 : points'
+
+# Points for likes on topic
+points_for_topic_likes: '(topic.getLikesCount() >= 100) ? 15 : ceil(topic.getLikesCount() / 10)'
+
+# Points for opening each topic
+points_for_topic: 1
+
+# Points for comment
+points_for_comment: 1
+
+# Points for reply
+points_for_reply: 1
+
+# Array of recommended and not recommended links which affect the points
+# calculation. [url, points]
+urls:
+    - ['github.com', 10]
+    - ['github.io', 10]
+    - ['php.net', 20]
+    - ['wwphp-fb.github.io', 20]
+    - ['packagist.org', 10]
+    - ['getcomposer.org', 10]
+    - ['phptherightway.com', 10]
+    - ['sitepoint.com', 5]
+    - ['phpclasses.org', 5]
+    - ['stackoverflow.com', 5]
+    - ['phpunit.de', 5]
+    - ['php-fig.org', 5]
+    - ['lmgtfy.com', -10]
+    - ['w3schools.com', -20]

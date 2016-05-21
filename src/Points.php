@@ -24,6 +24,7 @@ class Points
     public function __construct(Config $config)
     {
         $this->config = $config;
+        $this->language = new ExpressionLanguage();
     }
 
     /**
@@ -35,25 +36,23 @@ class Points
      */
     public function addPointsForTopic(Topic $topic)
     {
-        // Add 1 point for creating a topic
-        $points = 1;
+        // Add points for creating a topic
+        $points = $this->config->get('points_for_topic');
 
         // Add points based on the topic likes
-        $points += ($topic->getLikesCount() >= 100) ? 15 : ceil($topic->getLikesCount() / 10);
+        $points += $this->language->evaluate($this->config->get('points_for_topic_likes'), ['topic' => $topic]);
 
         // Add points for using recommended links
         $points += $this->addPointsForLinks($topic->getMessage());
 
+        // Set points for only photo shares
+        $points = $this->language->evaluate($this->config->get('points_for_image'), ['topic' => $topic, 'points' => $points]);
+
+        // Set points if topic is closed for comments
+        $points = $this->language->evaluate($this->config->get('points_for_closed_topic'), ['topic' => $topic, 'points' => $points]);
+
         // Remove points for using offensive words
         $points += $this->getOffensivePoints($topic->getMessage());
-
-        // Remove points if topic is closed for comments
-        $points += $this->getClosedTopicPoints($topic);
-
-        // Resets and sets points for only photo shares
-        if (strlen($topic->getMessage()) <= 5 && ($topic->getType() == 'photo' || $topic->getType() == 'animated_image_share')) {
-            $points = $this->config->get('points_for_only_photo_share');
-        }
 
         return $points;
     }
@@ -67,9 +66,9 @@ class Points
      */
     public function addPointsForComment(Comment $comment)
     {
-        $points = 1;
-        $points += ($comment->getLikesCount() > 100) ? 11 : ceil($comment->getLikesCount() / 10);
-        $points += (strlen($comment->getMessage()) > 100) ? 1 : 0;
+        $points = $this->config->get('points_for_comment');
+        $points += $this->getPointsForLikes($comment->getLikesCount());
+        $points += $this->getPointsForMessageLength($comment->getMessage());
 
         // Add points for using recommended links
         $points += $this->addPointsForLinks($comment->getMessage());
@@ -89,9 +88,9 @@ class Points
      */
     public function addPointsForReply(Reply $reply)
     {
-        $points = 1;
-        $points += ($reply->getLikesCount() > 100) ? 11 : ceil($reply->getLikesCount() / 10);
-        $points += (strlen($reply->getMessage()) > 100) ? 1 : 0;
+        $points = $this->config->get('points_for_reply');
+        $points += $this->getPointsForLikes($reply->getLikesCount());
+        $points += $this->getPointsForMessageLength($reply->getMessage());
 
         // Add points for using recommended links
         $points += $this->addPointsForLinks($reply->getMessage());
@@ -111,16 +110,19 @@ class Points
      */
     private function addPointsForLinks($message)
     {
-        $points = 0;
+        $positivePoints = 0;
+        $negativePoints = 0;
+
         if (isset($message)) {
             foreach ($this->config->get('urls') as $url) {
                 if (false !== stripos($message, $url[0])) {
-                    $points = ($points > $url[1]) ? $points : $url[1];
+                    $positivePoints = ($url[1] > 0 && $positivePoints < $url[1]) ? $positivePoints : $url[1];
+                    $negativePoints = ($url[1] < 0 && $negativePoints > $url[1]) ? $negativePoints : $url[1];
                 }
             }
         }
 
-        return $points;
+        return $positivePoints + $negativePoints;
     }
 
     /**
@@ -145,19 +147,26 @@ class Points
     }
 
     /**
-     * Get points for topics with comments turned off.
+     * Get points based on message length
      *
-     * @param Topic $topic
+     * @param $message
      *
      * @return int
      */
-    private function getClosedTopicPoints(Topic $topic)
+    private function getPointsForMessageLength($message)
     {
-        $points = 0;
-        if (!$topic->getCanComment()) {
-            $points = $this->config->get('closed_topic_points');
-        }
+        return $this->language->evaluate($this->config->get('points_message_length'), ['message' => $message]);
+    }
 
-        return $points;
+    /**
+     * Get points based on number of likes.
+     *
+     * @param $likes
+     *
+     * @return int
+     */
+    private function getPointsForLikes($likes)
+    {
+        return $this->language->evaluate($this->config->get('points_for_likes'), ['likes' => $likes]);
     }
 }

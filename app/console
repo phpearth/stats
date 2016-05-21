@@ -21,6 +21,8 @@ $container = new Conjurer();
 
 $container->register(new Service(Config::class));
 $config = $container->make(Config::class, [__DIR__.'/config/parameters.yml.dist']);
+$config->addFile(__DIR__.'/config/points.yml');
+$config->addFile(__DIR__.'/config/offensive_words.yml');
 $config->addFile(__DIR__.'/config/parameters.yml');
 
 $container->register(new Service(Log::class));

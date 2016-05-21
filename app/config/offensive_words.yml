@@ -1,0 +1,20 @@
+# Disclaimer: this is a list of profanity, offensive and similar low quality
+# words and is used only as a dictionary configuration for social interactions.
+# They are not targeted at anyone in particular. [string, points]
+offensive_words:
+    - ['you idiot', -20]
+    - ['fuck you', -20]
+    - ['fuck u', -20]
+    - ['fuck', -20]
+    - ['go fuck yourself', -20]
+    - ['you''re an idiot', -20]
+    - ['you are an idiot', -20]
+    - ['your idiot', -20]
+    - ['you are dumb', -20]
+    - ['you''re dumb', -20]
+    - ['go to hell', -20]
+    - ['stop being lazy', -20]
+    - ['don''t be lazy', -20]
+    - ['shit', -20]
+    - ['asshole', -20]
+    - ['mother f*cker', -20]
