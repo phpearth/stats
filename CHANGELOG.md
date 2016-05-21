@@ -14,6 +14,7 @@ All notable changes to this project will be documented in this file. This projec
 * Configuration refactoring.
 * Symfony Expression Language component
 * Points calculation improvements.
+* Bonus points for topics from group stuff.
 * ...
 
 

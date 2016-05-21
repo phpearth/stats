@@ -7,6 +7,7 @@ use PHPWorldWide\Stats\Points;
 use PHPWorldWide\Stats\Model\Topic;
 use PHPWorldWide\Stats\Model\Comment;
 use PHPWorldWide\Stats\Model\Reply;
+use PHPWorldWide\Stats\Model\User;
 
 class PointsTest extends \PHPUnit_Framework_TestCase
 {
@@ -17,6 +18,7 @@ class PointsTest extends \PHPUnit_Framework_TestCase
         $config = new Config(__DIR__.'/../app/config/parameters.yml.dist');
         $config->addFile(__DIR__.'/../app/config/points.yml');
         $config->addFile(__DIR__.'/../app/config/offensive_words.yml');
+        $config->addFile(__DIR__.'/Fixtures/admins.yml');
         $this->points = new Points($config);
     }
 
@@ -32,7 +34,7 @@ class PointsTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider topicsProvider
      */
-    public function testAddPointsForTopic($message, $likes, $type, $canComment, $expectedPoints)
+    public function testAddPointsForTopic($message, $likes, $type, $canComment, $from, $expectedPoints)
     {
         $topic = new Topic();
         $topic->setId(1);
@@ -40,6 +42,10 @@ class PointsTest extends \PHPUnit_Framework_TestCase
         $topic->setLikesCount($likes);
         $topic->setType($type);
         $topic->setCanComment($canComment);
+        $user = new User($this->points);
+        $user->setName($from['name']);
+        $user->setId($from['id']);
+        $topic->setUser($user);
 
         $this->assertEquals($expectedPoints, $this->points->addPointsForTopic($topic));
     }
@@ -91,14 +97,16 @@ class PointsTest extends \PHPUnit_Framework_TestCase
     public function topicsProvider()
     {
         return [
-            'topic' => ['Lorem ipsum dolor sit amet.', 0, 'status', true, 1],
-            'topic_with_likes' => ['Lorem ipsum dolor sit amet', 5, 'status', true, 2],
-            'topic_with_more_likes' => ['Lorem ipsum dolor sit amet', 11, 'status', true, 3],
-            'topic_with_a_lot_likes' => ['Lorem ipsum dolor sit amet', 1000, 'status', true, 16],
-            'photo_with_description' => ['Lorem ipsum dolor sit amet', 11, 'photo', true, 3],
-            'photo_only' => ['', 11, 'photo', true, 0],
-            'gif' => ['', 11, 'animated_image_share', true, 0],
-            'closed_topic' => ['Lorem ipsum dolor sit amet', 50, 'status', false, 0],
+            'topic' => ['Lorem ipsum dolor sit amet.', 0, 'status', true, ['name' => 'User Name', 'id' => 2000], 1],
+            'topic_with_likes' => ['Lorem ipsum dolor sit amet', 5, 'status', true, ['name' => 'User Name', 'id' => 2000], 2],
+            'topic_with_more_likes' => ['Lorem ipsum dolor sit amet', 11, 'status', true, ['name' => 'User Name', 'id' => 2000], 3],
+            'topic_with_a_lot_likes' => ['Lorem ipsum dolor sit amet', 1000, 'status', true, ['name' => 'User Name', 'id' => 2000], 16],
+            'photo_with_description' => ['Lorem ipsum dolor sit amet', 11, 'photo', true, ['name' => 'User Name', 'id' => 2000], 3],
+            'photo_only' => ['', 11, 'photo', true, ['name' => 'User Name', 'id' => 2000], 0],
+            'gif' => ['', 11, 'animated_image_share', true, ['name' => 'User Name', 'id' => 2000], 0],
+            'closed_topic' => ['Lorem ipsum dolor sit amet', 50, 'status', false, ['name' => 'User Name', 'id' => 2000], 0],
+            'admin_topic' => ['Lorem ipsum dolor sit amet', 0, 'status', true, ['name' => 'Admin User', 'id' => 1000], 11],
+            'admin_announcement' => ['[!]Lorem ipsum dolor sit amet', 0, 'status', true, ['name' => 'Admin User', 'id' => 1000], 21],
         ];
     }
 

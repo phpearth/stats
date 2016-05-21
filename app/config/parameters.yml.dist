@@ -54,3 +54,6 @@ top_topics:
 # Array of users not shown in the stats report. This is set to administrator(s)
 # who generate and post the report.
 ignored_users: []
+
+# Array of group staff - administrators, moderators etc. ['Admin Name': ID,...]
+admins: []

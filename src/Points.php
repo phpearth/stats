@@ -54,6 +54,9 @@ class Points
         // Remove points for using offensive words
         $points += $this->getOffensivePoints($topic->getMessage());
 
+        // Add points for special admin topics
+        $points += $this->language->evaluate($this->config->get('points_for_admin_topics'), ['topic' => $topic, 'admins' => $this->config->get('admins')]);
+
         return $points;
     }
 
