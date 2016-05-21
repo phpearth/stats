@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file. This projec
 
 ### Added
 
+* Points calculation for images and animated images shares.
 * ...
 
 

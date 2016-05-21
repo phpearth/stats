@@ -50,6 +50,11 @@ class Points
         // Remove points if topic is closed for comments
         $points += $this->getClosedTopicPoints($topic);
 
+        // Resets and sets points for only photo shares
+        if (strlen($topic->getMessage()) <= 5 && ($topic->getType() == 'photo' || $topic->getType() == 'animated_image_share')) {
+            $points = $this->config->get('points_for_only_photo_share');
+        }
+
         return $points;
     }
 

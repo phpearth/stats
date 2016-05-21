@@ -144,6 +144,10 @@ class Mapper
         }
         $newTopic->setLikesCount($topic['likesCount']);
         $newTopic->setCanComment($topic['canComment']);
+        $newTopic->setType($topic['type']);
+        if ($newTopic->getType() == 'link' && isset($topic['attachments'][0]['type']) && $topic['attachments'][0]['type'] == 'animated_image_share') {
+            $newTopic->setType('animated_image_share');
+        }
 
         if (array_key_exists('from', $topic)) {
             $user = $this->mapUser($topic['from']);

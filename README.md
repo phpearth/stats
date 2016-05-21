@@ -36,6 +36,8 @@ PHP application for generating stats for International PHP Facebook group.
     * PHP The Right Way: 10 points
 * Offensive messages and inappropriate links get negative points.
 * Topics with comments turned off get negative points.
+* Topics with only image and no description or question are not calculated in
+  points.
 
 **What is the benefit of the points?**
 
@@ -119,6 +121,8 @@ To install this application locally, do the following:
     `offensive_words:` - array of words which give negative points, format is array [string, points]
 
     `closed_topic_points` - points for topics with comments turned off
+
+    `points_for_only_photo_share` - points for topics with only images
 
     `ignored_users` - users not present in the report output
 

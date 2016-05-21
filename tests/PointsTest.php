@@ -30,12 +30,13 @@ class PointsTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider topicsProvider
      */
-    public function testAddPointsForTopic($message, $likes, $expectedPoints)
+    public function testAddPointsForTopic($message, $likes, $type, $expectedPoints)
     {
         $topic = new Topic();
         $topic->setId(1);
         $topic->setMessage($message);
         $topic->setLikesCount($likes);
+        $topic->setType($type);
 
         $this->assertEquals($expectedPoints, $this->points->addPointsForTopic($topic));
     }
@@ -99,9 +100,12 @@ class PointsTest extends \PHPUnit_Framework_TestCase
     public function topicsProvider()
     {
         return [
-            ['Lorem ipsum dolor sit amet.', 0, 1],
-            ['Lorem ipsum dolor sit amet', 5, 2],
-            ['Lorem ipsum dolor sit amet', 11, 3],
+            ['Lorem ipsum dolor sit amet.', 0, 'status', 1],
+            ['Lorem ipsum dolor sit amet', 5, 'status', 2],
+            ['Lorem ipsum dolor sit amet', 11, 'status', 3],
+            ['Lorem ipsum dolor sit amet', 11, 'photo', 3],
+            ['', 11, 'photo', 0],
+            ['', 11, 'animated_image_share', 0],
         ];
     }
 

@@ -70,6 +70,9 @@ offensive_words:
 
 closed_topic_points: -20
 
+# Topics with only image (such as bumped images from album topics) are reset to 0 points
+points_for_only_photo_share: 0
+
 # Staff picked top topics
 top_topics:
     -

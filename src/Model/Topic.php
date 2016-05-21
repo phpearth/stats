@@ -43,6 +43,11 @@ class Topic
     private $canComment = true;
 
     /**
+     * @var string
+     */
+    private $type;
+
+    /**
      * Set topic id.
      *
      * @param $id
@@ -170,6 +175,26 @@ class Topic
     public function setCanComment($canComment)
     {
         $this->canComment = $canComment;
+    }
+
+    /**
+     * Get post type.
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set the topic type (photo, status, animated_image_share...)
+     *
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
     }
 
     /**
