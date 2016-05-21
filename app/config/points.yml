@@ -42,3 +42,6 @@ urls:
     - ['php-fig.org', 5]
     - ['lmgtfy.com', -10]
     - ['w3schools.com', -20]
+
+# Points for special announcements and topics from group staff
+points_for_admin_topics: '(topic.getUser().getId() in admins && contains(topic.getMessage(), "[!]") ) ? 20 : 0'
