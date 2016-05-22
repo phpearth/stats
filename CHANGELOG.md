@@ -9,13 +9,19 @@ All notable changes to this project will be documented in this file. This projec
 
 ### Added
 
+* ...
+
+
+## [0.4.0] - 2016-05-23
+
+### Added
+
 * Points calculation for images and animated images shares.
 * More detailed configuration descriptions and FAQ.
 * Configuration refactoring.
 * Symfony Expression Language component
 * Points calculation improvements.
 * Bonus points for topics from group stuff.
-* ...
 
 
 ## [0.3.0] - 2016-05-16
