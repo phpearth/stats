@@ -43,5 +43,5 @@ urls:
     - ['lmgtfy.com', -10]
     - ['w3schools.com', -20]
 
-# Points for special announcements and topics from group staff
-points_for_admin_topics: '(topic.getUser().getId() in admins && contains(topic.getMessage(), "[!]") ) ? 20 : ((topic.getUser().getId() in admins) ? 10 : 0)'
+# Points for topics from admins
+points_for_admin_topics: '(topic.getUser().getId() in admins) ? 5 : 0'

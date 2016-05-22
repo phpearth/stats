@@ -33,6 +33,8 @@ not excluded for getting higher score than other members :)
   most cases turned off by administrators for various reasons, such as not
   following the group's code of conduct or low quality.
 * Offensive messages and inappropriate links can get you negative points.
+* Some topics (such as administrators announcements and similar) are awarded with
+  extra points as a recognition for special contributions to the group. 
 
 **What is the default points configuration and why such configuration for calculation?**
 

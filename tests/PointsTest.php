@@ -105,8 +105,7 @@ class PointsTest extends \PHPUnit_Framework_TestCase
             'photo_only' => ['', 11, 'photo', true, ['name' => 'User Name', 'id' => 2000], 0],
             'gif' => ['', 11, 'animated_image_share', true, ['name' => 'User Name', 'id' => 2000], 0],
             'closed_topic' => ['Lorem ipsum dolor sit amet', 50, 'status', false, ['name' => 'User Name', 'id' => 2000], 0],
-            'admin_topic' => ['Lorem ipsum dolor sit amet', 0, 'status', true, ['name' => 'Admin User', 'id' => 1000], 11],
-            'admin_announcement' => ['[!]Lorem ipsum dolor sit amet', 0, 'status', true, ['name' => 'Admin User', 'id' => 1000], 21],
+            'admin_topic' => ['Lorem ipsum dolor sit amet', 0, 'status', true, ['name' => 'Admin User', 'id' => 1000], 6],
         ];
     }
 
