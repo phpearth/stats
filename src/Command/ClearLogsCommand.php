@@ -17,6 +17,11 @@ class ClearLogsCommand extends Command
      */
     private $log;
 
+    /**
+     * Set log.
+     *
+     * @param Log $log
+     */
     public function setLog(Log $log)
     {
         $this->log = $log;

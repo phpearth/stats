@@ -11,7 +11,7 @@ use Symfony\Component\Yaml\Exception\ParseException;
 class Config
 {
     /**
-     * @var array Yaml files with configuration values.
+     * @var array YAML files with configuration values.
      */
     private $files = [];
 

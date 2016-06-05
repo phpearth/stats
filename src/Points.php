@@ -120,7 +120,7 @@ class Points
             foreach ($this->config->get('urls') as $url) {
                 if (false !== stripos($message, $url[0])) {
                     $positivePoints = ($url[1] > 0 && $positivePoints < $url[1]) ? $positivePoints : $url[1];
-                    $negativePoints = ($url[1] < 0 && $negativePoints > $url[1]) ? $negativePoints : $url[1];
+                    $negativePoints = ($url[1] <= 0 && $negativePoints > $url[1]) ? $negativePoints : $url[1];
                 }
             }
         }
