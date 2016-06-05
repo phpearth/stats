@@ -12,6 +12,13 @@ All notable changes to this project will be documented in this file. This projec
 * ...
 
 
+## [0.5.0] - 2016-06-06
+
+### Added
+
+* Better points calculation for more explanatory comments and replies.
+
+
 ## [0.4.0] - 2016-05-23
 
 ### Added
