@@ -1,7 +1,7 @@
 # Points configuration for Expression Language component evaluation
 
 # Additional points for length of comment or reply.
-points_message_length: 'strlen(message) > 100 ? 1 : 0'
+points_message_length: 'floor(strlen(message)/50)'
 
 # Points for number of likes on comment or reply
 points_for_likes: '(likes > 100) ? 11 : ceil(likes / 10)'
@@ -40,8 +40,8 @@ urls:
     - ['stackoverflow.com', 5]
     - ['phpunit.de', 5]
     - ['php-fig.org', 5]
+    - ['w3schools.com', -10]
     - ['lmgtfy.com', -10]
-    - ['w3schools.com', -20]
 
 # Points for topics from admins
 points_for_admin_topics: '(topic.getUser().getId() in admins) ? 5 : 0'

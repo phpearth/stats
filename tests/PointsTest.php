@@ -115,6 +115,10 @@ class PointsTest extends \PHPUnit_Framework_TestCase
             ['Lorem ipsum dolor sit amet.', 0, 1],
             ['Lorem ipsum dolor sit amet', 5, 2],
             ['Lorem ipsum dolor sit amet', 11, 3],
+            [str_repeat("a", 10), 0, 1],
+            [str_repeat("a", 50), 0, 2],
+            [str_repeat("a", 100), 0, 3],
+            [str_repeat("a", 2000), 0, 41],
         ];
     }
 

@@ -19,6 +19,15 @@ class NumberExpressionLanguageProvider implements ExpressionFunctionProviderInte
 
                 return ceil($num);
             }),
+            new ExpressionFunction('floor', function ($num) {
+                return sprintf('(is_numeric(%1$s) ? floor(%1$s) : %1$s)', $num);
+            }, function ($arguments, $num) {
+                if (!is_numeric($num)) {
+                    return $num;
+                }
+
+                return floor($num);
+            }),
         ];
     }
 }
