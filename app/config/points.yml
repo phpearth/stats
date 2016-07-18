@@ -40,6 +40,7 @@ urls:
     - ['stackoverflow.com', 5]
     - ['phpunit.de', 5]
     - ['php-fig.org', 5]
+    - ['developer.mozilla.org', 10]
     - ['w3schools.com', -10]
     - ['lmgtfy.com', -10]
 
