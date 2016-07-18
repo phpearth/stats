@@ -15,7 +15,7 @@ fb_app_secret: ChangeThisToYourFacebookAppSecret
 fb_access_token: PasteYourFacebookTokenHere
 
 # Default Facebook Graph API version
-default_graph_version: 'v2.6'
+default_graph_version: 'v2.7'
 
 # Group ID
 group_id: 2204685680
