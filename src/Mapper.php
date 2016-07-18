@@ -2,14 +2,14 @@
 
 namespace PHPWorldWide\Stats;
 
-use PHPWorldWide\Stats\Collection\UserCollection;
-use PHPWorldWide\Stats\Collection\TopicCollection;
 use PHPWorldWide\Stats\Collection\CommentCollection;
 use PHPWorldWide\Stats\Collection\ReplyCollection;
+use PHPWorldWide\Stats\Collection\TopicCollection;
+use PHPWorldWide\Stats\Collection\UserCollection;
+use PHPWorldWide\Stats\Model\Comment;
+use PHPWorldWide\Stats\Model\Reply;
 use PHPWorldWide\Stats\Model\Topic;
 use PHPWorldWide\Stats\Model\User;
-use PHPWorldWide\Stats\Model\Reply;
-use PHPWorldWide\Stats\Model\Comment;
 
 /**
  * Class Mapper
