@@ -25,7 +25,7 @@ class Topic
     /**
      * @var int
      */
-    private $likesCount = 0;
+    private $reactionsCount = 0;
 
     /**
      * @var int
@@ -108,23 +108,23 @@ class Topic
     }
 
     /**
-     * Set number of topic likes.
+     * Set number of topic reactions.
      *
-     * @param int $likesCount
+     * @param int $reactionsCount
      */
-    public function setLikesCount($likesCount)
+    public function setReactionsCount($reactionsCount)
     {
-        $this->likesCount = $likesCount;
+        $this->reactionsCount = $reactionsCount;
     }
 
     /**
-     * Get number of topic likes.
+     * Get number of topic reactions.
      *
      * @return int
      */
-    public function getLikesCount()
+    public function getReactionsCount()
     {
-        return $this->likesCount;
+        return $this->reactionsCount;
     }
 
     /**

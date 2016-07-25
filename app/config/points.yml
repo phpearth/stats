@@ -3,6 +3,9 @@
 # Additional points for length of comment or reply.
 points_message_length: 'floor(strlen(message)/50)'
 
+# Points for reactions on topic
+points_for_topic_reactions: '(topic.getReactionsCount() >= 100) ? 15 : ceil(topic.getReactionsCount() / 10)'
+
 # Points for number of likes on comment or reply
 points_for_likes: '(likes > 100) ? 11 : ceil(likes / 10)'
 
@@ -12,9 +15,6 @@ points_for_image: '(strlen(topic.getMessage()) <= 5 && topic.getType() in ["phot
 
 # Points for topics with comments turned off.
 points_for_closed_topic: '!topic.getCanComment() ? 0 : points'
-
-# Points for likes on topic
-points_for_topic_likes: '(topic.getLikesCount() >= 100) ? 15 : ceil(topic.getLikesCount() / 10)'
 
 # Points for opening each topic
 points_for_topic: 1

@@ -170,7 +170,7 @@ class GenerateCommand extends Command
                 'new_replies_count' => $replies->count(),
                 'active_users_count' => $users->count(),
                 'banned_count' => $blockedCount,
-                'most_likes_count' => $topics->getMostLikedTopic()->getLikesCount(),
+                'most_reactions_count' => $topics->getMostLikedTopic()->getReactionsCount(),
                 'most_liked_topic_id' => $topics->getMostLikedTopic()->getPermalinkPostId(),
                 'most_comments_count' => $topics->getMostActiveTopic()->getCommentsCount(),
                 'most_active_topic_id' => $topics->getMostActiveTopic()->getPermalinkPostId(),

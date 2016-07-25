@@ -17,6 +17,11 @@ class Points
     private $config;
 
     /**
+     * @var ExpressionLanguage
+     */
+    private $language;
+
+    /**
      * Points constructor.
      *
      * @param Config $config
@@ -39,8 +44,8 @@ class Points
         // Add points for creating a topic
         $points = $this->config->get('points_for_topic');
 
-        // Add points based on the topic likes
-        $points += $this->language->evaluate($this->config->get('points_for_topic_likes'), ['topic' => $topic]);
+        // Add points based on the topic reactions
+        $points += $this->language->evaluate($this->config->get('points_for_topic_reactions'), ['topic' => $topic]);
 
         // Add points for using recommended links
         $points += $this->addPointsForLinks($topic->getMessage());

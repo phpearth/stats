@@ -37,12 +37,12 @@ class TopicCollection extends Collection
      */
     public function getMostLikedTopic()
     {
-        $likesTopCount = 0;
+        $topCount = 0;
         $mostLikedTopic = null;
 
         foreach ($this->data as $topic) {
-            if ($topic->getLikesCount() > $likesTopCount) {
-                $likesTopCount = $topic->getLikesCount();
+            if ($topic->getReactionsCount() > $topCount) {
+                $topCount = $topic->getReactionsCount();
                 $mostLikedTopic = $topic;
             }
         }

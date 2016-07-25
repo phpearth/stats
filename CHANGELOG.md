@@ -9,6 +9,9 @@ All notable changes to this project will be documented in this file. This projec
 
 ### Added
 
+* Project update
+* Template updates
+* Topic points based on reactions
 * ...
 
 

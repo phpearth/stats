@@ -142,7 +142,7 @@ class Mapper
         if (array_key_exists('message', $topic)) {
             $newTopic->setMessage($topic['message']);
         }
-        $newTopic->setLikesCount($topic['likesCount']);
+        $newTopic->setReactionsCount($topic['reactionsCount']);
         $newTopic->setCanComment($topic['canComment']);
         $newTopic->setType($topic['type']);
         if ($newTopic->getType() == 'link' && isset($topic['attachments'][0]['type']) && $topic['attachments'][0]['type'] == 'animated_image_share') {
@@ -160,7 +160,7 @@ class Mapper
 
         // Log topic
         $log = $newTopic->getId()."\t";
-        $log .= ' Likes: '.$newTopic->getLikesCount()."\t";
+        $log .= ' Reactions: '.$newTopic->getReactionsCount()."\t";
         $log .= ' Comments: '.$newTopic->getCommentsCount()."\n";
         $this->log->logTopic($log);
 

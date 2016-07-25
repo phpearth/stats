@@ -34,12 +34,12 @@ class PointsTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider topicsProvider
      */
-    public function testAddPointsForTopic($message, $likes, $type, $canComment, $from, $expectedPoints)
+    public function testAddPointsForTopic($message, $reactions, $type, $canComment, $from, $expectedPoints)
     {
         $topic = new Topic();
         $topic->setId(1);
         $topic->setMessage($message);
-        $topic->setLikesCount($likes);
+        $topic->setReactionsCount($reactions);
         $topic->setType($type);
         $topic->setCanComment($canComment);
         $user = new User($this->points);
@@ -98,9 +98,9 @@ class PointsTest extends \PHPUnit_Framework_TestCase
     {
         return [
             'topic' => ['Lorem ipsum dolor sit amet.', 0, 'status', true, ['name' => 'User Name', 'id' => 2000], 1],
-            'topic_with_likes' => ['Lorem ipsum dolor sit amet', 5, 'status', true, ['name' => 'User Name', 'id' => 2000], 2],
-            'topic_with_more_likes' => ['Lorem ipsum dolor sit amet', 11, 'status', true, ['name' => 'User Name', 'id' => 2000], 3],
-            'topic_with_a_lot_likes' => ['Lorem ipsum dolor sit amet', 1000, 'status', true, ['name' => 'User Name', 'id' => 2000], 16],
+            'topic_with_reactions' => ['Lorem ipsum dolor sit amet', 5, 'status', true, ['name' => 'User Name', 'id' => 2000], 2],
+            'topic_with_more_reactions' => ['Lorem ipsum dolor sit amet', 11, 'status', true, ['name' => 'User Name', 'id' => 2000], 3],
+            'topic_with_many_reactions' => ['Lorem ipsum dolor sit amet', 1000, 'status', true, ['name' => 'User Name', 'id' => 2000], 16],
             'photo_with_description' => ['Lorem ipsum dolor sit amet', 11, 'photo', true, ['name' => 'User Name', 'id' => 2000], 3],
             'photo_only' => ['', 11, 'photo', true, ['name' => 'User Name', 'id' => 2000], 0],
             'gif' => ['', 11, 'animated_image_share', true, ['name' => 'User Name', 'id' => 2000], 0],
