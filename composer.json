@@ -15,7 +15,7 @@
         "symfony/yaml": "^3.1",
         "symfony/console": "^3.1",
         "twig/twig": "^1.24",
-        "monolog/monolog": "^1.19",
+        "monolog/monolog": "^1.20",
         "crey/conjurer": "dev-master",
         "symfony/expression-language": "^3.1"
     },
@@ -33,6 +33,10 @@
         {
             "name": "Peter Kokot",
             "email": "peterkokot@gmail.com"
+        },
+        {
+            "name": "Contributors",
+            "homepage": "https://github.com/wwphp-fb/stats/graphs/contributors"
         }
     ],
     "repositories": [
