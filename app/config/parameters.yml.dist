@@ -21,7 +21,7 @@ default_graph_version: 'v2.7'
 group_id: 2204685680
 
 # Number of top users listed in the output report
-top_users_count: 20
+top_users_count: 10
 
 # Start datetime of the generated report
 start_datetime: '2015-07-20 00:00:00'
