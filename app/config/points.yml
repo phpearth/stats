@@ -43,6 +43,7 @@ urls:
     - ['developer.mozilla.org', 10]
     - ['w3schools.com', -10]
     - ['lmgtfy.com', -10]
+    - ['phpthewrongway.com', -15]
 
 # Points for topics from admins
 points_for_admin_topics: '(topic.getUser().getId() in admins) ? 5 : 0'
