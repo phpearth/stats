@@ -18,6 +18,13 @@ checks:
         spacing_around_conditional_operators: true
         spacing_around_non_conditional_operators: true
         spacing_of_function_arguments: true
+
+coding_style:
+    php:
+        spaces:
+            around_operators:
+                concatenation: false
+
 tools:
     external_code_coverage:
         timeout: 1200
