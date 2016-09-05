@@ -8,7 +8,7 @@
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/c317a2f5-1fbe-4d76-a93c-8f0d98e61ef6/big.png)](https://insight.sensiolabs.com/projects/c317a2f5-1fbe-4d76-a93c-8f0d98e61ef6)
 
-PHP application for generating stats for International PHP Facebook group.
+PHP application for generating stats for Facebook groups.
 
 ## FAQ
 
@@ -34,7 +34,7 @@ not excluded for getting higher score than other members :)
   following the group's code of conduct or low quality.
 * Offensive messages and inappropriate links can get you negative points.
 * Some topics (such as administrators announcements and similar) are awarded with
-  extra points as a recognition for special contributions to the group. 
+  extra points as a recognition for special contributions to the group.
 
 **What is the default points configuration and why such configuration for calculation?**
 
@@ -60,7 +60,7 @@ search engines.
 
 To install this application locally, do the following:
 
-1. Register Facebook Application
+1. [Create](https://developers.facebook.com/) a new Facebook Application.
 
 2. Install Code
 
@@ -102,6 +102,14 @@ To install this application locally, do the following:
     ```bash
     php app/console generate
     ```
+
+    To generate user access token, use the
+    [Graph API explorer](https://developers.facebook.com/tools/explorer/) and
+    select the application created in step 1.
+
+The stats generation works for all open Facebook groups. For closed and secret
+groups, the user must have group management privileges to be able to generate the
+report.
 
 ## Other Useful Commands
 
