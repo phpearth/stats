@@ -136,26 +136,19 @@ class GenerateCommand extends Command
             $helper->ask($input, $output, $question);
         }
 
-        $output->writeln('Generating report from '.$this->config->get('start_datetime')->format('Y-m-d H:i:s')." till now\n");
+        $output->writeln('Generating report from '.$this->config->get('start_datetime')->format('Y-m-d H:i:s').' to '.$this->config->get('end_datetime')->format('Y-m-d H:i:s')."\n");
         $this->progress->start();
-
         $this->progress->setMessage('Setting up Facebook service...');
-
         $this->progress->advance();
 
         try {
             $fetcher = new Fetcher($this->config, $this->progress, $this->auth->fb, $this->log);
-            $feed = $fetcher->getFeed();
-            $newUsersCount = $fetcher->getNewUsersCount();
-
-            $mapper = new Mapper($this->config, $feed, $this->log);
+            $mapper = new Mapper($this->config, $fetcher->getFeed(), $this->log);
             $topics = $mapper->getTopics();
             $comments = $mapper->getComments();
             $replies = $mapper->getReplies();
             $users = $mapper->getUsers();
 
-            $this->progress->setMessage('Calculating number of blocked members...');
-            $blockedCount = $this->config->get('new_blocked_count') - $this->config->get('last_blocked_count');
             $this->progress->advance();
 
             $this->progress->finish();
@@ -164,19 +157,14 @@ class GenerateCommand extends Command
             $output->writeln($this->template->render([
                 'start_date' => $this->config->get('start_datetime')->format('Y-m-d'),
                 'end_date' => $this->config->get('end_datetime')->format('Y-m-d'),
-                'new_users_count' => $newUsersCount,
+                'new_users_count' => $fetcher->getNewUsersCount(),
                 'top_users_count' => $this->config->get('top_users_count'),
                 'top_users' => $users->getTopUsers($this->config->get('top_users_count'), $this->config->get('ignored_users')),
-                'new_topics_count' => $topics->count(),
-                'closed_topics_count' => $topics->getClosedTopicsCount(),
+                'topics' => $topics,
                 'new_comments_count' => $comments->count(),
                 'new_replies_count' => $replies->count(),
                 'active_users_count' => $users->count(),
-                'banned_count' => $blockedCount,
-                'most_reactions_count' => $topics->getMostLikedTopic()->getReactionsCount(),
-                'most_liked_topic_id' => $topics->getMostLikedTopic()->getPermalinkPostId(),
-                'most_comments_count' => $topics->getMostActiveTopic()->getCommentsCount(),
-                'most_active_topic_id' => $topics->getMostActiveTopic()->getPermalinkPostId(),
+                'banned_count' => $this->config->get('new_blocked_count') - $this->config->get('last_blocked_count'),
                 'commits_count' => 3,
                 'top_topics' => $this->config->get('top_topics'),
             ]));

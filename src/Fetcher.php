@@ -74,19 +74,21 @@ class Fetcher
 
             $feedEdge = $response->getGraphEdge();
 
-            do {
-                ++$pagesCount;
-                $this->progress->setMessage('Fetching feed from API page '.$pagesCount.' and with the topic updated '.$feedEdge[0]->getField('updated_time')->format('Y-m-d H:i:s'));
-                $this->progress->advance();
+            if (count($feedEdge) > 0) {
+                do {
+                    ++$pagesCount;
+                    $this->progress->setMessage('Fetching feed from API page '.$pagesCount.' and with the topic updated '.$feedEdge[0]->getField('updated_time')->format('Y-m-d H:i:s'));
+                    $this->progress->advance();
 
-                foreach ($feedEdge as $topic) {
-                    $topicArray = $topic->asArray();
-                    $topicArray['commentsCount'] = $topic->getField('comments')->getMetaData()['summary']['total_count'];
-                    $topicArray['reactionsCount'] = $topic->getField('reactions')->getMetaData()['summary']['total_count'];
-                    $topicArray['canComment'] = $topic->getField('comments')->getMetaData()['summary']['can_comment'];
-                    $this->feed[] = $topicArray;
-                }
-            } while ($feedEdge = $this->fb->next($feedEdge));
+                    foreach ($feedEdge as $topic) {
+                        $topicArray = $topic->asArray();
+                        $topicArray['commentsCount'] = $topic->getField('comments')->getMetaData()['summary']['total_count'];
+                        $topicArray['reactionsCount'] = $topic->getField('reactions')->getMetaData()['summary']['total_count'];
+                        $topicArray['canComment'] = $topic->getField('comments')->getMetaData()['summary']['can_comment'];
+                        $this->feed[] = $topicArray;
+                    }
+                } while ($feedEdge = $this->fb->next($feedEdge));
+            }
         } catch (FacebookResponseException $e) {
             // When Graph returns an error
             throw new \Exception('Graph returned an error: '.$e->getMessage());

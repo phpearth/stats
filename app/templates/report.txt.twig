@@ -7,9 +7,9 @@ Hello, here are weekly group stats from {{ start_date }} to {{ end_date }}:
 - {{ user.getName()|raw }} ({{ user.getPointsCount() }} points{% if user.getTopicsCount() == 1 %}, 1 topic{% elseif user.getTopicsCount() > 1 %}, {{ user.getTopicsCount() }} topics{% endif %}, {{ user.getCommentsCount() }} comments)
 {% endfor %}
 
-○ {{ new_topics_count }} topics, {{ new_comments_count }} comments and {{ new_replies_count }} replies were created by {{ active_users_count }} active members this week.
+○ {{ topics|length }} topics, {{ new_comments_count }} comments and {{ new_replies_count }} replies were created by {{ active_users_count }} active members this week.
 
-○ {{ closed_topics_count }} topics were closed.
+○ {{ topics.getClosedTopicsCount() }} topics were closed.
 
 ○ {{ banned_count }} users were banned for not following the group Code of Conduct:
 https://wwphp-fb.github.io/code-of-conduct/
@@ -17,11 +17,14 @@ https://wwphp-fb.github.io/code-of-conduct/
 ○ {{ commits_count }} new commits to our GitHub repos:
 git.io/vqLvG
 
-○ Most liked topic of the week with {{ most_reactions_count }} reactions:
-fb.com/groups/2204685680/permalink/{{ most_liked_topic_id }}
-
-○ Most active topic of the week with {{ most_comments_count }} comments:
-fb.com/groups/2204685680/permalink/{{ most_active_topic_id }}
+{% if topics.getTopTopic() %}
+○ Top topic of the week with {{ topics.getTopTopic().getReactionsCount() }} reactions:
+fb.com/groups/2204685680/permalink/{{ topics.getTopTopic().getPermalinkPostId() }}
+{% endif %}
+{% if topics.getMostActiveTopic() %}
+○ Most active topic of the week with {{ topics.getMostActiveTopic().getCommentsCount() }} comments:
+fb.com/groups/2204685680/permalink/{{ topics.getMostActiveTopic().getPermalinkPostId() }}
+{% endif %}
 
 ○ PHP related topics you should check out:
 {% for topic in top_topics %}

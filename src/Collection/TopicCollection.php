@@ -31,11 +31,11 @@ class TopicCollection extends Collection
     }
 
     /**
-     * Get most liked topic.
+     * Get top topic with most reactions.
      *
      * return null|Topic
      */
-    public function getMostLikedTopic()
+    public function getTopTopic()
     {
         $topCount = 0;
         $mostLikedTopic = null;
