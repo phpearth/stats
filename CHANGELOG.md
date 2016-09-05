@@ -9,10 +9,17 @@ All notable changes to this project will be documented in this file. This projec
 
 ### Added
 
+* ...
+
+
+## [0.6.0] - 2016-09-05
+
+### Added
+
 * Project update
 * Template updates
 * Topic points based on reactions
-* ...
+* Access token removed from configuration 
 
 
 ## [0.5.0] - 2016-06-06
