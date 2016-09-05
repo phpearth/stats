@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e3780edc3648e521f95977dfea025b33",
-    "content-hash": "e068d565d1745ad88e9eaffce4a3b2e0",
+    "hash": "1485c68b75af47d88e31bf7f6c7b07ae",
+    "content-hash": "797951b33ea41829768da1144b5bce5b",
     "packages": [
         {
             "name": "crey/conjurer",
@@ -1843,11 +1843,11 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "stability-flags": {
         "crey/conjurer": 20
     },
-    "prefer-stable": false,
+    "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": ">=7.0.0"

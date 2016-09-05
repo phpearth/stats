@@ -3,6 +3,7 @@
 namespace PHPWorldWide\Stats\Collection;
 
 use PHPWorldWide\Stats\Collection;
+use PHPWorldWide\Stats\Util\Merger;
 
 /**
  * Class ReplyCollection.
@@ -18,26 +19,9 @@ class ReplyCollection extends Collection
      */
     public function getMergedRepliesByUserId($userId)
     {
-        $comments = array_values($this->data);
-        $mergedComments = [];
-        $i = 0;
-        foreach ($comments as $comment) {
-            if ($comment->getUser()->getId() == $userId) {
-                if (isset($comments[$i-1]) && $comments[$i-1]->getUser()->getId() == $userId) {
-                    $comment->setMessage($comments[$i-1]->getMessage().$comment->getMessage());
-                    $comment->setLikesCount(max($comment->getLikesCount(), $comments[$i-1]->getLikesCount()));
-                    unset($mergedComments[$i-1]);
-                }
-                $mergedComments[$i] = $comment;
-            }
-            $i++;
-        }
+        $merger = new Merger();
+        $merger->setData($this->data);
 
-        $comments = [];
-        foreach ($mergedComments as $comment) {
-            $comments[$comment->getId()] = $comment;
-        }
-
-        return $comments;
+        return $merger->getMergedItems($userId);
     }
 }

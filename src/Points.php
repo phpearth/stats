@@ -60,7 +60,7 @@ class Points
         $points += $this->getOffensivePoints($topic->getMessage());
 
         // Add points for special admin topics
-        $points += $this->language->evaluate($this->config->get('points_for_admin_topics'), ['topic' => $topic, 'admins' => $this->config->get('admins')]);
+        $points += $this->language->evaluate($this->config->get('points_for_admin_topics'), ['topic' => $topic, 'admins' => $this->config->getParameter('admins')]);
 
         return $points;
     }
@@ -89,7 +89,7 @@ class Points
 
     /**
      * Add points based on reply.
-     * 
+     *
      * @param Reply $reply
      *
      * @return int

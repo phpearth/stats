@@ -23,9 +23,8 @@ class Config
      */
     public function __construct(array $files)
     {
-        $parser = new Parser();
-
         foreach ($files as $file) {
+            $parser = new Parser();
             try {
                 $values = $parser->parse(file_get_contents($file), false, false, false);
                 $this->values = array_merge($this->values, $values);

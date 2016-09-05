@@ -8,10 +8,11 @@ use PHPWorldWide\Stats\Config;
 use PHPWorldWide\Stats\Model\Comment;
 use PHPWorldWide\Stats\Model\User;
 use PHPWorldWide\Stats\Points;
+use PHPWorldWide\Stats\Util\Merger;
 
-class CommentCollectionTest extends \PHPUnit_Framework_TestCase
+class MergerTest extends \PHPUnit_Framework_TestCase
 {
-    public function testGetMergedCommentsByUserId()
+    public function testGetMergedItems()
     {
         $comments = new CommentCollection();
         $replies = new ReplyCollection();

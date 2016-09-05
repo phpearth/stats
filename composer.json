@@ -16,7 +16,7 @@
         "symfony/console": "^3.1",
         "twig/twig": "^1.24",
         "monolog/monolog": "^1.20",
-        "crey/conjurer": "dev-master",
+        "crey/conjurer": "dev-master#95f53a466db9072b35a18376a33abd5b9bb59afe",
         "symfony/expression-language": "^3.1",
         "incenteev/composer-parameter-handler": "~2.0"
     },
@@ -58,5 +58,7 @@
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
         }
-    }
+    },
+    "minimum-stability" : "dev",
+    "prefer-stable" : true
 }
