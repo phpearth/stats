@@ -66,7 +66,7 @@ class User
     {
         $this->points = $points;
         $this->topics = new Collection();
-        $this->comments = new Collection();
+        $this->comments = new CommentCollection();
         $this->replies = new Collection();
     }
 
