@@ -8,12 +8,6 @@ fb_app_id: AddFacebookApplicationIdHere
 # dashboard settings (https://developers.facebook.com/apps/).
 fb_app_secret: ChangeThisToYourFacebookAppSecret
 
-# Facebook access token
-# It should be copied from your Facebook application from Graph API Explorer
-# (https://developers.facebook.com/tools/explorer). When the token expires, the
-# script asks you for a new one.
-fb_access_token: PasteYourFacebookTokenHere
-
 # Default Facebook Graph API version
 default_graph_version: 'v2.7'
 

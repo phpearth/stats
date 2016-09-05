@@ -108,15 +108,13 @@ class GenerateCommand extends Command
         $this->progress->setFormat(" %message%\n %current%/%max% [%bar%] %percent:3s%% %elapsed:6s%/%estimated:-6s% %memory:6s%\n\n");
         $this->progress->setMessage('Starting...');
         $this->progress->setProgressCharacter("\xF0\x9F\x8D\xBA");
-        $output->writeln('Generating report from '.$this->config->get('start_datetime')->format('Y-m-d H:i:s')." till now\n");
-        $this->progress->start();
-
-        $this->progress->setMessage('Setting up Facebook service...');
 
         if (!$this->auth->isValid()) {
             $helper = $this->getHelper('question');
 
-            $question = new Question($this->auth->getError() . ' Enter a new access token:');
+            $question = new Question($this->auth->getError().
+                'Use Graph API explorer (https://developers.facebook.com/tools/explorer) to generate the token.'."\n".
+                'Enter a new user access token:'."\n");
             $auth = $this->auth;
             $question->setValidator(function ($token) use ($auth) {
                 if (trim($token) == '') {
@@ -137,6 +135,11 @@ class GenerateCommand extends Command
 
             $helper->ask($input, $output, $question);
         }
+
+        $output->writeln('Generating report from '.$this->config->get('start_datetime')->format('Y-m-d H:i:s')." till now\n");
+        $this->progress->start();
+
+        $this->progress->setMessage('Setting up Facebook service...');
 
         $this->progress->advance();
 

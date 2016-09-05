@@ -39,7 +39,6 @@ class Auth
             'app_id' => $this->config->get('fb_app_id'),
             'app_secret' => $this->config->get('fb_app_secret'),
             'default_graph_version' => $this->config->get('default_graph_version'),
-            'default_access_token' => $this->config->get('fb_access_token'),
         ]);
     }
 

@@ -1,4 +1,4 @@
-# Stats generator for Facebook group
+# Stats Generator for Facebook Groups
 
 [![Latest Version](https://img.shields.io/github/release/wwphp-fb/stats.svg?style=flat-square)](https://github.com/wwphp-fb/stats/releases)
 [![Build Status](https://img.shields.io/travis/wwphp-fb/stats/master.svg?style=flat-square)](https://travis-ci.org/wwphp-fb/stats)
@@ -62,22 +62,21 @@ To install this application locally, do the following:
 
 1. Register Facebook Application
 
-2. Install code
+2. Install Code
 
     ```bash
-    $ git clone git://github.com/wwphp-fb/stats
-    $ cd stats
-    $ composer install
+    git clone git://github.com/wwphp-fb/stats
+    cd stats
+    composer install
     ```
 
-3. Adjust configuration
+3. Adjust Configuration
 
     Add `app/config/parameters.yml` file for your settings:
 
-    ```bash
+    ```yml
     fb_app_id: 123456789012312
     fb_app_secret: 9xdlsd93kdcd3jkd
-    fb_access_token: xyz
     start_datetime: '2015-07-20 00:00:00'
     end_datetime: '2015-07-26 23:59:59'
     last_member_name: 'John Doe'
@@ -95,16 +94,16 @@ To install this application locally, do the following:
 4. Run tests:
 
     ```bash
-    $ phpunit
+    phpunit
     ```
 
 5. Generate report
 
     ```bash
-    $ php app/console generate
+    php app/console generate
     ```
 
-## Other useful commands
+## Other Useful Commands
 
 * Clear all generated logs in the log folder `app/logs`:
 
@@ -117,5 +116,4 @@ $ php app/console clearlogs
 
 This repository is released under the [MIT license](LICENSE).
 
-You are welcome to suggest improvements or open a ticket. More info in the 
-[CONTRIBUTING](CONTRIBUTING.md) file.
+You are welcome to [suggest improvements or open a ticket](CONTRIBUTING.md).
