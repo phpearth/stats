@@ -2,10 +2,10 @@
 
 namespace PHPWorldWide\Stats\Model;
 
-use PHPWorldWide\Stats\Points;
 use PHPWorldWide\Stats\Collection;
 use PHPWorldWide\Stats\Collection\CommentCollection;
 use PHPWorldWide\Stats\Collection\ReplyCollection;
+use PHPWorldWide\Stats\Points;
 
 /**
  * Class User.
