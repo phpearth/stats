@@ -28,6 +28,7 @@ class Collection implements \Countable, \Iterator
             if (isset($this->data[$key])) {
                 throw new \Exception("Key $key already in use.");
             } else {
+                unset($this->data[$key]);
                 $this->data[$key] = $obj;
             }
         }
