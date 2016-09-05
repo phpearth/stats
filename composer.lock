@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "113c1bd90b1049d9724cb3d3e2fd903f",
-    "content-hash": "d2cbb5b38de9855bb6826afc1a16a6c2",
+    "hash": "2a6d7e530e8cb6be13b9cad7dfb7ab13",
+    "content-hash": "c5c98be4a96e1897f362f9b83d2b119b",
     "packages": [
         {
             "name": "crey/conjurer",

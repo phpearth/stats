@@ -91,7 +91,7 @@ class PointsTest extends \PHPUnit_Framework_TestCase
     {
         $method = self::getMethod('getOffensivePoints');
 
-        $this->assertEquals($expectedPoints, $method->invoke($this->points, $message));
+        $this->assertEquals($expectedPoints, $method->invoke($this->points, str_rot13($message)));
     }
 
     public function topicsProvider()
@@ -136,10 +136,10 @@ class PointsTest extends \PHPUnit_Framework_TestCase
     public function offensiveWordsProvider()
     {
         return [
-            ['fuck', -20],
-            ["don't be lazy", -20],
-            ['go fuck yourself', -20],
-            ['Lorem ipsum dolor sit amet go To HelL yes', -20],
+            ['shpx', -20],
+            ["qba'g or ynml", -20],
+            ['tb shpx lbhefrys', -20],
+            ['Yberz vcfhz qbybe fvg nzrg tb Gb UryY lrf', -20],
         ];
     }
 }

@@ -145,7 +145,7 @@ class Points
         $points = 0;
         if (isset($message)) {
             foreach ($this->config->get('offensive_words') as $keyword) {
-                if (false !== stripos($message, $keyword[0])) {
+                if (false !== stripos($message, str_rot13($keyword[0]))) {
                     $points = ($points < $keyword[1]) ? $points : $keyword[1];
                 }
             }
