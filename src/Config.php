@@ -44,12 +44,12 @@ class Config
         $parser = new Parser();
 
         try {
-            $values = $parser->parse(file_get_contents($file));
+            $values = $parser->parse(file_get_contents($file), false, false, false);
             $this->values = array_merge($this->values, $values);
 
             // set DateTime
             foreach ($this->values as $key => $value) {
-                if (is_string($value) && false !== \DateTime::createFromFormat('Y-m-d G:i:s', $value)) {
+                if (is_string($value) && false !== \DateTime::createFromFormat('Y-m-d H:i:s', $value)) {
                     $this->values[$key] = \DateTime::createFromFormat('Y-m-d H:i:s', $value);
                 }
             }
