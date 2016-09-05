@@ -19,7 +19,8 @@ All notable changes to this project will be documented in this file. This projec
 * Project update
 * Template updates
 * Topic points based on reactions
-* Access token removed from configuration 
+* Access token removed from configuration
+* ROT13 for offensive words
 
 
 ## [0.5.0] - 2016-06-06
