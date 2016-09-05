@@ -14,8 +14,11 @@ class UserCollectionTest extends \PHPUnit_Framework_TestCase
 {
     public function testGetTopUsers()
     {
-        $config = new Config(__DIR__.'/../../app/config/parameters.yml.dist');
-        $config->addFile(__DIR__.'/../Fixtures/ignoredUsers.yml');
+        $config = new Config([
+            __DIR__.'/../../app/config/parameters.yml.dist',
+            __DIR__.'/../Fixtures/ignoredUsers.yml'
+        ]);
+
         $points = new Points($config);
         $usersData = [
             ['name' => 'Fifth', 'points' => 5],

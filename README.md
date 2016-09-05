@@ -70,55 +70,42 @@ To install this application locally, do the following:
     composer install
     ```
 
-3. Adjust Configuration
+3. Provide Configuration Parameters
 
-    Add `app/config/parameters.yml` file for your settings:
+    The componser installation script creates `app/config/parameters.yml` file
+    for your settings. Configuration parameters are described in comments in the
+    [parameters.yml.dist](app/config/parameters.yml.dist). Provide values for
+    your application, date range and other configuration.
 
-    ```yml
-    fb_app_id: 123456789012312
-    fb_app_secret: 9xdlsd93kdcd3jkd
-    start_datetime: '2015-07-20 00:00:00'
-    end_datetime: '2015-07-26 23:59:59'
-    last_member_name: 'John Doe'
-    last_blocked_count: 123
-    new_blocked_count: 321
-    top_topics:
-        -
-            title: "20 years of PHP"
-            url: "fb.com/groups/2204685680/permalink/10153439277470681"
-    ```
-
-    Configuration parameters are described in comments in [parameters.yml.dist](app/config/parameters.yml.dist)
-    and other default configuration files.
-
-4. Run tests:
+4. Run Tests:
 
     ```bash
     phpunit
     ```
 
-5. Generate report
+5. Generate Report
 
     ```bash
-    php app/console generate
+    bin/stats generate
     ```
 
-    To generate user access token, use the
+    To generate the user access token, use
     [Graph API explorer](https://developers.facebook.com/tools/explorer/) and
     select the application created in step 1.
-
-The stats generation works for all open Facebook groups. For closed and secret
-groups, the user must have group management privileges to be able to generate the
-report.
 
 ## Other Useful Commands
 
 * Clear all generated logs in the log folder `app/logs`:
 
 ```bash
-$ php app/console clearlogs
+bin/stats clearlogs
 ```
 
+* Manage [offensive words](/app/config/offensive_words.yml)
+
+```bash
+bin/stats offensivewords
+```
 
 ## License and Contributing
 

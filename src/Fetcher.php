@@ -69,8 +69,8 @@ class Fetcher
 
         try {
             $pagesCount = 0;
-            $startDate = $this->config->get('start_datetime');
-            $response = $this->fb->get('/'.$this->config->get('group_id').'/feed?fields=comments.limit(200).summary(1){like_count,comment_count,from,created_time,message,can_comment,comments.limit(200).summary(1){like_count,comment_count,from,created_time,message}},reactions.limit(0).summary(1),from,created_time,updated_time,message,type,attachments{type}&include_hidden=true&limit=50&since='.$startDate->getTimestamp());
+            $startDate = $this->config->getParameter('start_datetime');
+            $response = $this->fb->get('/'.$this->config->getParameter('group_id').'/feed?fields=comments.limit(200).summary(1){like_count,comment_count,from,created_time,message,can_comment,comments.limit(200).summary(1){like_count,comment_count,from,created_time,message}},reactions.limit(0).summary(1),from,created_time,updated_time,message,type,attachments{type}&include_hidden=true&limit=50&since='.$startDate->getTimestamp());
 
             $feedEdge = $response->getGraphEdge();
 
@@ -118,7 +118,7 @@ class Fetcher
         $pagesCount = 0;
 
         try {
-            $response = $this->fb->get('/'.$this->config->get('group_id').'/members?fields=id,name&limit=1000');
+            $response = $this->fb->get('/'.$this->config->getParameter('group_id').'/members?fields=id,name&limit=1000');
 
             $feedEdge = $response->getGraphEdge();
             do {
@@ -132,13 +132,13 @@ class Fetcher
                     $log .= $status->asArray()['name']."\n";
                     $this->log->logNewUser($log);
 
-                    if ($status->asArray()['name'] == $this->config->get('last_member_name')) {
+                    if ($status->asArray()['name'] == $this->config->getParameter('last_member_name')) {
                         break 2;
                     }
                     ++$newUsersCount;
                 }
 
-                if ($pagesCount == $this->config->get('api_pages')) {
+                if ($pagesCount == $this->config->getParameter('api_pages')) {
                     break;
                 }
             } while ($feedEdge = $this->fb->next($feedEdge));

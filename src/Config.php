@@ -6,55 +6,39 @@ use Symfony\Component\Yaml\Parser;
 use Symfony\Component\Yaml\Exception\ParseException;
 
 /**
- * Class Config
+ * Configuration which reads values from YAML files.
  */
 class Config
 {
-    /**
-     * @var array YAML files with configuration values.
-     */
-    private $files = [];
-
     /**
      * @var array
      */
     private $values = [];
 
     /**
-     * Config constructor. Sets up config parameters from YAML file.
+     * Constructor. Sets up config parameters from YAML file(s). Later files
+     * overwrite config values.
      *
-     * @param string $file YAML file location
+     * @param string|array $file YAML configuration file(s)
      */
-    public function __construct($file)
+    public function __construct(array $files)
     {
-        $this->addFile($file);
-    }
-
-    /**
-     * Add file, later added files overwrite config values.
-     *
-     * @param string $file YAML file location.
-     *
-     * @throws \Exception
-     */
-    public function addFile($file)
-    {
-        $this->files[] = $file;
-
         $parser = new Parser();
 
-        try {
-            $values = $parser->parse(file_get_contents($file), false, false, false);
-            $this->values = array_merge($this->values, $values);
+        foreach ($files as $file) {
+            try {
+                $values = $parser->parse(file_get_contents($file), false, false, false);
+                $this->values = array_merge($this->values, $values);
 
-            // set DateTime
-            foreach ($this->values as $key => $value) {
-                if (is_string($value) && false !== \DateTime::createFromFormat('Y-m-d H:i:s', $value)) {
-                    $this->values[$key] = \DateTime::createFromFormat('Y-m-d H:i:s', $value);
+                // set DateTime
+                foreach ($this->values['parameters'] as $key => $value) {
+                    if (is_string($value) && false !== \DateTime::createFromFormat('Y-m-d H:i:s', $value)) {
+                        $this->values['parameters'][$key] = \DateTime::createFromFormat('Y-m-d H:i:s', $value);
+                    }
                 }
+            } catch (ParseException $e) {
+                throw new \Exception('Unable to parse the YAML string: '.$e->getMessage());
             }
-        } catch (ParseException $e) {
-            throw new \Exception('Unable to parse the YAML string: '.$e->getMessage());
         }
     }
 
@@ -68,5 +52,17 @@ class Config
     public function get($key)
     {
         return $this->values[$key];
+    }
+
+    /**
+     * Returns configuration value by key from parameters configuration.
+     *
+     * @param string $key
+     *
+     * @return mixed
+     */
+    public function getParameter($key)
+    {
+        return $this->values['parameters'][$key];
     }
 }

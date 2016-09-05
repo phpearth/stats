@@ -36,9 +36,9 @@ class Auth
         $this->config = $config;
 
         $this->fb = new Facebook([
-            'app_id' => $this->config->get('fb_app_id'),
-            'app_secret' => $this->config->get('fb_app_secret'),
-            'default_graph_version' => $this->config->get('default_graph_version'),
+            'app_id' => $this->config->getParameter('fb_app_id'),
+            'app_secret' => $this->config->getParameter('fb_app_secret'),
+            'default_graph_version' => $this->config->getParameter('default_graph_version'),
         ]);
     }
 

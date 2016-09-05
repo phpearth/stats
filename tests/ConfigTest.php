@@ -10,11 +10,14 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->config = new Config(__DIR__.'/Fixtures/parameters.yml.dist');
+        $this->config = new Config([
+            __DIR__.'/Fixtures/parameters.yml',
+            __DIR__.'/Fixtures/points.yml'
+        ]);
     }
 
     /**
-     * @dataProvider distConfigProvider
+     * @dataProvider configProvider
      */
     public function testGet($key, $expected)
     {
@@ -22,27 +25,21 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @dataProvider configProvider
+     * @dataProvider parametersProvider
      */
-    public function testAddFile($key, $expected)
+    public function testGetParameter($key, $expected)
     {
-        $this->config->addFile(__DIR__.'/Fixtures/parameters.yml');
-
-        $this->assertEquals($expected, $this->config->get($key));
-    }
-
-    public function distConfigProvider()
-    {
-        return [
-            ['fb_app_id', 'changethisvalue'],
-            ['fb_app_secret', 'appsecret'],
-            ['urls', [['url_1', 1], ['url_2', 2], ['url_3', 3]]],
-            ['start_datetime', \DateTime::createFromFormat('Y-m-d H:i:s', '2015-01-01 00:00:00')],
-            ['end_datetime', \DateTime::createFromFormat('Y-m-d H:i:s', '2015-02-02 23:59:59')],
-        ];
+        $this->assertEquals($expected, $this->config->getParameter($key));
     }
 
     public function configProvider()
+    {
+        return [
+            ['urls', [['url_1', 1], ['url_2', 2], ['url_3', 3]]]
+        ];
+    }
+
+    public function parametersProvider()
     {
         return [
             ['fb_app_id', '123456789012345'],

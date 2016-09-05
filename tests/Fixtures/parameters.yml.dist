@@ -1,8 +1,0 @@
-fb_app_id: 'changethisvalue'
-fb_app_secret: 'appsecret'
-start_datetime: '2015-01-01 00:00:00'
-end_datetime: '2015-02-02 23:59:59'
-urls:
-    - ['url_1', 1]
-    - ['url_2', 2]
-    - ['url_3', 3]

@@ -15,10 +15,13 @@ class PointsTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $config = new Config(__DIR__.'/../app/config/parameters.yml.dist');
-        $config->addFile(__DIR__.'/../app/config/points.yml');
-        $config->addFile(__DIR__.'/../app/config/offensive_words.yml');
-        $config->addFile(__DIR__.'/Fixtures/admins.yml');
+        $config = new Config([
+            __DIR__.'/../app/config/parameters.yml',
+            __DIR__.'/../app/config/points.yml',
+            __DIR__.'/../app/config/offensive_words.yml',
+            __DIR__.'/Fixtures/admins.yml',
+        ]);
+
         $this->points = new Points($config);
     }
 

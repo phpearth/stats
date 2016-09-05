@@ -90,8 +90,8 @@ class Mapper
      */
     private function mapFeed($feed)
     {
-        $startDate = $this->config->get('start_datetime');
-        $endDate = $this->config->get('end_datetime');
+        $startDate = $this->config->getParameter('start_datetime');
+        $endDate = $this->config->getParameter('end_datetime');
 
         foreach ($feed as $topic) {
             if ($topic['created_time'] >= $startDate && $topic['created_time'] <= $endDate) {

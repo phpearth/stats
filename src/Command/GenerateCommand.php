@@ -136,7 +136,7 @@ class GenerateCommand extends Command
             $helper->ask($input, $output, $question);
         }
 
-        $output->writeln('Generating report from '.$this->config->get('start_datetime')->format('Y-m-d H:i:s').' to '.$this->config->get('end_datetime')->format('Y-m-d H:i:s')."\n");
+        $output->writeln('Generating report from '.$this->config->getParameter('start_datetime')->format('Y-m-d H:i:s').' to '.$this->config->getParameter('end_datetime')->format('Y-m-d H:i:s')."\n");
         $this->progress->start();
         $this->progress->setMessage('Setting up Facebook service...');
         $this->progress->advance();
@@ -155,18 +155,18 @@ class GenerateCommand extends Command
             $output->writeln("\n");
 
             $output->writeln($this->template->render([
-                'start_date' => $this->config->get('start_datetime')->format('Y-m-d'),
-                'end_date' => $this->config->get('end_datetime')->format('Y-m-d'),
+                'start_date' => $this->config->getParameter('start_datetime')->format('Y-m-d'),
+                'end_date' => $this->config->getParameter('end_datetime')->format('Y-m-d'),
                 'new_users_count' => $fetcher->getNewUsersCount(),
-                'top_users_count' => $this->config->get('top_users_count'),
-                'top_users' => $users->getTopUsers($this->config->get('top_users_count'), $this->config->get('ignored_users')),
+                'top_users_count' => $this->config->getParameter('top_users_count'),
+                'top_users' => $users->getTopUsers($this->config->getParameter('top_users_count'), $this->config->getParameter('ignored_users')),
                 'topics' => $topics,
                 'new_comments_count' => $comments->count(),
                 'new_replies_count' => $replies->count(),
                 'active_users_count' => $users->count(),
-                'banned_count' => $this->config->get('new_blocked_count') - $this->config->get('last_blocked_count'),
+                'banned_count' => $this->config->getParameter('new_blocked_count') - $this->config->getParameter('last_blocked_count'),
                 'commits_count' => 3,
-                'top_topics' => $this->config->get('top_topics'),
+                'top_topics' => $this->config->getParameter('top_topics'),
             ]));
         } catch (\Exception $e) {
             $output->writeln($e->getMessage());
