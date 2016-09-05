@@ -48,7 +48,7 @@ $container->register(new Service(ClearLogsCommand::class));
 $clearLogsCommand = $container->make(ClearLogsCommand::class);
 $clearLogsCommand->setLog($log);
 
-$application = new Application('Stats generator', 'v0.3.0');
+$application = new Application('Stats Generator', 'v0.6.0');
 $application->add($generateCommand);
 $application->add($clearLogsCommand);
 $application->run();

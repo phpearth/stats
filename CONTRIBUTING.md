@@ -1,23 +1,24 @@
 # Contribution Guidelines
 
-You are most welcome to suggest improvements, or send a pull requests. In case
-you find an issue, please report an
+You are most welcome to suggest improvements, send pull requests or open an
 [issue](https://github.com/wwphp-fb/stats/issues)
 
 * Fork this repository over GitHub
 * Set up your local repository
 
   ```bash
-$ git clone git@github.com:your_username/stats
-$ cd stats
-$ git remote add upstream git://github.com/wwphp-fb/stats
-$ git config branch.master.remote upstream
+git clone git@github.com:your_username/stats
+cd stats
+git remote add upstream git://github.com/wwphp-fb/stats
+git config branch.master.remote upstream
 ```
+
 * Make changes and send pull request
+
   ```bash
-$ git add .
-$ git commit -m "Fix bug"
-$ git push origin
+git add .
+git commit -m "Fix bug"
+git push origin
 ```
 
 Code follows [PSR-1](http://php-fig.org/psr/psr-1/) and
@@ -26,7 +27,7 @@ Code follows [PSR-1](http://php-fig.org/psr/psr-1/) and
 To run tests:
 
 ```bash
-$ phpunit
+phpunit
 ```
 
 ## Release Process
@@ -40,9 +41,10 @@ released by the following release process:
 * **1. Code Quality:**
 
     Make sure tests pass:
-    ```bash
-$ phpunit 
+  ```bash
+phpunit 
 ```
+
     Before releasing new version, check status on
     [Scrutinizer](https://scrutinizer-ci.com/g/wwphp-fb/stats/),
     [Travis CI](https://travis-ci.org/wwphp-fb/stats) and
