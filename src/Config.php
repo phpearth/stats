@@ -2,8 +2,8 @@
 
 namespace PHPWorldWide\Stats;
 
-use Symfony\Component\Yaml\Parser;
 use Symfony\Component\Yaml\Exception\ParseException;
+use Symfony\Component\Yaml\Parser;
 
 /**
  * Configuration which reads values from YAML files.
