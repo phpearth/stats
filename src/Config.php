@@ -19,7 +19,7 @@ class Config
      * Constructor. Sets up config parameters from YAML file(s). Later files
      * overwrite config values.
      *
-     * @param string|array $file YAML configuration file(s)
+     * @param string|array $files YAML configuration file(s)
      */
     public function __construct(array $files)
     {
