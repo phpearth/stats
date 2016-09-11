@@ -2,8 +2,8 @@
 
 namespace PHPWorldWide\Stats\Tests;
 
-use PHPWorldWide\Stats\Collection;
 use PHPUnit\Framework\TestCase;
+use PHPWorldWide\Stats\Collection;
 
 class CollectionTest extends TestCase
 {
