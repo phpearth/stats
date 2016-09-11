@@ -22,11 +22,6 @@ use Twig_Template;
 class GenerateCommand extends Command
 {
     /**
-     * @var ProgressBar
-     */
-    private $progress;
-
-    /**
      * @var Twig_Template
      */
     private $template;
@@ -104,10 +99,10 @@ class GenerateCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->progress = new ProgressBar($output, 40);
-        $this->progress->setFormat(" %message%\n %current%/%max% [%bar%] %percent:3s%% %elapsed:6s%/%estimated:-6s% %memory:6s%\n\n");
-        $this->progress->setMessage('Starting...');
-        $this->progress->setProgressCharacter("\xF0\x9F\x8D\xBA");
+        $progress = new ProgressBar($output, 40);
+        $progress->setFormat(" %message%\n %current%/%max% [%bar%] %percent:3s%% %elapsed:6s%/%estimated:-6s% %memory:6s%\n\n");
+        $progress->setMessage('Starting...');
+        $progress->setProgressCharacter("\xF0\x9F\x8D\xBA");
 
         if (!$this->auth->isValid()) {
             $helper = $this->getHelper('question');
@@ -137,21 +132,21 @@ class GenerateCommand extends Command
         }
 
         $output->writeln('Generating report from '.$this->config->getParameter('start_datetime')->format('Y-m-d H:i:s').' to '.$this->config->getParameter('end_datetime')->format('Y-m-d H:i:s')."\n");
-        $this->progress->start();
-        $this->progress->setMessage('Setting up Facebook service...');
-        $this->progress->advance();
+        $progress->start();
+        $progress->setMessage('Setting up Facebook service...');
+        $progress->advance();
 
         try {
-            $fetcher = new Fetcher($this->config, $this->progress, $this->auth->fb, $this->log);
+            $fetcher = new Fetcher($this->config, $progress, $this->auth->fb, $this->log);
             $mapper = new Mapper($this->config, $fetcher->getFeed(), $this->log);
             $topics = $mapper->getTopics();
             $comments = $mapper->getComments();
             $replies = $mapper->getReplies();
             $users = $mapper->getUsers();
 
-            $this->progress->advance();
+            $progress->advance();
 
-            $this->progress->finish();
+            $progress->finish();
             $output->writeln("\n");
 
             $output->writeln($this->template->render([
