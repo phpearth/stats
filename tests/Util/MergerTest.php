@@ -2,14 +2,13 @@
 
 namespace PHPWorldWide\Stats\Tests;
 
+use PHPUnit\Framework\TestCase;
 use PHPWorldWide\Stats\Collection\CommentCollection;
 use PHPWorldWide\Stats\Collection\ReplyCollection;
 use PHPWorldWide\Stats\Config;
 use PHPWorldWide\Stats\Model\Comment;
 use PHPWorldWide\Stats\Model\User;
 use PHPWorldWide\Stats\Points;
-use PHPWorldWide\Stats\Util\Merger;
-use PHPUnit\Framework\TestCase;
 
 class MergerTest extends TestCase
 {
