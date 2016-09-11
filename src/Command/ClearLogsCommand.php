@@ -2,13 +2,15 @@
 
 namespace PHPWorldWide\Stats\Command;
 
+use PHPWorldWide\Stats\Log;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use PHPWorldWide\Stats\Log;
+use Symfony\Component\Console\Question\ConfirmationQuestion;
 
 /**
- * Class GenerateCommand
+ * Console command that removes all generated log folders from the defined log
+ * directory.
  */
 class ClearLogsCommand extends Command
 {
@@ -47,6 +49,14 @@ class ClearLogsCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $helper = $this->getHelper('question');
+        $question = new ConfirmationQuestion('This will remove all log folders in app/config/log? Are you sure you want to continue?', false);
+
+        if (!$helper->ask($input, $output, $question)) {
+            $output->writeln("Exiting...");
+            return;
+        }
+
         $this->log->clearLogs();
 
         $output->writeln("Logs cleaned.");
