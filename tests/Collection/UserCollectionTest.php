@@ -9,8 +9,9 @@ use PHPWorldWide\Stats\Model\Comment;
 use PHPWorldWide\Stats\Model\User;
 use PHPWorldWide\Stats\Points;
 use PHPWorldWide\Stats\Config;
+use PHPUnit\Framework\TestCase;
 
-class UserCollectionTest extends \PHPUnit_Framework_TestCase
+class UserCollectionTest extends TestCase
 {
     public function testGetTopUsers()
     {

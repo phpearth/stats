@@ -8,8 +8,9 @@ use PHPWorldWide\Stats\Model\Topic;
 use PHPWorldWide\Stats\Model\Comment;
 use PHPWorldWide\Stats\Model\Reply;
 use PHPWorldWide\Stats\Model\User;
+use PHPUnit\Framework\TestCase;
 
-class PointsTest extends \PHPUnit_Framework_TestCase
+class PointsTest extends TestCase
 {
     private $points;
 

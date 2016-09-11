@@ -22,7 +22,7 @@ Read the following chapters for using this application locally:
 * [Commands](doc/commands.md)
 
 
-## Usage
+## Quick Usage
 
 1. [Create](https://developers.facebook.com/) a new Facebook Application.
 
@@ -47,9 +47,8 @@ Read the following chapters for using this application locally:
     bin/stats generate
     ```
 
-    To generate the user access token, use
-    [Graph API explorer](https://developers.facebook.com/tools/explorer/) and
-    select the application created in step 1.
+    Insert the user access token generated manually via
+    [Graph API explorer](https://developers.facebook.com/tools/explorer/).
 
 
 ## License and Contributing

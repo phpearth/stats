@@ -10,7 +10,7 @@ class Merger
     /**
      * Set comments or replies to merge.
      *
-     * @param $data
+     * @param array $data
      */
     public function setData($data)
     {

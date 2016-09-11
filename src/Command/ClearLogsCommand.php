@@ -34,7 +34,7 @@ class ClearLogsCommand extends Command
     {
         try {
             $this
-                ->setName('clearlogs')
+                ->setName('clear-logs')
                 ->setDescription('Clears all log files and folders')
             ;
         } catch (\Exception $e) {

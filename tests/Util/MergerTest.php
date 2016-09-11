@@ -9,8 +9,9 @@ use PHPWorldWide\Stats\Model\Comment;
 use PHPWorldWide\Stats\Model\User;
 use PHPWorldWide\Stats\Points;
 use PHPWorldWide\Stats\Util\Merger;
+use PHPUnit\Framework\TestCase;
 
-class MergerTest extends \PHPUnit_Framework_TestCase
+class MergerTest extends TestCase
 {
     public function testGetMergedItems()
     {

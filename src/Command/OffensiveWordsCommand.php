@@ -31,7 +31,7 @@ class OffensiveWordsCommand extends Command
     {
         try {
             $this
-                ->setName('offensivewords')
+                ->setName('offensive-words')
                 ->setDescription('Manages offensive words')
             ;
         } catch (\Exception $e) {

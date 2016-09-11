@@ -6,7 +6,7 @@ The following commands are available over command line interface (CLI):
 
 ### Generate Report
 
-This is the main command to generate the report based on the provided configuration: 
+This is the main command to generate the report based on the provided configuration:
 
 ```bash
 bin/stats generate
@@ -18,10 +18,10 @@ The command asks for a Facebook user token, which can be generated via the
 ### Clear Logs
 
 Generated stats reports are also logged in log folder `app/logs`. To clear all
-generated logs, the `clearlogs` command is available: 
+generated logs, the `clear-logs` command is available:
 
 ```bash
-bin/stats clearlogs
+bin/stats clear-logs
 ```
 
 ### Offensive Words
@@ -29,5 +29,5 @@ bin/stats clearlogs
 To manage [offensive words](/app/config/offensive_words.yml)
 
 ```bash
-bin/stats offensivewords
+bin/stats offensive-words
 ```

@@ -3,8 +3,9 @@
 namespace PHPWorldWide\Stats\Tests;
 
 use PHPWorldWide\Stats\Collection;
+use PHPUnit\Framework\TestCase;
 
-class CollectionTest extends \PHPUnit_Framework_TestCase
+class CollectionTest extends TestCase
 {
     public function testAdd()
     {

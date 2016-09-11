@@ -5,8 +5,9 @@ namespace PHPWorldWide\Stats\Tests;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamWrapper;
 use PHPWorldWide\Stats\Log;
+use PHPUnit\Framework\TestCase;
 
-class LogTest extends \PHPUnit_Framework_TestCase
+class LogTest extends TestCase
 {
     private $log;
 
