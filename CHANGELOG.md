@@ -11,6 +11,8 @@ All notable changes to this project will be documented in this file. This projec
 
 * Parameters configuration generated when installing dependencies with Composer
 * Documentation
+* Points calculation are now also based on code in the message
+* More unit tests
 * ...
 
 

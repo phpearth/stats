@@ -23,7 +23,10 @@ class PointsTest extends TestCase
             __DIR__.'/Fixtures/parameters.yml',
         ]);
 
-        $this->points = new Points($config);
+        $this->points = new Points();
+        $this->points->setPoints($config->get('points'));
+        $this->points->setAdmins($config->getParameter('admins'));
+        $this->points->setOffensiveWords($config->get('offensive_words'));
     }
 
     protected static function getMethod($name)

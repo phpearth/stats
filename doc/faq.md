@@ -25,8 +25,8 @@ not excluded for getting higher score than other members :)
 * Offensive messages and inappropriate links can get you negative points.
 * Some topics (such as administrators announcements and similar) are awarded with
   extra points as a recognition for special contributions to the group.
-* Messages with source code instead of using no-paste services (gist, pastebin...)
-  don't get points.
+* Messages with source code don't get points. Using no-paste services such as gist,
+  pastebin and similar is recommended.
 
 ### What is the default points configuration and why such configuration?
 

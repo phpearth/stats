@@ -1,0 +1,55 @@
+topics:
+    topic_with_code:
+        id: 0
+        message: |
+
+            Lorem ipsum dolor sit amet
+
+            <?php
+
+            include_once __DIR__.'/config/config.php';
+
+            $string = 'Hello, world';
+
+            echo $string;
+
+            Can anyone provide me solution
+        is_code: true
+    topic_1:
+        id: 1
+        message: Lorem ipsum dolor sit amet
+        is_code: false
+
+    topic_3:
+        id: 2
+        message: |
+            Lorem ipsum dolor sit amet:
+            <?php
+
+            if(isset($_POST['submit'])){
+            $var = $_POST['var'] ?? null;
+
+            if(empty($var)){
+            echo "<span style = 'font-size:12px;'>Foo bar</span>";
+            }
+            }
+            ?>
+        is_code: true
+
+    topic_4:
+        id: 3
+        message: |
+            $array = array(
+            "1" => array (
+            "item_1" => 35,
+            "item_2" => 30,
+            "item_3" => 39
+            ),
+            "2" => array (
+            "item_1" => 30,
+            "item_2" => 32,
+            "item_3" => 29
+            ),
+            );
+            Lorem ipsum dolor sit amet.
+        is_code: true

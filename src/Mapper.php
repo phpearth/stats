@@ -65,7 +65,10 @@ class Mapper
         $this->comments = new CommentCollection();
         $this->replies = new ReplyCollection();
         $this->users = new UserCollection();
-        $this->points = new Points($this->config);
+        $this->points = new Points();
+        $this->points->setPoints($this->config->get('points'));
+        $this->points->setAdmins($this->config->getParameter('admins'));
+        $this->points->setOffensiveWords($this->config->get('offensive_words'));
         $this->log = $log;
 
         $this->mapFeed($feed);

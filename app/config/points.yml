@@ -1,49 +1,86 @@
 # Points configuration for Expression Language component evaluation
+points:
 
-# Additional points for length of comment or reply.
-points_message_length: 'floor(strlen(message)/50)'
+    # Points for opening each topic
+    topic: 1
 
-# Points for reactions on topic
-points_for_topic_reactions: '(topic.getReactionsCount() >= 100) ? 15 : ceil(topic.getReactionsCount() / 10)'
+    # Points for comment
+    comment: 1
 
-# Points for number of likes on comment or reply
-points_for_likes: '(likes > 100) ? 11 : ceil(likes / 10)'
+    # Points for reply
+    reply: 1
 
-# Points for topics with only image or animated image (such as bumped images from
-# album topics and images without much description).
-points_for_image: '(strlen(topic.getMessage()) <= 5 && topic.getType() in ["photo", "animated_image_share"]) ? 0 : points'
+    # Additional points for length of comment or reply.
+    message_length: 'floor(strlen(message)/50)'
 
-# Points for topics with comments turned off.
-points_for_closed_topic: '!topic.getCanComment() ? 0 : points'
+    # Points for reactions on topic
+    topic_reactions: '(topic.getReactionsCount() >= 100) ? 15 : ceil(topic.getReactionsCount() / 10)'
 
-# Points for opening each topic
-points_for_topic: 1
+    # Points for number of likes on comment or reply
+    likes: '(likes > 100) ? 11 : ceil(likes / 10)'
 
-# Points for comment
-points_for_comment: 1
+    # Points for topics with only image or animated image (such as bumped images from
+    # album topics and images without much description).
+    image: '(strlen(topic.getMessage()) <= 5 && topic.getType() in ["photo", "animated_image_share"]) ? 0 : points'
 
-# Points for reply
-points_for_reply: 1
+    # Points for topics with comments turned off.
+    closed_topic: '!topic.getCanComment() ? 0 : points'
 
-# Array of recommended and not recommended links which affect the points
-# calculation. [url, points]
-urls:
-    - ['github.com', 10]
-    - ['github.io', 10]
-    - ['php.net', 20]
-    - ['wwphp-fb.github.io', 20]
-    - ['packagist.org', 10]
-    - ['getcomposer.org', 10]
-    - ['phptherightway.com', 10]
-    - ['sitepoint.com', 5]
-    - ['phpclasses.org', 5]
-    - ['stackoverflow.com', 5]
-    - ['phpunit.de', 5]
-    - ['php-fig.org', 5]
-    - ['developer.mozilla.org', 10]
-    - ['w3schools.com', -10]
-    - ['lmgtfy.com', -10]
-    - ['phpthewrongway.com', -15]
+    # Array of recommended and not recommended links which affect the points
+    # calculation. [url, points]
+    urls:
+        - ['github.com', 10]
+        - ['github.io', 10]
+        - ['php.net', 20]
+        - ['wwphp-fb.github.io', 20]
+        - ['packagist.org', 10]
+        - ['getcomposer.org', 10]
+        - ['phptherightway.com', 10]
+        - ['sitepoint.com', 5]
+        - ['phpclasses.org', 5]
+        - ['stackoverflow.com', 5]
+        - ['phpunit.de', 5]
+        - ['php-fig.org', 5]
+        - ['developer.mozilla.org', 10]
+        - ['w3schools.com', -10]
+        - ['lmgtfy.com', -10]
+        - ['phpthewrongway.com', -15]
 
-# Points for topics from admins
-points_for_admin_topics: '(topic.getUser().getId() in admins) ? 5 : 0'
+    # Points for topics from admins
+    admin_topic: '(topic.getUser().getId() in admins) ? 5 : 0'
+
+    # Posting source code on Facebook is not readable. Using Gist and similar
+    # no-paste services are recommended. Topics with code get don't get points.
+    code: '(codeDetector.isCode(message)) ? 0 : points'
+
+    # Minimum lines of code for message to be detected as code
+    min_code_lines: 4
+
+    # Regular expressions for detecting lines with code
+    code_regex:
+        # PHP code opening tag
+        - '/\<\?(php)?/'
+        # variable assignment
+        - '/\$\w.*\=.*(\;|array|\[)/'
+        # statement
+        - '/(if|for|foreach|while|switch)\s*\(.*\)/'
+        # return statement
+        - '/^return(\s+.*)?;/'
+        # function call
+        - '/\w\S*\s*\(.*\)\s*;/'
+        # html tag
+        - '/\<\w+\>(.*<\/\w+>)/'
+        # class field
+        - '/(public|protected|private)\s+(static\s+)?\$\w.*;/'
+        # class method
+        - '/(public|protected|private)\s+(abstract|static\s+)?function\s*\(/'
+        # curly brace
+        - '/{|}/'
+        # class, interface
+        - '/(abstract\s+)?(class|interface)\s+\w+/'
+        # use statement
+        - '/^use\s+(\S+);/'
+        # PHP functions
+        - '/(include_once|require_once|echo)/'
+        # array elements
+        - '/(\"|\'')\w+(\"|\'')\s?\=\>\s?\w+(\,|\)|\])?$/'
