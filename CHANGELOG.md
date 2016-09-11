@@ -9,6 +9,8 @@ All notable changes to this project will be documented in this file. This projec
 
 ### Added
 
+* Parameters configuration generated when installing dependencies with Composer
+* Documentation
 * ...
 
 
@@ -39,7 +41,7 @@ All notable changes to this project will be documented in this file. This projec
 * Configuration refactoring.
 * Symfony Expression Language component
 * Points calculation improvements.
-* Bonus points for topics from group stuff.
+* Bonus points for topics from group staff.
 
 
 ## [0.3.0] - 2016-05-16

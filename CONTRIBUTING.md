@@ -21,8 +21,11 @@ git commit -m "Fix bug"
 git push origin
 ```
 
-Code follows [PSR-1](http://php-fig.org/psr/psr-1/) and
-[PSR-2](www.php-fig.org/psr/psr-2/) style guides.
+Code follows [PSR-1](http://php-fig.org/psr/psr-1/), [PSR-2](www.php-fig.org/psr/psr-2/)
+and [extended code style guide proposal](https://github.com/php-fig/fig-standards/blob/master/proposed/extended-coding-style-guide.md).
+Documentation uses [Markdown](https://daringfireball.net/projects/markdown/)
+syntax and follows [cirosantilli/markdown-style-guide](http://www.cirosantilli.com/markdown-style-guide/)
+style guide.
 
 To run tests:
 
