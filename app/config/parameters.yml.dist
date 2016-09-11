@@ -25,7 +25,7 @@ parameters:
     # Start datetime of the generated report
     start_datetime: '2015-07-20 00:00:00'
 
-    # Start datetime of the generated report
+    # End datetime of the generated report
     end_datetime: '2015-07-26 23:59:59'
 
     # Last name of the joined member
