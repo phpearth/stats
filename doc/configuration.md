@@ -14,8 +14,6 @@ The following parameters are used to configure the report generation:
 | default_graph_version    | string    | Default Facebook Graph API version |
 | group_id                 | int       |  |
 | top_users_count          | int       |  |
-| start_datetime           | date      |  |
-| end_datetime             | date      |  |
 | last_member_name         | string    |  |
 | last_blocked_count       | int       |  |
 | new_blocked_count        | int       |  |

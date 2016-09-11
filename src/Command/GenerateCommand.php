@@ -4,9 +4,10 @@ namespace PHPWorldWide\Stats\Command;
 
 use PHPWorldWide\Stats\Fetcher;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Helper\ProgressBar;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
 use PHPWorldWide\Stats\Auth;
 use PHPWorldWide\Stats\Config;
@@ -87,7 +88,22 @@ class GenerateCommand extends Command
         try {
             $this
                 ->setName('generate')
-                ->setDescription('Generates Facebook group report')
+                ->setDescription('Generates Facebook group stats report.')
+                ->setHelp('This command generates Facebook group stats report.')
+                ->addOption(
+                    'from',
+                    'f',
+                    InputOption::VALUE_REQUIRED,
+                    'Start date of the generated stats report ('.date('Y-m-d', strtotime('last monday')).')',
+                    date('Y-m-d', strtotime('last monday'))
+                )
+                ->addOption(
+                    'to',
+                    't',
+                    InputOption::VALUE_REQUIRED,
+                    'End date of the generated stats report ('.date('Y-m-d', strtotime('last monday +7 days')).')',
+                    date('Y-m-d', strtotime('last monday +7 days'))
+                )
             ;
         } catch (\Exception $e) {
             echo $e->getMessage();
@@ -99,6 +115,12 @@ class GenerateCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $fromDate = $input->getOption('from').' 00:00:00';
+        $toDate = $input->getOption('to').' 23:59:59';
+
+        $this->config->setParameter('start_datetime', $fromDate);
+        $this->config->setParameter('end_datetime', $toDate);
+
         $progress = new ProgressBar($output, 40);
         $progress->setFormat(" %message%\n %current%/%max% [%bar%] %percent:3s%% %elapsed:6s%/%estimated:-6s% %memory:6s%\n\n");
         $progress->setMessage('Starting...');
@@ -107,9 +129,9 @@ class GenerateCommand extends Command
         if (!$this->auth->isValid()) {
             $helper = $this->getHelper('question');
 
-            $question = new Question($this->auth->getError().
-                'Use Graph API explorer (https://developers.facebook.com/tools/explorer) to generate the token.'."\n".
-                'Enter a new user access token:'."\n");
+            $question = new Question($this->auth->getError()."\n\n".
+                "Enter user access token from the Graph API Explorer\n".
+                "https://developers.facebook.com/tools/explorer\n");
             $auth = $this->auth;
             $question->setValidator(function ($token) use ($auth) {
                 if (trim($token) == '') {

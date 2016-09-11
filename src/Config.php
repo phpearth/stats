@@ -29,13 +29,6 @@ class Config
             try {
                 $values = $parser->parse(file_get_contents($file), false, false, false);
                 $this->values = array_merge($this->values, $values);
-
-                // set DateTime
-                foreach ($this->values['parameters'] as $key => $value) {
-                    if (is_string($value) && false !== \DateTime::createFromFormat('Y-m-d H:i:s', $value)) {
-                        $this->values['parameters'][$key] = \DateTime::createFromFormat('Y-m-d H:i:s', $value);
-                    }
-                }
             } catch (ParseException $e) {
                 throw new \Exception('Unable to parse the YAML string: '.$e->getMessage());
             }
@@ -64,5 +57,21 @@ class Config
     public function getParameter($key)
     {
         return $this->values['parameters'][$key];
+    }
+
+    /**
+     * Manually set the configuration parameter value by key.
+     *
+     * @param string $key
+     * @param mixed $value
+     */
+    public function setParameter($key, $value)
+    {
+        // set DateTime
+        if (is_string($value) && false !== \DateTime::createFromFormat('Y-m-d H:i:s', $value)) {
+            $this->values['parameters'][$key] = \DateTime::createFromFormat('Y-m-d H:i:s', $value);
+        } else {
+            $this->values['parameters'][$key] = $value;
+        }
     }
 }

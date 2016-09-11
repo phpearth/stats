@@ -33,8 +33,8 @@ composer install
 The Composer installation script creates `app/config/parameters.yml` file
 by asking for configuration parameter values. Configuration parameters are
 described in comments in the [parameters.yml.dist](app/config/parameters.yml.dist).
-Provide ID and secret code for your Facebook application, default Graph API version,
-date range and other configuration. Configuration is further explained in the
+Provide ID and secret code for your Facebook application, default Graph API version
+and other configuration. Configuration is explained in more details in the
 [configuration](configuration.md) chapter.
 
 
@@ -43,10 +43,18 @@ date range and other configuration. Configuration is further explained in the
 Run the report generation:
 
 ```bash
-bin/stats generate
+bin/stats generate --from=2016-09-05 --to=2016-09-11
 ```
 
 Before generation starts, you must also provide the user access token manually.
+
+```bash
+You must provide an access token.
+
+Enter user access token from the Graph API Explorer
+https://developers.facebook.com/tools/explorer
+
+```
 
 To generate the user access token, use
 [Graph API explorer](https://developers.facebook.com/tools/explorer/) and

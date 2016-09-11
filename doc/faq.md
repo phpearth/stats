@@ -33,8 +33,8 @@ not excluded for getting higher score than other members :)
 Configuration for calculating the points aims to encourages the group code of
 conduct and recommended netiquette for online communication in internet communities
 such as this. All the configuration parameters are described in details in the
-[points.yml](app/config/points.yml) and
-[offensive_words.yml](app/config/offensive_words.yml) files and have been
+[points.yml](/app/config/points.yml) and
+[offensive_words.yml](/app/config/offensive_words.yml) files and have been
 carefully set for this group.
 
 ### Why some sites get negative points?

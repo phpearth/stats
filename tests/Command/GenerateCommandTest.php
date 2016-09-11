@@ -25,7 +25,9 @@ class GenerateCommandTest extends TestCase
         $helper->setInputStream($this->getInputStream("\n"));
 
         $exitCode = $commandTester->execute([
-            'command' => $command->getName()
+            'command' => $command->getName(),
+            '--from' => date('Y-m-d', strtotime('last monday')),
+            '--to' => date('Y-m-d', strtotime('last monday +7 days'))
         ]);
 
         $this->assertRegexp('/Exiting/', $commandTester->getDisplay());

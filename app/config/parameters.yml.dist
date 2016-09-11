@@ -22,12 +22,6 @@ parameters:
     # Number of top users listed in the output report
     top_users_count: 10
 
-    # Start datetime of the generated report
-    start_datetime: '2015-07-20 00:00:00'
-
-    # End datetime of the generated report
-    end_datetime: '2015-07-26 23:59:59'
-
     # Last name of the joined member
     # For calculating the number of new members since previous report. Facebook Graph
     # API currently doesn't provide chronological limit or dates when users joined the

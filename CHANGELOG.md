@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file. This projec
 * Documentation
 * Points calculation are now also based on code in the message
 * More unit tests
+* Report date range set via command options
 * ...
 
 

@@ -15,6 +15,9 @@ class ConfigTest extends TestCase
             __DIR__.'/Fixtures/parameters.yml',
             __DIR__.'/Fixtures/points.yml'
         ]);
+
+        $this->config->setParameter('start_datetime', '2016-05-15 00:00:00');
+        $this->config->setParameter('end_datetime', '2016-05-22 23:59:59');
     }
 
     /**
