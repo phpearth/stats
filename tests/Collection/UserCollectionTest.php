@@ -2,14 +2,13 @@
 
 namespace PHPWorldWide\Stats\Tests;
 
+use PHPUnit\Framework\TestCase;
 use PHPWorldWide\Stats\Collection\CommentCollection;
 use PHPWorldWide\Stats\Collection\ReplyCollection;
 use PHPWorldWide\Stats\Collection\UserCollection;
-use PHPWorldWide\Stats\Model\Comment;
+use PHPWorldWide\Stats\Config;
 use PHPWorldWide\Stats\Model\User;
 use PHPWorldWide\Stats\Points;
-use PHPWorldWide\Stats\Config;
-use PHPUnit\Framework\TestCase;
 
 class UserCollectionTest extends TestCase
 {
