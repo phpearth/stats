@@ -1,0 +1,31 @@
+# These are the translation messages for the geneerated stats report using the
+# Symfony Translation Component. Variables in messages are in the format %variable%
+#
+# Pluralization for languages with multiple pluralization formats
+# English and languages with 1 plural format:
+# "1 comment|%count% comments"
+#
+# Russian and languages with 2 plural formats - first for 1 item, second for 2
+# items and third for 3 or more items:
+# "1 комментарий|%count% комментария|%count% комментариев"
+#
+# Slovenian and languages with 3 plural formats - first for 1 item, second for 2
+# items, third for 3 and 4 items and fourth for 5 or more items:
+# "1 komentar|%count% komentarja|%count% komentarji|%count% komentarjev"
+
+intro:            "Olá, aqui estão as estatísticas semanais do grupo, de %start_date% à %end_date%"
+welcome:          "Boas-vindas à 1 novo membro|Boas-vindas à %count% novos membross"
+top_members:      "Obrigado ao top 1 membro da semana|Obrigado aos top %count% membros da semana"
+points:           "1 ponto|%count% pontos"
+topics:           "1 publicação|%count% publicações"
+comments:         "1 comentário|%count% comentários"
+replies:          "1 resposta|%count% respostas"
+and:              "e"
+active_members:   "foi criado por 1 membro ativo essa semana|foi criado por %count% membros ativos essa semana"
+closed:           "1 publicação foi fechada|%count% publicações foram fechadas"
+banned:           "1 usuário foi banido por não seguir o Código de Conduta do grupo|%count% usuários foram banidos por não seguirem o Código de Conduta do grupo"
+top_topic:        "Publicação mais popular da semana com 1 reação|Publicação mais popular da semana com %count% reações"
+active_topic:     "Publicação mais ativo da semana com 1 comentário|Publicação mais ativo da semana com %count% comentários"
+important_topics: "Publicações importantes que você deveria conferir"
+generated:        "Gerado por"
+thank_you:        "Sua ajuda é bem-vinda, envolva-se e contribua."
