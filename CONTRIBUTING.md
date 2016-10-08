@@ -52,6 +52,21 @@ using the Symfony Translation Component. Variables in messages are in the format
   items, third for 3 and 4 items and fourth for 5 or more items:
   `"1 komentar|%count% komentarja|%count% komentarji|%count% komentarjev"`
 
+## GitHub Issues Labels
+
+Labels are used to organize issues and pull requests into manageable categories.
+The following labels are used:
+
+* **Bug** - Attached for bugs.
+* **Duplicate** - Attached when the same issue or pull request already exists.
+* **Enhancement** - New feature.
+* **Hacktoberfest** - Attached for open source [Hacktoberfest] event.
+* **Invalid** - Attached when
+* **Needs Review** - Attached when further review is required.
+* **Question** - Attached for questions or discussions.
+* **Request** - Attached for new feature requests.
+* **Wontfix** - Attached when decided that issue will not be fixed.
+
 ## Release Process
 
 *(For repository maintainers)*
@@ -81,3 +96,6 @@ phpunit
 
     Tag a new version on [GitHub](https://github.com/wwphp-fb/stats/releases)
     with description of notable changes.
+
+
+[Hacktoberfest]: https://hacktoberfest.digitalocean.com/
