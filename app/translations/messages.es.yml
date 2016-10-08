@@ -1,0 +1,31 @@
+# These are the translation messages for the geneerated stats report using the
+# Symfony Translation Component. Variables in messages are in the format %variable%
+#
+# Pluralization for languages with multiple pluralization formats
+# English and languages with 1 plural format:
+# "1 comment|%count% comments"
+#
+# Russian and languages with 2 plural formats - first for 1 item, second for 2
+# items and third for 3 or more items:
+# "1 комментарий|%count% комментария|%count% комментариев"
+#
+# Slovenian and languages with 3 plural formats - first for 1 item, second for 2
+# items, third for 3 and 4 items and fourth for 5 or more items:
+# "1 komentar|%count% komentarja|%count% komentarji|%count% komentarjev"
+
+intro:            "Hola, aquí están las estadísticas semanales del grupo desde el %start_date% hasta %end_date%"
+welcome:          "Una cálida bienvenida a 1 nuevo miembro|Una cálida bienvenida a %count% nuevos miembros"
+top_members:      "Gracias al miembro top 1 de la semana|Gracias a los miembros top %count% de la semana"
+points:           "1 punto|%count% puntos"
+topics:           "1 tema|%count% temas"
+comments:         "1 comentario|%count% comentarios"
+replies:          "1 respuesta|%count% respuestas"
+and:              "y"
+active_members:   "fueron creados por 1 miembro activo esta semana|fueron creados por %count% miembros activos esta semana"
+closed:           "1 tema fué cerrado|%count% temas fueron cerrados"
+banned:           "1 usuario fué baneado por no seguir el código de conducta del grupo|%count% usuarios fueron baneados por no seguir el código de conducta del grupo"
+top_topic:        "Top temas de la semana con 1 reacción|Top temas de la semana con %count% reacciones"
+active_topic:     "Tema más activo de la semana con 1 comentario|Tema más activo de la semana con %count% comentarios"
+important_topics: "Temas importantes que debe revisar"
+generated:        "Producido por"
+thank_you:        "Se agradece su ayuda, involúcrese y contribuya."
