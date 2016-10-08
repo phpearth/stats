@@ -1,0 +1,31 @@
+# These are the translation messages for the geneerated stats report using the
+# Symfony Translation Component. Variables in messages are in the format %variable%
+#
+# Pluralization for languages with multiple pluralization formats
+# English and languages with 1 plural format:
+# "1 comment|%count% comments"
+#
+# Russian and languages with 2 plural formats - first for 1 item, second for 2
+# items and third for 3 or more items:
+# "1 комментарий|%count% комментария|%count% комментариев"
+#
+# Slovenian and languages with 3 plural formats - first for 1 item, second for 2
+# items, third for 3 and 4 items and fourth for 5 or more items:
+# "1 komentar|%count% komentarja|%count% komentarji|%count% komentarjev"
+
+intro:            "Witaj, tutaj znajdują się tygodniowe statystyki grupy od %start_date% do %end_date%"
+welcome:          "Powitaj ciepło 1 nowego użytkownika|Powitaj ciepło %count% nowych użytkowników"
+top_members:      "Podziękowania dla najlepszego 1 użytkownika tygodnia|Podziękowania dla %count% użytkowników tego tygodnia"
+points:           "1 punkt|%count% punkty|%count% punktów"
+topics:           "1 temat|%count% tematy|%count% tematów"
+comments:         "1 komentarz|%count% komentarzy"
+replies:          "1 odpowiedź|%count% odpowiedzi"
+and:              "i"
+active_members:   "zostały stworzone przez 1 aktywnego członka w tym tygodniu|zostały stworzone przez %count% aktywnego członków w tym tygodniu"
+closed:           "1 temat został zamknięty|%count% tematy zostały zamknięte|%count% tematów zostało zamkniętych"
+banned:           "1 użytkownik został zablokowany przez nieprzestrzeganie Regulaminu grupy|%count% użytkowników zostali zablokowani przez nieprzestrzeganie Regulaminu grupy"
+top_topic:        "Najlepszy temat tego tygodnia z 1 reakcją|Najlepszy temat tego tygodnia z %count% reakcjami"
+active_topic:     "Najbardziej aktywny temat z 1 komentarzem|Najbardziej aktywny temat z %count% komentarzami"
+important_topics: "Ważne tematy, które powinnieneś sprawdzić"
+generated:        "Wygenerowane przez"
+thank_you:        "Twoja pomoca jest doceniania, zaangażuj się i pomagaj."
