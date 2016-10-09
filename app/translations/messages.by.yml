@@ -1,0 +1,31 @@
+# These are the translation messages for the geneerated stats report using the
+# Symfony Translation Component. Variables in messages are in the format %variable%
+#
+# Pluralization for languages with multiple pluralization formats
+# English and languages with 1 plural format:
+# "1 comment|%count% comments"
+#
+# Russian and languages with 2 plural formats - first for 1 item, second for 2
+# items and third for 3 or more items:
+# "1 комментарий|%count% комментария|%count% комментариев"
+#
+# Slovenian and languages with 3 plural formats - first for 1 item, second for 2
+# items, third for 3 and 4 items and fourth for 5 or more items:
+# "1 komentar|%count% komentarja|%count% komentarji|%count% komentarjev"
+
+intro:            "Добры дзень, гэта штотыднёвая статыстыка групы з %start_date% па %end_date%"
+welcome:          "Вітаем 1 новага ўдзельніка|Вітаем %count% новых удзельнікаў"
+top_members:      "Дзякуй 1 лепшаму ўдзельніку тыдня|Дзякуй %count% лепшым удзельнікам тыдня"
+points:           "1 бал|%count% балы|%count% балаў"
+topics:           "1 тэма|%count% тэмы|%count% тым"
+comments:         "1 каментар|%count% каментара|%count% каментарыяў"
+replies:          "1 адказ|%count% адказу|%count% адказаў"
+and:              "і"
+active_members:   "былі створаны 1 актыўным удзельнікам гэтага тыдня|былі створаны %count% актыўнымі ўдзельнікамі гэтага тыдня"
+closed:           "1 тэма была зачыненая|%count% тэмы былі зачыненыя|%count% тым былі зачыненыя"
+banned:           "1 удзельнік быў заблякаваны за парушэнне правілаў групы|%count% удзельнікі былі заблакаваныя за парушэнне правілаў групы|%count% удзельнікаў былі заблакаваныя за парушэнне правілаў групы"
+top_topic:        "Лепшая тэма тыдня з 1 рэакцыяй|Лепшая тэма тыдня з %count% рэакцыямі"
+active_topic:     "Самая актыўная тэма тыдня з 1 каментаром|Самая актыўная тэма тыдня з %count% каментарамі"
+important_topics: "Важныя тэмы, якія вы павінны ўбачыць"
+generated:        "Згенеравана з дапамогай"
+thank_you:        "Ваша дапамога вітаецца, прыняць удзел і ўнесці свой уклад."
