@@ -35,21 +35,26 @@ phpunit
 
 ## Translations
 
-Translation messages for the generated stats report are located in `app/translations`
-using the Symfony Translation Component. Variables in messages are in the format
-`%variable%`.
+Translation messages for the generated stats report are in [YAML](http://yaml.org/)
+format and are located in the [app/translations](app/translations) folder.
+Translations use the
+[Symfony Translation Component](http://symfony.com/doc/current/components/translation.html).
+Variables in messages are in the format `%variable%`.
 
 ### Pluralization for languages with multiple pluralization formats:
 
 * English and languages with 1 plural format:
-  "1 comment|%count% comments"
 
-* Russian and languages with 2 plural formats - first for 1 item, second for 2
-  items and third for 3 or more items:
+  `"1 comment|%count% comments"`
+
+* Languages with 2 plural formats - first for 1 item, second for 2 items and third
+  for 3 or more items. For example, Russian:
+
   `"1 комментарий|%count% комментария|%count% комментариев"`
 
-* Slovenian and languages with 3 plural formats - first for 1 item, second for 2
-  items, third for 3 and 4 items and fourth for 5 or more items:
+* Languages with 3 plural formats - first for 1 item, second for 2 items, third
+  for 3 and 4 items and fourth for 5 or more items. For example, Slovenian:
+
   `"1 komentar|%count% komentarja|%count% komentarji|%count% komentarjev"`
 
 ## GitHub Issues Labels
