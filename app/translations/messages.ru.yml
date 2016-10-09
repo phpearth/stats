@@ -1,0 +1,31 @@
+# These are the translation messages for the geneerated stats report using the
+# Symfony Translation Component. Variables in messages are in the format %variable%
+#
+# Pluralization for languages with multiple pluralization formats
+# English and languages with 1 plural format:
+# "1 comment|%count% comments"
+#
+# Russian and languages with 2 plural formats - first for 1 item, second for 2
+# items and third for 3 or more items:
+# "1 комментарий|%count% комментария|%count% комментариев"
+#
+# Slovenian and languages with 3 plural formats - first for 1 item, second for 2
+# items, third for 3 and 4 items and fourth for 5 or more items:
+# "1 komentar|%count% komentarja|%count% komentarji|%count% komentarjev"
+
+intro:            "Здравствуйте, это еженедельная статистика группы с %start_date% по %end_date%"
+welcome:          "Приветствуем 1 нового участника|Приветствуем %count% новых участников"
+top_members:      "Спасибо 1 лучшему участнику недели|Спасибо %count% лучшим участникам недели"
+points:           "1 балл|%count% балла|%count% баллов"
+topics:           "1 тема|%count% темы|%count% тем"
+comments:         "1 комментарий|%count% комментария|%count% комментариев"
+replies:          "1 ответ|%count% ответа|%count% ответов"
+and:              "и"
+active_members:   "были созданы 1 активным участником этой недели|были созданы %count% активными участниками этой недели"
+closed:           "1 тема была закрыта|%count% темы были закрыты|%count% тем были закрыты"
+banned:           "1 пользователь был заблокирован за нарушение правил группы|%count% пользователя были заблокированы за нарушение правил группы|%count% пользователей были заблокированы за нарушение правил группы"
+top_topic:        "Лучшая тема недели с 1 реакцией|Лучшая тема недели с %count% реакциями"
+active_topic:     "Самая активная тема недели с 1 комментарием|Самая активная тема недели с %count% комментариями"
+important_topics: "Важные темы, которые вы должны увидеть"
+generated:        "Сгенерированно с помощью"
+thank_you:        "Ваша помощь приветствуется, принять участие и внести свой вклад."
