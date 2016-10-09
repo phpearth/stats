@@ -1,0 +1,31 @@
+# These are the translation messages for the geneerated stats report using the
+# Symfony Translation Component. Variables in messages are in the format %variable%
+#
+# Pluralization for languages with multiple pluralization formats
+# English and languages with 1 plural format:
+# "1 comment|%count% comments"
+#
+# Russian and languages with 2 plural formats - first for 1 item, second for 2
+# items and third for 3 or more items:
+# "1 комментарий|%count% комментария|%count% комментариев"
+#
+# Slovenian and languages with 3 plural formats - first for 1 item, second for 2
+# items, third for 3 and 4 items and fourth for 5 or more items:
+# "1 komentar|%count% komentarja|%count% komentarji|%count% komentarjev"
+
+intro:            "Привіт, це щотижнева статистика групи з %start_date% по %end_date%"
+welcome:          "Вітаємо 1 нового учасника|Вітаємо %count% нових учасників"
+top_members:      "Дякую 1 кращому учаснику тижня|Дякую %count% кращим учасникам тижня"
+points:           "1 бал|%count% бала|%count% балів"
+topics:           "1 тема|%count% теми|%count% тем"
+comments:         "1 коментарій|%count% коментарія|%count% коментаріїв"
+replies:          "1 відповідь|%count% відповіді|%count% відповідей"
+and:              "і"
+active_members:   "були створені 1 активним учасником цього тижня|були створені %count% активними учасниками цього тижня"
+closed:           "1 тема буда закрита|%count% теми були закриті|%count% тем були закриті"
+banned:           "1 користувач був заблокований за порушення правил групи|%count% користувача були заблоковані за порушення правил групи|%count% користувачей були заблоковані за порушення правил групи"
+top_topic:        "Краща тема тижня з 1 реакцією|Краща тема тижня з %count% реакціями"
+active_topic:     "Найактивніша тема тижня з 1 коментарем|Найактивніша тема тижня з %count% коментаріями"
+important_topics: "Важливі теми, які ви повинні побачити"
+generated:        "Згенеровано за допомогою"
+thank_you:        "Ваша допомога вітається, взяти участь і внести свій вклад."
