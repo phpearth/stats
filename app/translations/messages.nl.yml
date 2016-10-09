@@ -1,0 +1,31 @@
+# These are the translation messages for the geneerated stats report using the
+# Symfony Translation Component. Variables in messages are in the format %variable%
+#
+# Pluralization for languages with multiple pluralization formats
+# English and languages with 1 plural format:
+# "1 comment|%count% comments"
+#
+# Russian and languages with 2 plural formats - first for 1 item, second for 2
+# items and third for 3 or more items:
+# "1 комментарий|%count% комментария|%count% комментариев"
+#
+# Slovenian and languages with 3 plural formats - first for 1 item, second for 2
+# items, third for 3 and 4 items and fourth for 5 or more items:
+# "1 komentar|%count% komentarja|%count% komentarji|%count% komentarjev"
+
+intro:            "Hallo, hier zijn de wekelijkse groep statistieken van %start_date% tot %end_date%"
+welcome:          "Welkom aan 1 nieuw lid|Welkom aan %count% nieuwe leden"
+top_members:      "Bedank aan 1 top lid van de week|Bedank aan %count% top leden van de week"
+points:           "1 punt|%count% punten"
+topics:           "1 onderwerp|%count% onderwerpen"
+comments:         "1 reactie|%count% reacties"
+replies:          "1 antwoord|%count% antwoorden"
+and:              "en"
+active_members:   "zijn aangemaakt door 1 actief lid deze week|zijn aangemaakt door %count% actieve leden deze week"
+closed:           "1 onderwerp was gesloten|%count% onderwerpen waren gesloten"
+banned:           "1 gebruiker was verbannen voor het niet volgen van de groep gedragscode|%count% gebruikers waren verbannen voor het niet volgen van de groep gedragscode"
+top_topic:        "Top onderwerp van de week met 1 reactie|Top onderwerp van de week met %count% reacties"
+active_topic:     "Meest actief onderwerp van de week met 1 reactie|Meest actief onderwerp van de week met %count% reacties"
+important_topics: "Belangrijke onderwerpen die je zou moeten bekijken"
+generated:        "Gegenereerd door"
+thank_you:        "Uw hulp wordt gewaardeerd, raak betrokken en draag bij."
