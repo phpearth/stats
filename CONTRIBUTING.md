@@ -102,5 +102,7 @@ phpunit
     Tag a new version on [GitHub](https://github.com/wwphp-fb/stats/releases)
     with description of notable changes.
 
+* **4. Update version** in `app/bootstrap.php`.
+
 
 [Hacktoberfest]: https://hacktoberfest.digitalocean.com/
