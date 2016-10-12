@@ -102,7 +102,7 @@ class GenerateCommand extends Command
                     't',
                     InputOption::VALUE_REQUIRED,
                     'End date of the generated stats report ('.date('Y-m-d', strtotime('last monday +7 days')).')',
-                    date('Y-m-d', strtotime('last monday +7 days'))
+                    date('Y-m-d', strtotime('last monday +6 days'))
                 )
             ;
         } catch (\Exception $e) {
