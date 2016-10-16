@@ -45,16 +45,16 @@
         },
         {
             "name": "facebook/graph-sdk",
-            "version": "5.3.1",
+            "version": "5.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facebook/php-graph-sdk.git",
-                "reference": "7ed1ecdae6a5b2f8b8f60e132d06594b39b16fb1"
+                "reference": "c69c3c0bb304ec1fe9400b4bc47ab641c9002eee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facebook/php-graph-sdk/zipball/7ed1ecdae6a5b2f8b8f60e132d06594b39b16fb1",
-                "reference": "7ed1ecdae6a5b2f8b8f60e132d06594b39b16fb1",
+                "url": "https://api.github.com/repos/facebook/php-graph-sdk/zipball/c69c3c0bb304ec1fe9400b4bc47ab641c9002eee",
+                "reference": "c69c3c0bb304ec1fe9400b4bc47ab641c9002eee",
                 "shasum": ""
             },
             "require": {
@@ -89,16 +89,16 @@
             "authors": [
                 {
                     "name": "Facebook",
-                    "homepage": "https://github.com/facebook/facebook-php-sdk-v4/contributors"
+                    "homepage": "https://github.com/facebook/php-graph-sdk/contributors"
                 }
             ],
             "description": "Facebook SDK for PHP",
-            "homepage": "https://github.com/facebook/facebook-php-sdk-v4",
+            "homepage": "https://github.com/facebook/php-graph-sdk",
             "keywords": [
                 "facebook",
                 "sdk"
             ],
-            "time": "2016-08-09 11:32:26"
+            "time": "2016-10-12 18:53:27"
         },
         {
             "name": "incenteev/composer-parameter-handler",
