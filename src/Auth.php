@@ -7,7 +7,7 @@ use Facebook\Exceptions\FacebookSDKException;
 use Facebook\Exceptions\FacebookResponseException;
 
 /**
- * Class Auth
+ * Class Auth.
  */
 class Auth
 {
@@ -82,7 +82,7 @@ class Auth
     /**
      * Set default Facebook access token.
      *
-     * @param $token
+     * @param string $token
      */
     public function setToken($token)
     {
