@@ -115,10 +115,12 @@ class GenerateCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $fromDate = $input->getOption('from').' 00:00:00';
-        $toDate = $input->getOption('to').' 23:59:59';
-
+        $fromDate = \DateTime::createFromFormat('Y-m-d H:i:s', $input->getOption('from').' 00:00:00');
+        $fromDate->setTimezone(new \DateTimeZone('UTC'));
         $this->config->setParameter('start_datetime', $fromDate);
+
+        $toDate = \DateTime::createFromFormat('Y-m-d H:i:s', $input->getOption('to').' 00:00:00');
+        $toDate->setTimezone(new \DateTimeZone('UTC'));
         $this->config->setParameter('end_datetime', $toDate);
 
         $progress = new ProgressBar($output, 40);
@@ -153,7 +155,7 @@ class GenerateCommand extends Command
             $helper->ask($input, $output, $question);
         }
 
-        $output->writeln('Generating report from '.$this->config->getParameter('start_datetime')->format('Y-m-d H:i:s').' to '.$this->config->getParameter('end_datetime')->format('Y-m-d H:i:s')."\n");
+        $output->writeln('Generating report from '.$this->config->getParameter('start_datetime')->format('c').' to '.$this->config->getParameter('end_datetime')->format('c')."\n");
         $progress->start();
         $progress->setMessage('Setting up Facebook service...');
         $progress->advance();
@@ -171,9 +173,15 @@ class GenerateCommand extends Command
             $progress->finish();
             $output->writeln("\n");
 
+            $start = $this->config->getParameter('start_datetime');
+            $start->setTimezone(new \DateTimeZone(date_default_timezone_get()));
+
+            $end = $this->config->getParameter('end_datetime');
+            $end->setTimezone(new \DateTimeZone(date_default_timezone_get()));
+
             $output->writeln($this->template->render([
-                'start_date' => $this->config->getParameter('start_datetime')->format('Y-m-d'),
-                'end_date' => $this->config->getParameter('end_datetime')->format('Y-m-d'),
+                'start_date' => $start->format('Y-m-d'),
+                'end_date' => $end->format('Y-m-d'),
                 'new_users_count' => $fetcher->getNewUsersCount(),
                 'top_users_count' => $this->config->getParameter('top_users_count'),
                 'top_users' => $users->getTopUsers($this->config->getParameter('top_users_count'), $this->config->getParameter('ignored_users')),

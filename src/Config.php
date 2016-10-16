@@ -67,11 +67,6 @@ class Config
      */
     public function setParameter($key, $value)
     {
-        // set DateTime
-        if (is_string($value) && false !== \DateTime::createFromFormat('Y-m-d H:i:s', $value)) {
-            $this->values['parameters'][$key] = \DateTime::createFromFormat('Y-m-d H:i:s', $value);
-        } else {
-            $this->values['parameters'][$key] = $value;
-        }
+        $this->values['parameters'][$key] = $value;
     }
 }

@@ -14,8 +14,12 @@ All notable changes to this project will be documented in this file. This projec
 * Points calculation are now also based on code in the message
 * More unit tests
 * Report date range set via command options
+* Translations for multiple languages
 * ...
 
+### Fixed
+
+* Timezones now works correctly for current user and the Graph API's UTC format.
 
 ## [0.6.0] - 2016-09-05
 
