@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e1114158c200ab874e664854a48da7eb",
-    "content-hash": "ef27a078813edb072951720ff6c99330",
+    "hash": "01d49c061fd709072e79f5897b9ef501",
+    "content-hash": "d6a2585fe1267a1dedd74953c38b6b09",
     "packages": [
         {
             "name": "crey/conjurer",
@@ -45,16 +45,16 @@
         },
         {
             "name": "facebook/graph-sdk",
-            "version": "5.4.0",
+            "version": "5.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facebook/php-graph-sdk.git",
-                "reference": "c69c3c0bb304ec1fe9400b4bc47ab641c9002eee"
+                "reference": "a5a6b6cc493d8dc417f588c7c0bdfc6396198350"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facebook/php-graph-sdk/zipball/c69c3c0bb304ec1fe9400b4bc47ab641c9002eee",
-                "reference": "c69c3c0bb304ec1fe9400b4bc47ab641c9002eee",
+                "url": "https://api.github.com/repos/facebook/php-graph-sdk/zipball/a5a6b6cc493d8dc417f588c7c0bdfc6396198350",
+                "reference": "a5a6b6cc493d8dc417f588c7c0bdfc6396198350",
                 "shasum": ""
             },
             "require": {
@@ -98,7 +98,7 @@
                 "facebook",
                 "sdk"
             ],
-            "time": "2016-10-12 18:53:27"
+            "time": "2016-10-18 19:19:03"
         },
         {
             "name": "incenteev/composer-parameter-handler",

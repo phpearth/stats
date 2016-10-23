@@ -11,19 +11,19 @@
     "license": "MIT",
     "require": {
         "php": ">=7.0.0",
-        "facebook/graph-sdk": "^5.3",
+        "facebook/graph-sdk": "^5.4",
         "symfony/yaml": "^3.1",
         "symfony/console": "^3.1",
-        "twig/twig": "^1.24",
-        "monolog/monolog": "^1.20",
+        "twig/twig": "^1.26",
+        "monolog/monolog": "^1.21",
         "crey/conjurer": "dev-master#95f53a466db9072b35a18376a33abd5b9bb59afe",
         "symfony/expression-language": "^3.1",
-        "incenteev/composer-parameter-handler": "~2.0",
+        "incenteev/composer-parameter-handler": "~2.1",
         "symfony/translation": "^3.1"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.6",
-        "mikey179/vfsStream": "^1"
+        "mikey179/vfsStream": "^1.6"
     },
     "autoload": {
         "psr-4": {"PHPWorldWide\\Stats\\": "src/"}
