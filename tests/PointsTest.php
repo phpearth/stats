@@ -133,7 +133,7 @@ class PointsTest extends TestCase
     {
         return [
             ['http://wwwphp-fb.github.io', 20],
-            ['Lorem ipsum dolor stackoverflow.com sit amet.', 5],
+            ['Lorem ipsum dolor stackoverflow.com sit amet.', 10],
             ['http://wwwphp-fb.github.io and php.net', 20],
             ['http://lmgtfy.com', -10],
             ['http://lmgtfy.com http://wwwphp-fb.github.io', 10],
