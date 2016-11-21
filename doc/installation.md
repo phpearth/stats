@@ -65,3 +65,13 @@ select the application created in step 1.
 The only permission required for the application to work is the `user_managed_groups`.
 
 ![Permissions](images/permissions.png)
+
+
+## Docker
+
+If you use Docker you can run this application with the [PHP Docker image]():
+
+```bash
+docker run --rm -it -v "$(which composer)":/usr/bin/composer -v "$(pwd)":/usr/src/stats -w /usr/src/stats php:7.0-cli composer install
+docker run --rm -it --name stats -v "$(pwd)":/usr/src/stats -w /usr/src/stats php:7.0-cli bin/stats generate
+```
