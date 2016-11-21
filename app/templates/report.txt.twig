@@ -7,14 +7,14 @@ Hello, here are weekly group stats from {{ start_date }} to {{ end_date }}:
 - {{ user.getName()|raw }} ({{ user.getPointsCount() }} points{% if user.getTopicsCount() == 1 %}, 1 topic{% elseif user.getTopicsCount() > 1 %}, {{ user.getTopicsCount() }} topics{% endif %}, {{ user.getCommentsCount() }} comments)
 {% endfor %}
 
-○ {{ topics|length }} topics, {{ new_comments_count }} comments and {{ new_replies_count }} replies were created by {{ active_users_count }} active members this week.
+○ {{ topics|length }} topics, {{ new_comments_count }} comments, and {{ new_replies_count }} replies were created by {{ active_users_count }} active members this week.
 
 ○ {{ topics.getClosedTopicsCount() }} topics were closed.
 
 ○ {{ banned_count }} users were banned for not following the group Code of Conduct:
 https://wwphp-fb.github.io/code-of-conduct/
 
-○ {{ commits_count }} new commits to our GitHub repos:
+○ {{ commits_count }} new commits to group GitHub repositories:
 git.io/vqLvG
 
 {% if topics.getTopTopic() %}
