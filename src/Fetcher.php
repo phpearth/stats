@@ -70,7 +70,8 @@ class Fetcher
         try {
             $pagesCount = 0;
             $startDate = $this->config->getParameter('start_datetime');
-            $response = $this->fb->get('/'.$this->config->getParameter('group_id').'/feed?fields=comments.limit(200).summary(1){like_count,comment_count,from,created_time,message,can_comment,comments.limit(200).summary(1){like_count,comment_count,from,created_time,message}},reactions.limit(0).summary(1),from,created_time,updated_time,message,type,attachments{type}&include_hidden=true&limit=50&since='.$startDate->getTimestamp());
+            $endDate = $this->config->getParameter('end_datetime');
+            $response = $this->fb->get('/'.$this->config->getParameter('group_id').'/feed?fields=comments.limit(200).summary(1){like_count,comment_count,from,created_time,message,can_comment,comments.limit(200).summary(1){like_count,comment_count,from,created_time,message}},reactions.limit(0).summary(1),from,created_time,updated_time,message,type,attachments{type}&include_hidden=true&limit=50&since='.$startDate->getTimestamp().'&until='.$endDate->getTimestamp());
 
             $feedEdge = $response->getGraphEdge();
 
