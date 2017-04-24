@@ -102,7 +102,7 @@ class GenerateCommand extends Command
                     't',
                     InputOption::VALUE_REQUIRED,
                     'End date of the generated stats report ('.date('Y-m-d', strtotime('last monday +7 days')).')',
-                    date('Y-m-d', strtotime('last monday +6 days'))
+                    date('Y-m-d', strtotime('last monday +7 days'))
                 )
             ;
         } catch (\Exception $e) {
@@ -192,6 +192,7 @@ class GenerateCommand extends Command
                 'banned_count' => $this->config->getParameter('new_blocked_count') - $this->config->getParameter('last_blocked_count'),
                 'commits_count' => 3,
                 'top_topics' => $this->config->getParameter('top_topics'),
+                'group_id' => $this->config->getParameter('group_id'),
             ]));
         } catch (\Exception $e) {
             $output->writeln($e->getMessage());
