@@ -1,10 +1,10 @@
 # Stats Generator for Facebook Groups
 
-[![Latest Version](https://img.shields.io/github/release/wwphp-fb/stats.svg?style=flat-square)](https://github.com/wwphp-fb/stats/releases)
-[![Build Status](https://img.shields.io/travis/wwphp-fb/stats/master.svg?style=flat-square)](https://travis-ci.org/wwphp-fb/stats)
+[![Latest Version](https://img.shields.io/github/release/php-earth/stats.svg?style=flat-square)](https://github.com/php-earth/stats/releases)
+[![Build Status](https://img.shields.io/travis/php-earth/stats/master.svg?style=flat-square)](https://travis-ci.org/php-earth/stats)
 [![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
-[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/wwphp-fb/stats.svg?style=flat-square)](https://scrutinizer-ci.com/g/wwphp-fb/stats/code-structure)
-[![Quality Score](https://img.shields.io/scrutinizer/g/wwphp-fb/stats.svg?style=flat-square)](https://scrutinizer-ci.com/g/wwphp-fb/stats)
+[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/php-earth/stats.svg?style=flat-square)](https://scrutinizer-ci.com/g/php-earth/stats/code-structure)
+[![Quality Score](https://img.shields.io/scrutinizer/g/php-earth/stats.svg?style=flat-square)](https://scrutinizer-ci.com/g/php-earth/stats)
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/c317a2f5-1fbe-4d76-a93c-8f0d98e61ef6/big.png)](https://insight.sensiolabs.com/projects/c317a2f5-1fbe-4d76-a93c-8f0d98e61ef6)
 
@@ -29,7 +29,7 @@ Read the following chapters for using this application locally:
 2. Install with Composer
 
     ```bash
-    git clone git://github.com/wwphp-fb/stats
+    git clone git://github.com/php-earth/stats
     cd stats
     composer install
     ```

@@ -1,12 +1,12 @@
 {
-    "name": "wwphp/stats",
+    "name": "phpearth/stats",
     "description": "Statistics generator for Facebook groups",
     "keywords": [
         "facebook",
         "statistics",
         "groups"
     ],
-    "homepage": "https://github.com/wwphp-fb/stats",
+    "homepage": "https://github.com/php-earth/stats",
     "type": "project",
     "license": "MIT",
     "require": {
@@ -38,7 +38,7 @@
         },
         {
             "name": "Contributors",
-            "homepage": "https://github.com/wwphp-fb/stats/graphs/contributors"
+            "homepage": "https://github.com/php-earth/stats/graphs/contributors"
         }
     ],
     "repositories": [

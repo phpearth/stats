@@ -1,7 +1,7 @@
 # Contribution Guidelines
 
 You are most welcome to suggest improvements, send pull requests or open an
-[issue](https://github.com/wwphp-fb/stats/issues)
+[issue](https://github.com/php-earth/stats/issues)
 
 * Fork this repository over GitHub
 * Set up your local repository
@@ -9,7 +9,7 @@ You are most welcome to suggest improvements, send pull requests or open an
   ```bash
 git clone git@github.com:your_username/stats
 cd stats
-git remote add upstream git://github.com/wwphp-fb/stats
+git remote add upstream git://github.com/php-earth/stats
 git config branch.master.remote upstream
 ```
 
@@ -88,8 +88,8 @@ phpunit
 ```
 
     Before releasing new version, check status on
-    [Scrutinizer](https://scrutinizer-ci.com/g/wwphp-fb/stats/),
-    [Travis CI](https://travis-ci.org/wwphp-fb/stats) and
+    [Scrutinizer](https://scrutinizer-ci.com/g/php-earth/stats/),
+    [Travis CI](https://travis-ci.org/php-earth/stats) and
     [SensioLabsInsight](https://insight.sensiolabs.com/projects/c317a2f5-1fbe-4d76-a93c-8f0d98e61ef6)
 
 * **2. Update Changelog:**
@@ -99,7 +99,7 @@ phpunit
 
 * **3. Tag New Release:**
 
-    Tag a new version on [GitHub](https://github.com/wwphp-fb/stats/releases)
+    Tag a new version on [GitHub](https://github.com/php-earth/stats/releases)
     with description of notable changes.
 
 * **4. Update version** in `app/bootstrap.php`.

@@ -22,7 +22,7 @@ For this script to work, the default settings will do:
 Install the code with [Composer](https://getcomposer.org/):
 
 ```bash
-git clone git://github.com/wwphp-fb/stats
+git clone git://github.com/php-earth/stats
 cd stats
 composer install
 ```
