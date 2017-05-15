@@ -1,5 +1,5 @@
 {
-    "name": "phpearth/stats",
+    "name": "php-earth/stats",
     "description": "Statistics generator for Facebook groups",
     "keywords": [
         "facebook",
@@ -10,19 +10,19 @@
     "type": "project",
     "license": "MIT",
     "require": {
-        "php": ">=7.0.0",
-        "facebook/graph-sdk": "^5.4",
+        "php": ">=7.1.0",
+        "facebook/graph-sdk": "^5.5",
         "symfony/yaml": "^3.2",
         "symfony/console": "^3.2",
-        "twig/twig": "^1.26",
-        "monolog/monolog": "^1.21",
         "crey/conjurer": "dev-master#95f53a466db9072b35a18376a33abd5b9bb59afe",
         "symfony/expression-language": "^3.2",
-        "incenteev/composer-parameter-handler": "~2.1",
-        "symfony/translation": "^3.2"
+        "incenteev/composer-parameter-handler": "^2.1",
+        "symfony/translation": "^3.2",
+        "twig/twig": "^2.3",
+        "monolog/monolog": "^1.22"
     },
     "require-dev": {
-        "phpunit/phpunit": "^5.7",
+        "phpunit/phpunit": "^6.1",
         "mikey179/vfsStream": "^1.6"
     },
     "autoload": {
@@ -33,11 +33,7 @@
     },
     "authors": [
         {
-            "name": "Peter Kokot",
-            "email": "peterkokot@gmail.com"
-        },
-        {
-            "name": "Contributors",
+            "name": "PHP.earth Contributors",
             "homepage": "https://github.com/php-earth/stats/graphs/contributors"
         }
     ],

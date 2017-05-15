@@ -132,11 +132,11 @@ class PointsTest extends TestCase
     public function linksProvider()
     {
         return [
-            ['http://wwwphp-fb.github.io', 20],
+            ['http://php.earth', 20],
             ['Lorem ipsum dolor stackoverflow.com sit amet.', 10],
-            ['http://wwwphp-fb.github.io and php.net', 20],
+            ['http://php.earth and php.net', 20],
             ['http://lmgtfy.com', -10],
-            ['http://lmgtfy.com http://wwwphp-fb.github.io', 10],
+            ['http://lmgtfy.com http://php.earth', 10],
         ];
     }
 

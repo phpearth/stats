@@ -32,7 +32,7 @@ points:
         - ['github.com', 10]
         - ['github.io', 10]
         - ['php.net', 20]
-        - ['wwphp-fb.github.io', 20]
+        - ['php.earth', 20]
         - ['packagist.org', 10]
         - ['getcomposer.org', 10]
         - ['phptherightway.com', 10]
