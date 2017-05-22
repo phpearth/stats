@@ -4,10 +4,11 @@ All notable changes to this project will be documented in this file. This projec
 [keeps a CHANGELOG](http://keepachangelog.com/) and adheres to
 [Semantic Versioning](http://semver.org/).
 
+## [UNREALEASED] 2017-01-01
 
-## [UNREALEASED] 2016-
+* ...
 
-### Added
+## [0.7.0] - 2017-05-22
 
 * Parameters configuration generated when installing dependencies with Composer
 * Documentation
@@ -16,15 +17,11 @@ All notable changes to this project will be documented in this file. This projec
 * Report date range set via command options
 * Translations for multiple languages
 * Symfony Dependency Injection
-* ...
-
-### Fixed
-
 * Timezones now works correctly for current user and the Graph API's UTC format.
+* Most shared topic
+* Comments have reactions instead of likes
 
 ## [0.6.0] - 2016-09-05
-
-### Added
 
 * Project update
 * Template updates
@@ -32,17 +29,11 @@ All notable changes to this project will be documented in this file. This projec
 * Access token removed from configuration
 * ROT13 for offensive words
 
-
 ## [0.5.0] - 2016-06-06
-
-### Added
 
 * Better points calculation for more explanatory comments and replies.
 
-
 ## [0.4.0] - 2016-05-23
-
-### Added
 
 * Points calculation for images and animated images shares.
 * More detailed configuration descriptions and FAQ.
@@ -51,20 +42,14 @@ All notable changes to this project will be documented in this file. This projec
 * Points calculation improvements.
 * Bonus points for topics from group staff.
 
-
 ## [0.3.0] - 2016-05-16
-
-### Added
 
 * Dependency injection container
 * Configuration overriding
 * Offensive speech detection
 * Comments merging
 
-
 ## [0.2.0] - 2016-05-09
-
-### Added
 
 * Coding style fixed
 * Twig template engine
@@ -73,7 +58,5 @@ All notable changes to this project will be documented in this file. This projec
 * URLs with additional points
 
 ## [0.1.0] - 2016-05-02
-
-### Added
 
 * Initial repository structure

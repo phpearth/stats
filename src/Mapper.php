@@ -95,24 +95,19 @@ class Mapper
     {
         $startDate = $this->config->getParameter('start_datetime');
         $endDate = $this->config->getParameter('end_datetime');
-
         foreach ($feed as $topic) {
-            if ($topic['created_time'] >= $startDate && $topic['created_time'] <= $endDate) {
+            if ($topic->getField('created_time') >= $startDate && $topic->getField('created_time') <= $endDate) {
                 $this->mapTopic($topic);
             }
 
-            if (isset($topic['comments'])) {
-                foreach ($topic['comments'] as $comment) {
-                    if ($comment['created_time'] >= $startDate && $comment['created_time'] <= $endDate) {
-                        $this->mapComment($comment);
-                    }
+            foreach($topic->getField('comments', []) as $i => $comment) {
+                if ($comment->getField('created_time') >= $startDate && $comment->getField('created_time') <= $endDate) {
+                    $this->mapComment($comment);
+                }
 
-                    if (isset($comment['comments'])) {
-                        foreach ($comment['comments'] as $reply) {
-                            if ($reply['created_time'] >= $startDate && $reply['created_time'] <= $endDate) {
-                                $this->mapReply($reply);
-                            }
-                        }
+                foreach($comment->getField('comments', []) as $j=>$reply) {
+                    if ($reply->getField('created_time') >= $startDate && $reply->getField('created_time') <= $endDate) {
+                        $this->mapReply($reply);
                     }
                 }
             }
@@ -122,112 +117,115 @@ class Mapper
     /**
      * Maps topic data from API feed to Topic object.
      *
-     * @param array $topic
+     * @param array $data
      *
      * @return Topic
      *
      * @throws \Exception
      */
-    private function mapTopic($topic)
+    private function mapTopic($data)
     {
-        $newTopic = new Topic();
-        $commentsCount = $topic['commentsCount'];
-        if (array_key_exists('comments', $topic)) {
-            foreach ($topic['comments'] as $comment) {
-                if (isset($comment['comment_count'])) {
-                    $commentsCount += $comment['comment_count'];
-                }
-            }
+        $topic = new Topic();
+
+        // Count comments and replies
+        $commentsCount = $data->getField('comments')->getMetaData()['summary']['total_count'];
+        foreach ($data->getField('comments', []) as $comment) {
+            $commentsCount += $comment->getField('comment_count', 0);
         }
-        $newTopic->setCommentsCount($commentsCount);
-        $newTopic->setId($topic['id']);
-        $newTopic->setCreatedTime($topic['created_time']);
-        if (array_key_exists('message', $topic)) {
-            $newTopic->setMessage($topic['message']);
-        }
-        $newTopic->setReactionsCount($topic['reactionsCount']);
-        $newTopic->setCanComment($topic['canComment']);
-        $newTopic->setType($topic['type']);
-        if ($newTopic->getType() == 'link' && isset($topic['attachments'][0]['type']) && $topic['attachments'][0]['type'] == 'animated_image_share') {
-            $newTopic->setType('animated_image_share');
+        $topic->setCommentsCount($commentsCount);
+
+        $topic->setId($data->getField('id'));
+        $topic->setCreatedTime($data->getField('created_time'));
+        $topic->setMessage($data->getField('message'));
+
+        $topic->setReactionsCount($data->getField('reactions')->getMetaData()['summary']['total_count']);
+        $topic->setCanComment($data->getField('comments')->getMetaData()['summary']['can_comment']);
+        $topic->setType($data->getField('type'));
+
+        $dataArray = $data->asArray();
+
+        if ($topic->getType() == 'link' && isset($dataArray['attachments'][0]['type']) && $dataArray['attachments'][0]['type'] == 'animated_image_share') {
+            $topic->setType('animated_image_share');
         }
 
-        if (array_key_exists('from', $topic)) {
-            $user = $this->mapUser($topic['from']);
-            $user->addTopic($newTopic);
-            $newTopic->setUser($user);
+        if (array_key_exists('from', $dataArray)) {
+            $user = $this->mapUser($dataArray['from']);
+            $user->addTopic($topic);
+            $topic->setUser($user);
         }
 
-        if (array_key_exists('shares', $topic)) {
-            $newTopic->setSharesCount($topic['shares']['count']);
+        if (array_key_exists('shares', $dataArray)) {
+            $topic->setSharesCount($dataArray['shares']['count']);
         }
 
         // Add topic to collection
-        $this->topics->add($newTopic, $newTopic->getId());
+        $this->topics->add($topic, $topic->getId());
 
         // Log topic
-        $log = $newTopic->getId()."\t";
-        $log .= ' Reactions: '.$newTopic->getReactionsCount()."\t";
-        $log .= ' Comments: '.$newTopic->getCommentsCount()."\n";
+        $log = $topic->getId()."\t";
+        $log .= ' Reactions: '.$topic->getReactionsCount()."\t";
+        $log .= ' Comments: '.$topic->getCommentsCount()."\n";
         $this->log->logTopic($log);
 
-        return $newTopic;
+        return $topic;
     }
 
     /**
      * Maps comment data from API feed to Comment object.
      *
-     * @param array $comment
+     * @param array $data
      *
      * @return Comment
      *
      * @throws \Exception
      */
-    private function mapComment($comment)
+    private function mapComment($data)
     {
-        $newComment = new Comment();
-        $newComment->setId($comment['id']);
-        $newComment->setMessage($comment['message']);
-        $newComment->setLikesCount($comment['like_count']);
+        $comment = new Comment();
+        $comment->setId($data->getField('id'));
+        $comment->setMessage($data->getField('message'));
+        $comment->setReactionsCount($data->getField('reactions')->getMetaData()['summary']['total_count']);
 
-        if (array_key_exists('from', $comment)) {
-            $user = $this->mapUser($comment['from']);
-            $user->addComment($newComment);
+        $dataArray = $data->asArray();
+        if (array_key_exists('from', $dataArray)) {
+            $user = $this->mapUser($dataArray['from']);
+            $user->addComment($comment);
 
-            $newComment->setUser($user);
+            $comment->setUser($user);
         }
 
-        $this->comments->add($newComment, $newComment->getId());
+        $this->comments->add($comment, $comment->getId());
 
-        return $newComment;
+        return $comment;
     }
 
     /**
      * Map reply data from API feed to Reply object.
      *
-     * @param array $reply
+     * @param array $data
      *
      * @return Reply
      *
      * @throws \Exception
      */
-    private function mapReply($reply)
+    private function mapReply($data)
     {
-        $newReply = new Reply();
-        $newReply->setId($reply['id']);
-        $newReply->setMessage($reply['message']);
-        $newReply->setLikesCount($reply['like_count']);
+        $reply = new Reply();
+        $reply->setId($data->getField('id'));
+        $reply->setMessage($data->getField('message'));
+        $reply->setReactionsCount($data->getField('reactions')->getMetaData()['summary']['total_count']);
 
-        if (array_key_exists('from', $reply)) {
-            $user = $this->mapUser($reply['from']);
-            $user->addReply($newReply);
+        $dataArray = $data->asArray();
+        if (array_key_exists('from', $dataArray)) {
+            $user = $this->mapUser($dataArray['from']);
+            $user->addReply($reply);
 
-            $newReply->setUser($user);
+            $reply->setUser($user);
         }
 
-        $this->replies->add($newReply, $newReply->getId());
+        $this->replies->add($reply, $reply->getId());
 
-        return $newReply;
+        return $reply;
     }
 
     /**

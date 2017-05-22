@@ -26,7 +26,7 @@ class Comment
     /**
      * @var int
      */
-    private $likesCount = 0;
+    private $reactionsCount = 0;
 
     /**
      * @var string|null
@@ -45,7 +45,7 @@ class Comment
 
     /**
      * Get comment id.
-     * 
+     *
      * @return int
      */
     public function getId()
@@ -94,26 +94,6 @@ class Comment
     }
 
     /**
-     * Set number of comment's likes.
-     *
-     * @param int $likesCount
-     */
-    public function setLikesCount($likesCount)
-    {
-        $this->likesCount = $likesCount;
-    }
-
-    /**
-     * Get number of comment's likes.
-     *
-     * @return int
-     */
-    public function getLikesCount()
-    {
-        return $this->likesCount;
-    }
-
-    /**
      * Set comment message
      *
      * @param string $message
@@ -131,5 +111,25 @@ class Comment
     public function getMessage()
     {
         return $this->message;
+    }
+
+    /**
+     * Set number of comment's reactions.
+     *
+     * @param int $reactionsCount
+     */
+    public function setReactionsCount($reactionsCount)
+    {
+        $this->reactionsCount = $reactionsCount;
+    }
+
+    /**
+     * Get number of comment's reactions.
+     *
+     * @return int
+     */
+    public function getReactionsCount()
+    {
+        return $this->reactionsCount;
     }
 }

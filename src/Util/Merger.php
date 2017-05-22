@@ -32,7 +32,7 @@ class Merger
             if ($item->getUser()->getId() == $userId) {
                 if (isset($items[$i-1]) && $items[$i-1]->getUser()->getId() == $userId) {
                     $item->setMessage($items[$i-1]->getMessage().$item->getMessage());
-                    $item->setLikesCount(max($item->getLikesCount(), $items[$i-1]->getLikesCount()));
+                    $item->setReactionsCount(max($item->getReactionsCount(), $items[$i-1]->getReactionsCount()));
                     unset($mergedItems[$i-1]);
                 }
                 $mergedItems[$i] = $item;

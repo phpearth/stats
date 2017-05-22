@@ -16,8 +16,8 @@ points:
     # Points for reactions on topic
     topic_reactions: '(topic.getReactionsCount() >= 100) ? 15 : ceil(topic.getReactionsCount() / 10)'
 
-    # Points for number of likes on comment or reply
-    likes: '(likes > 100) ? 11 : ceil(likes / 10)'
+    # Points for number of reactions on comment or reply
+    comment_reactions: '(comment.getReactionsCount() > 100) ? 15 : ceil(comment.getReactionsCount() / 10)'
 
     # Points for topics with only image or animated image (such as bumped images from
     # album topics and images without much description).
@@ -33,6 +33,7 @@ points:
         - ['github.io', 10]
         - ['php.net', 20]
         - ['php.earth', 20]
+        - ['wwphp-fb.github.io', 20]
         - ['packagist.org', 10]
         - ['getcomposer.org', 10]
         - ['phptherightway.com', 10]

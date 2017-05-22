@@ -31,7 +31,7 @@ class Reply
     /**
      * @var int
      */
-    private $likesCount = 0;
+    private $reactionsCount = 0;
 
     /**
      * @var string|null
@@ -119,25 +119,6 @@ class Reply
     }
 
     /**
-     * Set number of reply's likes.
-     *
-     * @param int $likesCount
-     */
-    public function setLikesCount($likesCount)
-    {
-        $this->likesCount = $likesCount;
-    }
-
-    /**
-     * Get number of reply's likes
-     * @return int
-     */
-    public function getLikesCount()
-    {
-        return $this->likesCount;
-    }
-
-    /**
      * Set reply message
      *
      * @param string $message
@@ -155,5 +136,25 @@ class Reply
     public function getMessage()
     {
         return $this->message;
+    }
+
+    /**
+     * Set number of reply's reactions.
+     *
+     * @param int $reactionsCount
+     */
+    public function setReactionsCount($reactionsCount)
+    {
+        $this->reactionsCount = $reactionsCount;
+    }
+
+    /**
+     * Get number of reply's reactions.
+     *
+     * @return int
+     */
+    public function getReactionsCount()
+    {
+        return $this->reactionsCount;
     }
 }

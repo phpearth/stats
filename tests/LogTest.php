@@ -25,7 +25,7 @@ class LogTest extends TestCase
     public function testLogTopic()
     {
         for ($i = 0; $i < 500; $i++) {
-            $this->log->logTopic('2204685680_0000481525895681	 Likes: 83	 Comments: 3');
+            $this->log->logTopic('2204685680_0000481525895681	 Reactions: 83	 Comments: 3');
         }
         $this->assertTrue($this->root->hasChild($this->log->getTimestamp().'/topics.log'));
     }

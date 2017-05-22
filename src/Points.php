@@ -124,7 +124,7 @@ class Points
     public function addPointsForComment(Comment $comment)
     {
         $points = $this->points['comment'];
-        $points += $this->getPointsForLikes($comment->getLikesCount());
+        $points += $this->language->evaluate($this->points['comment_reactions'], ['comment' => $comment]);
         $points += $this->getPointsForMessageLength($comment->getMessage());
 
         // Add points for using recommended links
@@ -149,7 +149,7 @@ class Points
     public function addPointsForReply(Reply $reply)
     {
         $points = $this->points['reply'];
-        $points += $this->getPointsForLikes($reply->getLikesCount());
+        $points += $this->language->evaluate($this->points['comment_reactions'], ['comment' => $reply]);
         $points += $this->getPointsForMessageLength($reply->getMessage());
 
         // Add points for using recommended links
@@ -219,17 +219,5 @@ class Points
     private function getPointsForMessageLength($message)
     {
         return $this->language->evaluate($this->points['message_length'], ['message' => $message]);
-    }
-
-    /**
-     * Get points based on number of likes.
-     *
-     * @param $likes
-     *
-     * @return int
-     */
-    private function getPointsForLikes($likes)
-    {
-        return $this->language->evaluate($this->points['likes'], ['likes' => $likes]);
     }
 }

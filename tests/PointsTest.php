@@ -60,24 +60,24 @@ class PointsTest extends TestCase
     /**
      * @dataProvider commentsAndRepliesProvider
      */
-    public function testAddPointsForComment($message, $likes, $expectedPoints)
+    public function testAddPointsForComment($message, $reactions, $expectedPoints)
     {
         $comment = new Comment();
         $comment->setId(1);
         $comment->setMessage($message);
-        $comment->setLikesCount($likes);
+        $comment->setReactionsCount($reactions);
         $this->assertEquals($expectedPoints, $this->points->addPointsForComment($comment));
     }
 
     /**
      * @dataProvider commentsAndRepliesProvider
      */
-    public function testAddPointsForReply($message, $likes, $expectedPoints)
+    public function testAddPointsForReply($message, $reactions, $expectedPoints)
     {
         $reply = new Reply();
         $reply->setId(1);
         $reply->setMessage($message);
-        $reply->setLikesCount($likes);
+        $reply->setReactionsCount($reactions);
         $this->assertEquals($expectedPoints, $this->points->addPointsForReply($reply));
     }
 

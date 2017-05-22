@@ -71,7 +71,7 @@ class Fetcher
             $pagesCount = 0;
             $startDate = $this->config->getParameter('start_datetime');
             $endDate = $this->config->getParameter('end_datetime');
-            $response = $this->fb->get('/'.$this->config->getParameter('group_id').'/feed?fields=comments.limit(200).summary(1){like_count,comment_count,from,created_time,message,can_comment,comments.limit(200).summary(1){like_count,comment_count,from,created_time,message}},reactions.limit(0).summary(1),from,created_time,updated_time,message,type,attachments{type},shares&include_hidden=true&limit=50&since='.$startDate->getTimestamp().'&until='.$endDate->getTimestamp());
+            $response = $this->fb->get('/'.$this->config->getParameter('group_id').'/feed?fields=comments.limit(200).summary(1){comment_count,from,created_time,message,can_comment,reactions.limit(0).summary(1),comments.limit(200).summary(1){comment_count,from,created_time,message,reactions.limit(0).summary(1)}},reactions.limit(0).summary(1),from,created_time,updated_time,message,type,attachments{type},shares&include_hidden=true&limit=50&since='.$startDate->getTimestamp().'&until='.$endDate->getTimestamp());
 
             $feedEdge = $response->getGraphEdge();
 
@@ -80,13 +80,8 @@ class Fetcher
                     ++$pagesCount;
                     $this->progress->setMessage('Fetching feed from API page '.$pagesCount.' and with the topic updated '.$feedEdge[0]->getField('updated_time')->format('Y-m-d H:i:s'));
                     $this->progress->advance();
-
                     foreach ($feedEdge as $topic) {
-                        $topicArray = $topic->asArray();
-                        $topicArray['commentsCount'] = $topic->getField('comments')->getMetaData()['summary']['total_count'];
-                        $topicArray['reactionsCount'] = $topic->getField('reactions')->getMetaData()['summary']['total_count'];
-                        $topicArray['canComment'] = $topic->getField('comments')->getMetaData()['summary']['can_comment'];
-                        $this->feed[] = $topicArray;
+                        $this->feed[] = $topic;
                     }
                 } while ($feedEdge = $this->fb->next($feedEdge));
             }
