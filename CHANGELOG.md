@@ -15,6 +15,7 @@ All notable changes to this project will be documented in this file. This projec
 * More unit tests
 * Report date range set via command options
 * Translations for multiple languages
+* Symfony Dependency Injection
 * ...
 
 ### Fixed

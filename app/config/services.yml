@@ -1,0 +1,24 @@
+services:
+  log:
+    class: PHPWorldWide\Stats\Log
+  auth:
+    class: PHPWorldWide\Stats\Auth
+    arguments: ['@config']
+  twig_environment:
+    class: Twig_Environment
+    arguments: ['@twig_loader_filesystem']
+  generate_command:
+    class: PHPWorldWide\Stats\Command\GenerateCommand
+    calls:
+      - [setConfig, ['@config']]
+      - [setTemplate, ['@twig_environment']]
+      - [setAuth, ['@auth']]
+      - [setLog, ['@log']]
+  clear_logs_command:
+    class: PHPWorldWide\Stats\Command\ClearLogsCommand
+    calls:
+      - [setLog, ['@log']]
+  offensive_words_command:
+    class: PHPWorldWide\Stats\Command\OffensiveWordsCommand
+    calls:
+      - [setOffensiveWords, ["@=service('config').get('offensive_words')"]]
