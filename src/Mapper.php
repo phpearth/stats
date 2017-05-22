@@ -1,15 +1,15 @@
 <?php
 
-namespace PHPWorldWide\Stats;
+namespace PhpEarth\Stats;
 
-use PHPWorldWide\Stats\Collection\CommentCollection;
-use PHPWorldWide\Stats\Collection\ReplyCollection;
-use PHPWorldWide\Stats\Collection\TopicCollection;
-use PHPWorldWide\Stats\Collection\UserCollection;
-use PHPWorldWide\Stats\Model\Comment;
-use PHPWorldWide\Stats\Model\Reply;
-use PHPWorldWide\Stats\Model\Topic;
-use PHPWorldWide\Stats\Model\User;
+use PhpEarth\Stats\Collection\CommentCollection;
+use PhpEarth\Stats\Collection\ReplyCollection;
+use PhpEarth\Stats\Collection\TopicCollection;
+use PhpEarth\Stats\Collection\UserCollection;
+use PhpEarth\Stats\Model\Comment;
+use PhpEarth\Stats\Model\Reply;
+use PhpEarth\Stats\Model\Topic;
+use PhpEarth\Stats\Model\User;
 
 /**
  * Class Mapper

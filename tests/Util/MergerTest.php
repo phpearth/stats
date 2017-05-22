@@ -1,14 +1,14 @@
 <?php
 
-namespace PHPWorldWide\Stats\Tests;
+namespace PhpEarth\Stats\Tests;
 
 use PHPUnit\Framework\TestCase;
-use PHPWorldWide\Stats\Collection\CommentCollection;
-use PHPWorldWide\Stats\Collection\ReplyCollection;
-use PHPWorldWide\Stats\Config;
-use PHPWorldWide\Stats\Model\Comment;
-use PHPWorldWide\Stats\Model\User;
-use PHPWorldWide\Stats\Points;
+use PhpEarth\Stats\Collection\CommentCollection;
+use PhpEarth\Stats\Collection\ReplyCollection;
+use PhpEarth\Stats\Config;
+use PhpEarth\Stats\Model\Comment;
+use PhpEarth\Stats\Model\User;
+use PhpEarth\Stats\Points;
 
 class MergerTest extends TestCase
 {

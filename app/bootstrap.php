@@ -10,7 +10,7 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 $container = new ContainerBuilder();
 
 $container
-    ->register('config', 'PHPWorldWide\Stats\Config')
+    ->register('config', 'PhpEarth\Stats\Config')
     ->addArgument([
         __DIR__.'/../app/config/parameters.yml',
         __DIR__.'/../app/config/points.yml',
@@ -26,7 +26,7 @@ $container
 $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/config'));
 $loader->load('services.yml');
 
-$application = new Application('FB Groups Stats Generator', 'v0.7.0');
+$application = new Application('FB Groups Stats Generator', 'v0.8.0');
 $application->add($container->get('generate_command'));
 $application->add($container->get('clear_logs_command'));
 $application->add($container->get('offensive_words_command'));

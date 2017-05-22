@@ -1,10 +1,10 @@
 <?php
 
-namespace PHPWorldWide\Stats\Tests;
+namespace PhpEarth\Stats\Tests;
 
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamWrapper;
-use PHPWorldWide\Stats\Log;
+use PhpEarth\Stats\Log;
 use PHPUnit\Framework\TestCase;
 
 class LogTest extends TestCase

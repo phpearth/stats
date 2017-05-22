@@ -1,13 +1,13 @@
 <?php
 
-namespace PHPWorldWide\Stats\Tests;
+namespace PhpEarth\Stats\Tests;
 
-use PHPWorldWide\Stats\Config;
-use PHPWorldWide\Stats\Points;
-use PHPWorldWide\Stats\Model\Topic;
-use PHPWorldWide\Stats\Model\Comment;
-use PHPWorldWide\Stats\Model\Reply;
-use PHPWorldWide\Stats\Model\User;
+use PhpEarth\Stats\Config;
+use PhpEarth\Stats\Points;
+use PhpEarth\Stats\Model\Topic;
+use PhpEarth\Stats\Model\Comment;
+use PhpEarth\Stats\Model\Reply;
+use PhpEarth\Stats\Model\User;
 use PHPUnit\Framework\TestCase;
 
 class PointsTest extends TestCase
@@ -31,7 +31,7 @@ class PointsTest extends TestCase
 
     protected static function getMethod($name)
     {
-        $class = new \ReflectionClass('PHPWorldWide\Stats\Points');
+        $class = new \ReflectionClass('PhpEarth\Stats\Points');
         $method = $class->getMethod($name);
         $method->setAccessible(true);
 

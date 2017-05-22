@@ -1,8 +1,8 @@
 <?php
 
-namespace PHPWorldWide\Stats\Tests\ExpressionLanguage;
+namespace PhpEarth\Stats\Tests\ExpressionLanguage;
 
-use PHPWorldWide\Stats\ExpressionLanguage\StringExpressionLanguageProvider;
+use PhpEarth\Stats\ExpressionLanguage\StringExpressionLanguageProvider;
 use PHPUnit\Framework\TestCase;
 
 class StringExpressionLanguageProviderTest extends TestCase

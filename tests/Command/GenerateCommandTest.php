@@ -1,10 +1,10 @@
 <?php
 
-namespace PHPWorldWide\Stats\Tests\Command;
+namespace PhpEarth\Stats\Tests\Command;
 
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
-use PHPWorldWide\Stats\Command\GenerateCommand;
+use PhpEarth\Stats\Command\GenerateCommand;
 use PHPUnit\Framework\TestCase;
 
 class GenerateCommandTest extends TestCase

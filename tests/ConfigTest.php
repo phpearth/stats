@@ -1,8 +1,8 @@
 <?php
 
-namespace PHPWorldWide\Stats\Tests;
+namespace PhpEarth\Stats\Tests;
 
-use PHPWorldWide\Stats\Config;
+use PhpEarth\Stats\Config;
 use PHPUnit\Framework\TestCase;
 
 class ConfigTest extends TestCase

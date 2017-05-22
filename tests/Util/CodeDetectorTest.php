@@ -1,9 +1,9 @@
 <?php
 
-namespace PHPWorldWide\Stats\Tests;
+namespace PhpEarth\Stats\Tests;
 
-use PHPWorldWide\Stats\Config;
-use PHPWorldWide\Stats\Util\CodeDetector;
+use PhpEarth\Stats\Config;
+use PhpEarth\Stats\Util\CodeDetector;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Yaml\Yaml;
 

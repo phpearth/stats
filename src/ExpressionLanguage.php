@@ -1,11 +1,11 @@
 <?php
 
-namespace PHPWorldWide\Stats;
+namespace PhpEarth\Stats;
 
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage as BaseExpressionLanguage;
 use Symfony\Component\ExpressionLanguage\ParserCache\ParserCacheInterface;
-use PHPWorldWide\Stats\ExpressionLanguage\StringExpressionLanguageProvider;
-use PHPWorldWide\Stats\ExpressionLanguage\NumberExpressionLanguageProvider;
+use PhpEarth\Stats\ExpressionLanguage\StringExpressionLanguageProvider;
+use PhpEarth\Stats\ExpressionLanguage\NumberExpressionLanguageProvider;
 
 class ExpressionLanguage extends BaseExpressionLanguage
 {

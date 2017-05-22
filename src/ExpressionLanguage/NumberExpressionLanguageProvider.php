@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPWorldWide\Stats\ExpressionLanguage;
+namespace PhpEarth\Stats\ExpressionLanguage;
 
 use Symfony\Component\ExpressionLanguage\ExpressionFunction;
 use Symfony\Component\ExpressionLanguage\ExpressionFunctionProviderInterface;

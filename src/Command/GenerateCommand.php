@@ -1,24 +1,24 @@
 <?php
 
-namespace PHPWorldWide\Stats\Command;
+namespace PhpEarth\Stats\Command;
 
-use PHPWorldWide\Stats\Fetcher;
+use PhpEarth\Stats\Fetcher;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
-use PHPWorldWide\Stats\Auth;
-use PHPWorldWide\Stats\Config;
-use PHPWorldWide\Stats\Log;
-use PHPWorldWide\Stats\Mapper;
+use PhpEarth\Stats\Auth;
+use PhpEarth\Stats\Config;
+use PhpEarth\Stats\Log;
+use PhpEarth\Stats\Mapper;
 use Twig_Environment;
 use Twig_Template;
 
 /**
  * Class GenerateCommand
- * @package PHPWorldWide\Stats\Command
+ * @package PhpEarth\Stats\Command
  */
 class GenerateCommand extends Command
 {

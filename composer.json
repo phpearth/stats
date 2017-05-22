@@ -27,10 +27,10 @@
         "mikey179/vfsStream": "^1.6"
     },
     "autoload": {
-        "psr-4": {"PHPWorldWide\\Stats\\": "src/"}
+        "psr-4": {"PhpEarth\\Stats\\": "src/"}
     },
     "autoload-dev": {
-        "psr-4": { "PHPWorldWide\\Stats\\Tests\\": "tests/" }
+        "psr-4": { "PhpEarth\\Stats\\Tests\\": "tests/" }
     },
     "authors": [
         {

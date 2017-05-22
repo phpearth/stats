@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPWorldWide\Stats;
+namespace PhpEarth\Stats;
 
 use Facebook\Facebook;
 use Facebook\Exceptions\FacebookSDKException;

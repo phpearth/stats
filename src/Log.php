@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPWorldWide\Stats;
+namespace PhpEarth\Stats;
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;

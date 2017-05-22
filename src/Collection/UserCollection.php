@@ -1,8 +1,8 @@
 <?php
 
-namespace PHPWorldWide\Stats\Collection;
+namespace PhpEarth\Stats\Collection;
 
-use PHPWorldWide\Stats\Collection;
+use PhpEarth\Stats\Collection;
 
 /**
  * Class UserCollection.

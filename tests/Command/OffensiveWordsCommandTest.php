@@ -1,10 +1,10 @@
 <?php
 
-namespace PHPWorldWide\Stats\Tests\Command;
+namespace PhpEarth\Stats\Tests\Command;
 
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
-use PHPWorldWide\Stats\Command\OffensiveWordsCommand;
+use PhpEarth\Stats\Command\OffensiveWordsCommand;
 use PHPUnit\Framework\TestCase;
 
 class OffensiveWordsCommandTest extends TestCase

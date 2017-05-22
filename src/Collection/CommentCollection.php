@@ -1,9 +1,9 @@
 <?php
 
-namespace PHPWorldWide\Stats\Collection;
+namespace PhpEarth\Stats\Collection;
 
-use PHPWorldWide\Stats\Collection;
-use PHPWorldWide\Stats\Util\Merger;
+use PhpEarth\Stats\Collection;
+use PhpEarth\Stats\Util\Merger;
 
 /**
  * Class CommentCollection.

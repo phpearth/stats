@@ -1,9 +1,9 @@
 <?php
 
-namespace PHPWorldWide\Stats\Tests;
+namespace PhpEarth\Stats\Tests;
 
 use PHPUnit\Framework\TestCase;
-use PHPWorldWide\Stats\Collection;
+use PhpEarth\Stats\Collection;
 
 class CollectionTest extends TestCase
 {

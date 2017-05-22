@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPWorldWide\Stats\Util;
+namespace PhpEarth\Stats\Util;
 
 class CodeDetector
 {

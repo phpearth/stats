@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPWorldWide\Stats\Model;
+namespace PhpEarth\Stats\Model;
 
 /**
  * Class Topic.

@@ -1,8 +1,8 @@
 <?php
 
-namespace PHPWorldWide\Stats\Command;
+namespace PhpEarth\Stats\Command;
 
-use PHPWorldWide\Stats\Log;
+use PhpEarth\Stats\Log;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

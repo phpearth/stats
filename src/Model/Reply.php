@@ -1,10 +1,10 @@
 <?php
 
-namespace PHPWorldWide\Stats\Model;
+namespace PhpEarth\Stats\Model;
 
 /**
  * Class Reply
- * @package PHPWorldWide\Stats\Model
+ * @package PhpEarth\Stats\Model
  */
 class Reply
 {

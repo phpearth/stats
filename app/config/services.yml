@@ -1,24 +1,24 @@
 services:
   log:
-    class: PHPWorldWide\Stats\Log
+    class: PhpEarth\Stats\Log
   auth:
-    class: PHPWorldWide\Stats\Auth
+    class: PhpEarth\Stats\Auth
     arguments: ['@config']
   twig_environment:
     class: Twig_Environment
     arguments: ['@twig_loader_filesystem']
   generate_command:
-    class: PHPWorldWide\Stats\Command\GenerateCommand
+    class: PhpEarth\Stats\Command\GenerateCommand
     calls:
       - [setConfig, ['@config']]
       - [setTemplate, ['@twig_environment']]
       - [setAuth, ['@auth']]
       - [setLog, ['@log']]
   clear_logs_command:
-    class: PHPWorldWide\Stats\Command\ClearLogsCommand
+    class: PhpEarth\Stats\Command\ClearLogsCommand
     calls:
       - [setLog, ['@log']]
   offensive_words_command:
-    class: PHPWorldWide\Stats\Command\OffensiveWordsCommand
+    class: PhpEarth\Stats\Command\OffensiveWordsCommand
     calls:
       - [setOffensiveWords, ["@=service('config').get('offensive_words')"]]

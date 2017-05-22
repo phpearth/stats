@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPWorldWide\Stats\Command;
+namespace PhpEarth\Stats\Command;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;

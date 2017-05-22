@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file. This projec
 
 ## [UNREALEASED] 2017-01-01
 
+* Rename namespace
 * ...
 
 ## [0.7.0] - 2017-05-22

@@ -1,8 +1,8 @@
 <?php
 
-namespace PHPWorldWide\Stats\Tests\ExpressionLanguage;
+namespace PhpEarth\Stats\Tests\ExpressionLanguage;
 
-use PHPWorldWide\Stats\ExpressionLanguage\NumberExpressionLanguageProvider;
+use PhpEarth\Stats\ExpressionLanguage\NumberExpressionLanguageProvider;
 use PHPUnit\Framework\TestCase;
 
 class NumberExpressionLanguageProviderTest extends TestCase

@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPWorldWide\Stats;
+namespace PhpEarth\Stats;
 
 use Symfony\Component\Console\Helper\ProgressBar;
 use Facebook\Facebook;

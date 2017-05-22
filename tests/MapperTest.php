@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPWorldWide\Stats\Tests;
+namespace PhpEarth\Stats\Tests;
 
 use PHPUnit\Framework\TestCase;
 

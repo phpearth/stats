@@ -1,9 +1,9 @@
 <?php
 
-namespace PHPWorldWide\Stats\Collection;
+namespace PhpEarth\Stats\Collection;
 
-use PHPWorldWide\Stats\Collection;
-use PHPWorldWide\Stats\Model\Topic;
+use PhpEarth\Stats\Collection;
+use PhpEarth\Stats\Model\Topic;
 
 /**
  * Class TopicCollection.

@@ -1,11 +1,11 @@
 <?php
 
-namespace PHPWorldWide\Stats\Model;
+namespace PhpEarth\Stats\Model;
 
-use PHPWorldWide\Stats\Collection;
-use PHPWorldWide\Stats\Collection\CommentCollection;
-use PHPWorldWide\Stats\Collection\ReplyCollection;
-use PHPWorldWide\Stats\Points;
+use PhpEarth\Stats\Collection;
+use PhpEarth\Stats\Collection\CommentCollection;
+use PhpEarth\Stats\Collection\ReplyCollection;
+use PhpEarth\Stats\Points;
 
 /**
  * Class User.

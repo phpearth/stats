@@ -1,11 +1,11 @@
 <?php
 
-namespace PHPWorldWide\Stats;
+namespace PhpEarth\Stats;
 
-use PHPWorldWide\Stats\Model\Topic;
-use PHPWorldWide\Stats\Model\Comment;
-use PHPWorldWide\Stats\Model\Reply;
-use PHPWorldWide\Stats\Util\CodeDetector;
+use PhpEarth\Stats\Model\Topic;
+use PhpEarth\Stats\Model\Comment;
+use PhpEarth\Stats\Model\Reply;
+use PhpEarth\Stats\Util\CodeDetector;
 
 /**
  * Class Points.
