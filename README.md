@@ -5,8 +5,7 @@
 [![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 [![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/php-earth/stats.svg?style=flat-square)](https://scrutinizer-ci.com/g/php-earth/stats/code-structure)
 [![Quality Score](https://img.shields.io/scrutinizer/g/php-earth/stats.svg?style=flat-square)](https://scrutinizer-ci.com/g/php-earth/stats)
-
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/c317a2f5-1fbe-4d76-a93c-8f0d98e61ef6/big.png)](https://insight.sensiolabs.com/projects/c317a2f5-1fbe-4d76-a93c-8f0d98e61ef6)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/c317a2f5-1fbe-4d76-a93c-8f0d98e61ef6/mini.png)](https://insight.sensiolabs.com/projects/c317a2f5-1fbe-4d76-a93c-8f0d98e61ef6)
 
 PHP application for generating Facebook groups statistics.
 
