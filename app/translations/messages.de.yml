@@ -11,6 +11,7 @@ closed:           "Ein Thema wurde geschlossen|%count% Themen wurden geschlossen
 banned:           "1 Nutzer wurde gesperrt, da er den Verhaltenskodex nicht eingehalten hat|%count% Nutzer wurden gesperrt, da sie den Verhaltenskodex nicht eingehalten haben"
 top_topic:        "Thema der Woche mit einer Reaktion|Thema der Woche mit %count% Reaktionen"
 active_topic:     "Aktivstes Thema der Woche mit einem Kommentar|Aktivstes Thema der Woche mit %count% Kommentaren"
+shared_topic:     "Most shared topic of the week with 1 share|Most shared topic of the week with %count% shares"
 important_topics: "Wichtige Themen für dich"
 generated:        "Generiert von"
 thank_you:        "Hilfe is willkommen, mach mit und trag zur Entwicklung bei."

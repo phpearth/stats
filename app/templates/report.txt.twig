@@ -27,6 +27,11 @@ fb.com/groups/{{ group_id }}/permalink/{{ topics.getTopTopic().getPermalinkPostI
 fb.com/groups/{{ group_id }}/permalink/{{ topics.getMostActiveTopic().getPermalinkPostId() }}
 {% endif %}
 
+{% if topics.getMostSharedTopic() %}
+○ Most shared topic of the week with {{ topics.getMostSharedTopic().getSharesCount() }} shares:
+fb.com/groups/{{ group_id }}/permalink/{{ topics.getMostSharedTopic().getPermalinkPostId() }}
+{% endif %}
+
 ○ PHP related topics you should check out:
 {% for topic in top_topics %}
 - {{ topic['title'] }}:

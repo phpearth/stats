@@ -11,6 +11,7 @@ closed:           "1 temat został zamknięty|%count% tematy zostały zamknięte
 banned:           "1 użytkownik został zablokowany przez nieprzestrzeganie Regulaminu grupy|%count% użytkowników zostali zablokowani przez nieprzestrzeganie Regulaminu grupy"
 top_topic:        "Najlepszy temat tego tygodnia z 1 reakcją|Najlepszy temat tego tygodnia z %count% reakcjami"
 active_topic:     "Najbardziej aktywny temat z 1 komentarzem|Najbardziej aktywny temat z %count% komentarzami"
+shared_topic:     "Most shared topic of the week with 1 share|Most shared topic of the week with %count% shares"
 important_topics: "Ważne tematy, które powinnieneś sprawdzić"
 generated:        "Wygenerowane przez"
 thank_you:        "Twoja pomoca jest doceniania, zaangażuj się i pomagaj."

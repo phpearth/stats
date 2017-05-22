@@ -67,4 +67,24 @@ class TopicCollection extends Collection
 
         return $count;
     }
+
+    /**
+     * Get most shared topic.
+     *
+     * @return null|Topic
+     */
+    public function getMostSharedTopic()
+    {
+        $topCount = 0;
+        $mostSharedTopic = null;
+
+        foreach ($this->data as $topic) {
+            if ($topic->getSharesCount() > $topCount) {
+                $topCount = $topic->getSharesCount();
+                $mostSharedTopic = $topic;
+            }
+        }
+
+        return $mostSharedTopic;
+    }
 }

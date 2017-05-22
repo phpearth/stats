@@ -11,6 +11,7 @@ closed:           "1 publicação foi fechada|%count% publicações foram fechad
 banned:           "1 usuário foi banido por não seguir o Código de Conduta do grupo|%count% usuários foram banidos por não seguirem o Código de Conduta do grupo"
 top_topic:        "Publicação mais popular da semana com 1 reação|Publicação mais popular da semana com %count% reações"
 active_topic:     "Publicação mais ativo da semana com 1 comentário|Publicação mais ativo da semana com %count% comentários"
+shared_topic:     "Most shared topic of the week with 1 share|Most shared topic of the week with %count% shares"
 important_topics: "Publicações importantes que você deveria conferir"
 generated:        "Gerado por"
 thank_you:        "Sua ajuda é bem-vinda, envolva-se e contribua."

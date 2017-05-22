@@ -158,6 +158,10 @@ class Mapper
             $newTopic->setUser($user);
         }
 
+        if (array_key_exists('shares', $topic)) {
+            $newTopic->setSharesCount($topic['shares']['count']);
+        }
+
         // Add topic to collection
         $this->topics->add($newTopic, $newTopic->getId());
 

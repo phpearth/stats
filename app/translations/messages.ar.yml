@@ -11,6 +11,7 @@ closed:           "1 تم إغلاق الموضوع|%count% تم غلق المو
 banned:           "تم حظر عضو 1 لأنه لم يحترم القانون الجاري به العمل من طرف المجموعة|%count% تم حظر أعضاء لانهم لم يحترمو القانون الجاري به العمل من طرف المجموعة"
 top_topic:        " %count% موضوع الأسبوع مع رد 1 الفعل|موضوع الأسبوع مع رد الفعل"
 active_topic:     "الموضوع النشط هذا الأسبوع مع تعليقات|الموضوع النشط هذا الأسبوع مع 1 تعليق %count%"
+shared_topic:     "Most shared topic of the week with 1 share|Most shared topic of the week with %count% shares"
 important_topics: "قضايا مهمة تحتاج إلى نظرة"
 generated:        "مدعوم من"
 thank_you: "شكرا لكم على مساعدتكم، شاركو و ساهمو معنا"

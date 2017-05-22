@@ -48,6 +48,11 @@ class Topic
     private $type;
 
     /**
+     * @var int
+     */
+    private $sharesCount = 0;
+
+    /**
      * Set topic id.
      *
      * @param $id
@@ -216,5 +221,25 @@ class Topic
     public function getPermalinkPostId()
     {
         return substr($this->getId(), strpos($this->getId(), '_') + 1);
+    }
+
+    /**
+     * Set topic's number of shares.
+     *
+     * @param int $sharesCount
+     */
+    public function setSharesCount($sharesCount)
+    {
+        $this->sharesCount = $sharesCount;
+    }
+
+    /**
+     * Get topic's number of shares.
+     *
+     * @return int
+     */
+    public function getSharesCount()
+    {
+        return $this->sharesCount;
     }
 }
