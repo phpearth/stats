@@ -25,7 +25,7 @@ class OffensiveWordsCommand extends Command
     }
 
     /**
-     * Configures log clearing command for Console component.
+     * Configures offensive words command for Console component.
      */
     protected function configure()
     {

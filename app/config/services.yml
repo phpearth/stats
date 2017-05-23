@@ -1,6 +1,4 @@
 services:
-  log:
-    class: PhpEarth\Stats\Log
   auth:
     class: PhpEarth\Stats\Auth
     arguments: ['@config']
@@ -13,11 +11,11 @@ services:
       - [setConfig, ['@config']]
       - [setTemplate, ['@twig_environment']]
       - [setAuth, ['@auth']]
-      - [setLog, ['@log']]
-  clear_logs_command:
-    class: PhpEarth\Stats\Command\ClearLogsCommand
+      - [setReportsDir, ['%reports_dir%']]
+  clear_reports_command:
+    class: PhpEarth\Stats\Command\ClearReportsCommand
     calls:
-      - [setLog, ['@log']]
+      - [setReportsRoot, ['%reports_root%']]
   offensive_words_command:
     class: PhpEarth\Stats\Command\OffensiveWordsCommand
     calls:

@@ -33,24 +33,17 @@ class Fetcher
     protected $feed = [];
 
     /**
-     * @var Log
-     */
-    protected $log;
-
-    /**
      * Mapper constructor.
      *
      * @param Config $config
      * @param ProgressBar $progress
      * @param Facebook $fb
-     * @param Log $log
      */
-    public function __construct(Config $config, ProgressBar $progress, Facebook $fb, Log $log)
+    public function __construct(Config $config, ProgressBar $progress, Facebook $fb)
     {
         $this->config = $config;
         $this->progress = $progress;
         $this->fb = $fb;
-        $this->log = $log;
     }
 
     /**
@@ -106,11 +99,11 @@ class Fetcher
      *
      * @throws \Exception
      */
-    public function getNewUsersCount()
+    public function getNewMembers()
     {
         $this->progress->setMessage('Retrieving members...');
         $this->progress->advance();
-        $newUsersCount = 0;
+        $newMembers = [];
         $pagesCount = 0;
 
         try {
@@ -123,15 +116,11 @@ class Fetcher
                 $this->progress->advance();
 
                 foreach ($feedEdge as $status) {
-                    // log new users
-                    $log = $status->asArray()['id']."\t";
-                    $log .= $status->asArray()['name']."\n";
-                    $this->log->logNewUser($log);
+                    $newMembers[] = [$status->asArray()['id'], $status->asArray()['name']];
 
                     if ($status->asArray()['name'] == $this->config->getParameter('last_member_name')) {
                         break 2;
                     }
-                    ++$newUsersCount;
                 }
 
                 if ($pagesCount == $this->config->getParameter('api_pages')) {
@@ -148,6 +137,6 @@ class Fetcher
 
         $this->progress->advance();
 
-        return $newUsersCount;
+        return $newMembers;
     }
 }

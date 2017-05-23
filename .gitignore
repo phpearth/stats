@@ -1,5 +1,5 @@
 /vendor/
 /app/config/parameters.yml
-/app/logs/*
-!app/logs/.gitkeep
 /phpunit.xml
+/var/reports/*
+!/var/reports/.gitkeep

@@ -11,7 +11,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
 use PhpEarth\Stats\Auth;
 use PhpEarth\Stats\Config;
-use PhpEarth\Stats\Log;
 use PhpEarth\Stats\Mapper;
 use Twig_Environment;
 use Twig_Template;
@@ -22,6 +21,8 @@ use Twig_Template;
  */
 class GenerateCommand extends Command
 {
+    private $reportsDir;
+
     /**
      * @var Twig_Template
      */
@@ -36,11 +37,6 @@ class GenerateCommand extends Command
      * @var Auth
      */
     private $auth;
-
-    /**
-     * @var Log
-     */
-    private $log;
 
     /**
      * Set configuration.
@@ -73,11 +69,11 @@ class GenerateCommand extends Command
     }
 
     /**
-     * @param Log $log
+     * Set Reports directory
      */
-    public function setLog(Log $log)
+    public function setReportsDir($reportsDir)
     {
-        $this->log = $log;
+        $this->reportsDir = $reportsDir;
     }
 
     /**
@@ -161,12 +157,13 @@ class GenerateCommand extends Command
         $progress->advance();
 
         try {
-            $fetcher = new Fetcher($this->config, $progress, $this->auth->fb, $this->log);
-            $mapper = new Mapper($this->config, $fetcher->getFeed(), $this->log);
+            $fetcher = new Fetcher($this->config, $progress, $this->auth->fb);
+            $mapper = new Mapper($this->config, $fetcher->getFeed());
             $topics = $mapper->getTopics();
             $comments = $mapper->getComments();
             $replies = $mapper->getReplies();
             $users = $mapper->getUsers();
+            $newMembers = $fetcher->getNewMembers();
 
             $progress->advance();
 
@@ -182,7 +179,7 @@ class GenerateCommand extends Command
             $output->writeln($this->template->render([
                 'start_date' => $start->format('Y-m-d'),
                 'end_date' => $end->format('Y-m-d'),
-                'new_users_count' => $fetcher->getNewUsersCount(),
+                'new_users_count' => count($newMembers),
                 'top_users_count' => $this->config->getParameter('top_users_count'),
                 'top_users' => $users->getTopUsers($this->config->getParameter('top_users_count'), $this->config->getParameter('ignored_users')),
                 'topics' => $topics,
@@ -194,8 +191,43 @@ class GenerateCommand extends Command
                 'top_topics' => $this->config->getParameter('top_topics'),
                 'group_id' => $this->config->getParameter('group_id'),
             ]));
+
+            $this->generateReports($users, $topics, $newMembers);
+
         } catch (\Exception $e) {
             $output->writeln($e->getMessage());
+        }
+    }
+
+    private function generateReports($users, $topics, $newMembers)
+    {
+        // Create reports folder
+        if (!file_exists($this->reportsDir)) {
+            mkdir($this->reportsDir);
+        }
+
+        // Contributors
+        foreach ($users->getTopUsers() as $id => $user) {
+            $msg = $id."\t";
+            $msg .= $user->getName()."\t";
+            $msg .= 'Points: '.$user->getPointsCount()."\t";
+            $msg .= 'Topics: '.$user->getTopicsCount()."\t";
+            $msg .= 'Comments: '.$user->getCommentsCount()."\n";
+            file_put_contents($this->reportsDir.'/contributors.txt', $msg, FILE_APPEND | LOCK_EX);
+        }
+
+        // Topics
+        foreach ($topics as $topic) {
+            $msg = $topic->getId()."\t";
+            $msg .= ' Reactions: '.$topic->getReactionsCount()."\t";
+            $msg .= ' Comments: '.$topic->getCommentsCount()."\n";
+            file_put_contents($this->reportsDir.'/topics.txt', $msg, FILE_APPEND | LOCK_EX);
+        }
+
+        // New members
+        foreach ($newMembers as $member) {
+            $msg = $member[0]."\t".$member[1]."\n";
+            file_put_contents($this->reportsDir.'/members.txt', $msg, FILE_APPEND | LOCK_EX);
         }
     }
 }

@@ -47,18 +47,12 @@ class Mapper
     private $points;
 
     /**
-     * @var Log
-     */
-    private $log;
-
-    /**
      * Mapper constructor.
      *
      * @param Config $config
      * @param array $feed
-     * @param Log $log
      */
-    public function __construct($config, $feed, $log)
+    public function __construct($config, $feed)
     {
         $this->config = $config;
         $this->topics = new TopicCollection();
@@ -69,19 +63,8 @@ class Mapper
         $this->points->setPoints($this->config->get('points'));
         $this->points->setAdmins($this->config->getParameter('admins'));
         $this->points->setOffensiveWords($this->config->get('offensive_words'));
-        $this->log = $log;
 
         $this->mapFeed($feed);
-
-        // log all contributors
-        foreach ($this->users->getTopUsers() as $id => $user) {
-            $log = $id."\t";
-            $log .= $user->getName()."\t";
-            $log .= 'Points: '.$user->getPointsCount()."\t";
-            $log .= 'Topics: '.$user->getTopicsCount()."\t";
-            $log .= 'Comments: '.$user->getCommentsCount();
-            $this->log->logContributor($log);
-        }
     }
 
     /**
@@ -160,12 +143,6 @@ class Mapper
 
         // Add topic to collection
         $this->topics->add($topic, $topic->getId());
-
-        // Log topic
-        $log = $topic->getId()."\t";
-        $log .= ' Reactions: '.$topic->getReactionsCount()."\t";
-        $log .= ' Comments: '.$topic->getCommentsCount()."\n";
-        $this->log->logTopic($log);
 
         return $topic;
     }
