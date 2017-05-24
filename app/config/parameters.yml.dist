@@ -19,6 +19,9 @@ parameters:
     # groups, the user who generates stats must be group admin or moderator)
     group_id: 2204685680
 
+    # Locale for the report
+    locale: en
+
     # Number of top users listed in the output report
     top_users_count: 5
 

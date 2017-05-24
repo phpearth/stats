@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file. This projec
 
 * Rename namespace
 * Refactored reports logging
+* Translations
 * ...
 
 ## [0.7.0] - 2017-05-22

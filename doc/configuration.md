@@ -13,6 +13,7 @@ The following parameters are used to configure the report generation:
 | fb_app_secret            | string    | Facebook application secret key |
 | default_graph_version    | string    | Default Facebook Graph API version |
 | group_id                 | int       |  |
+| locale                   | string    | Locale for the report |
 | top_users_count          | int       |  |
 | last_member_name         | string    |  |
 | last_blocked_count       | int       |  |

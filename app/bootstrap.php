@@ -12,6 +12,7 @@ $container = new ContainerBuilder();
 // Set reports directory parameters
 $container->setParameter('reports_root', __DIR__.'/../var/reports');
 $container->setParameter('reports_dir', $container->getParameter('reports_root').'/'.date('YmdHis'));
+$container->setParameter('project_dir', __DIR__.'/..');
 
 $container
     ->register('config', 'PhpEarth\Stats\Config')
@@ -21,6 +22,7 @@ $container
         __DIR__.'/../app/config/offensive_words.yml'
     ])
 ;
+$container->setParameter('locale', $container->get('config')->getParameter('locale'));
 
 $container
     ->register('twig_loader_filesystem', 'Twig_Loader_Filesystem')

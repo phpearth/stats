@@ -21,6 +21,9 @@ use Twig_Template;
  */
 class GenerateCommand extends Command
 {
+    /**
+     * @var string
+     */
     private $reportsDir;
 
     /**
@@ -37,6 +40,11 @@ class GenerateCommand extends Command
      * @var Auth
      */
     private $auth;
+
+    /**
+     * @var Translator
+     */
+    private $translator;
 
     /**
      * Set configuration.
@@ -74,6 +82,14 @@ class GenerateCommand extends Command
     public function setReportsDir($reportsDir)
     {
         $this->reportsDir = $reportsDir;
+    }
+
+    /**
+     * Set Translator
+     */
+    public function setTranslator($translator)
+    {
+        $this->translator = $translator;
     }
 
     /**
@@ -177,19 +193,20 @@ class GenerateCommand extends Command
             $end->setTimezone(new \DateTimeZone(date_default_timezone_get()));
 
             $output->writeln($this->template->render([
-                'start_date' => $start->format('Y-m-d'),
-                'end_date' => $end->format('Y-m-d'),
-                'new_users_count' => count($newMembers),
-                'top_users_count' => $this->config->getParameter('top_users_count'),
-                'top_users' => $users->getTopUsers($this->config->getParameter('top_users_count'), $this->config->getParameter('ignored_users')),
-                'topics' => $topics,
-                'new_comments_count' => $comments->count(),
-                'new_replies_count' => $replies->count(),
-                'active_users_count' => $users->count(),
-                'banned_count' => $this->config->getParameter('new_blocked_count') - $this->config->getParameter('last_blocked_count'),
-                'commits_count' => 3,
-                'top_topics' => $this->config->getParameter('top_topics'),
-                'group_id' => $this->config->getParameter('group_id'),
+                'translator'     => $this->translator,
+                'start_date'     => $start->format('Y-m-d'),
+                'end_date'       => $end->format('Y-m-d'),
+                'new_members'    => count($newMembers),
+                'top_members'    => $this->config->getParameter('top_users_count'),
+                'banned_count'   => $this->config->getParameter('new_blocked_count') - $this->config->getParameter('last_blocked_count'),
+                'topics'         => $topics,
+                'active_members' => $users->count(),
+                'new_comments'   => $comments->count(),
+                'new_replies'    => $replies->count(),
+                'top_users'      => $users->getTopUsers($this->config->getParameter('top_users_count'), $this->config->getParameter('ignored_users')),
+                'commits_count'  => 3,
+                'top_topics'     => $this->config->getParameter('top_topics'),
+                'group_id'       => $this->config->getParameter('group_id')
             ]));
 
             $this->generateReports($users, $topics, $newMembers);

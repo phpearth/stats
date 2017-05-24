@@ -5,6 +5,17 @@ services:
   twig_environment:
     class: Twig_Environment
     arguments: ['@twig_loader_filesystem']
+  translator.message_selector:
+    class: Symfony\Component\Translation\MessageSelector
+  translator.yaml_loader:
+    class: Symfony\Component\Translation\Loader\YamlFileLoader
+  translator:
+    class: Symfony\Component\Translation\Translator
+    arguments: ['%locale%', '@translator.message_selector']
+    calls:
+      - [addLoader, ['yaml', '@translator.yaml_loader']]
+      - [addResource, ['yaml', '%project_dir%/app/translations/messages.%locale%.yml', '%locale%']]
+      - [setFallbackLocales, [['en']]]
   generate_command:
     class: PhpEarth\Stats\Command\GenerateCommand
     calls:
@@ -12,6 +23,7 @@ services:
       - [setTemplate, ['@twig_environment']]
       - [setAuth, ['@auth']]
       - [setReportsDir, ['%reports_dir%']]
+      - [setTranslator, ['@translator']]
   clear_reports_command:
     class: PhpEarth\Stats\Command\ClearReportsCommand
     calls:
