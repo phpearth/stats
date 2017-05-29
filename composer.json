@@ -12,12 +12,12 @@
     "require": {
         "php": ">=7.1.0",
         "facebook/graph-sdk": "^5.5",
-        "symfony/yaml": "^3.2",
-        "symfony/console": "^3.2",
-        "symfony/expression-language": "^3.2",
-        "symfony/dependency-injection": "^3.2",
-        "symfony/translation": "^3.2",
-        "symfony/config": "^3.2",
+        "symfony/yaml": "^3.3",
+        "symfony/console": "^3.3",
+        "symfony/expression-language": "^3.3",
+        "symfony/dependency-injection": "^3.3",
+        "symfony/translation": "^3.3",
+        "symfony/config": "^3.3",
         "incenteev/composer-parameter-handler": "^2.1",
         "twig/twig": "^2.3",
         "monolog/monolog": "^1.22"
