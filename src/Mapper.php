@@ -85,12 +85,12 @@ class Mapper
 
             foreach($topic->getField('comments', []) as $i => $comment) {
                 if ($comment->getField('created_time') >= $startDate && $comment->getField('created_time') <= $endDate) {
-                    $this->mapComment($comment);
+                    $this->mapComment($comment, $topic);
                 }
 
                 foreach($comment->getField('comments', []) as $j=>$reply) {
                     if ($reply->getField('created_time') >= $startDate && $reply->getField('created_time') <= $endDate) {
-                        $this->mapReply($reply);
+                        $this->mapReply($reply, $topic, $comment);
                     }
                 }
             }
@@ -156,12 +156,14 @@ class Mapper
      *
      * @throws \Exception
      */
-    private function mapComment($data)
+    private function mapComment($data, $topic)
     {
         $comment = new Comment();
         $comment->setId($data->getField('id'));
         $comment->setMessage($data->getField('message'));
         $comment->setReactionsCount($data->getField('reactions')->getMetaData()['summary']['total_count']);
+        $comment->setCreatedTime($data->getField('created_time'));
+        $comment->setTopicId($topic->getField('id'));
 
         $dataArray = $data->asArray();
         if (array_key_exists('from', $dataArray)) {
@@ -185,12 +187,15 @@ class Mapper
      *
      * @throws \Exception
      */
-    private function mapReply($data)
+    private function mapReply($data, $topic, $comment)
     {
         $reply = new Reply();
         $reply->setId($data->getField('id'));
         $reply->setMessage($data->getField('message'));
         $reply->setReactionsCount($data->getField('reactions')->getMetaData()['summary']['total_count']);
+        $reply->setCreatedTime($data->getField('created_time'));
+        $reply->setTopicId($topic->getField('id'));
+        $reply->setCommentId($comment->getField('id'));
 
         $dataArray = $data->asArray();
         if (array_key_exists('from', $dataArray)) {

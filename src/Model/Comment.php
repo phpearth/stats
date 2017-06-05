@@ -34,6 +34,11 @@ class Comment
     private $message = null;
 
     /**
+     * @var int Topic id in which comment was created
+     */
+    private $topicId;
+
+    /**
      * Set comment's id.
      *
      * @param int $id
@@ -131,5 +136,25 @@ class Comment
     public function getReactionsCount()
     {
         return $this->reactionsCount;
+    }
+
+    /**
+     * Set topic id.
+     *
+     * @param int $topicId
+     */
+    public function setTopicId($topicId)
+    {
+        $this->topicId = $topicId;
+    }
+
+    /**
+     * Get topic id.
+     *
+     * @return int
+     */
+    public function getTopicId()
+    {
+        return $this->topicId;
     }
 }

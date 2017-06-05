@@ -116,6 +116,12 @@ class GenerateCommand extends Command
                     'End date of the generated stats report ('.date('Y-m-d', strtotime('last monday +7 days')).')',
                     date('Y-m-d', strtotime('last monday +7 days'))
                 )
+                ->addOption(
+                    'animation',
+                    'a',
+                    InputOption::VALUE_NONE,
+                    'Animation of group activity visualized with Gource'
+                )
             ;
         } catch (\Exception $e) {
             echo $e->getMessage();
@@ -211,6 +217,10 @@ class GenerateCommand extends Command
 
             $this->generateReports($users, $topics, $newMembers);
 
+            if ($input->getOption('animation')) {
+                $this->generateGourceLog($topics, $comments, $replies);
+            }
+
         } catch (\Exception $e) {
             $output->writeln($e->getMessage());
         }
@@ -246,5 +256,61 @@ class GenerateCommand extends Command
             $msg = $member[0]."\t".$member[1]."\n";
             file_put_contents($this->reportsDir.'/members.txt', $msg, FILE_APPEND | LOCK_EX);
         }
+    }
+
+    private function generateGourceLog($topics, $comments, $replies)
+    {
+        $count = ceil($topics->count()/10);
+        $msg = '';
+        foreach ($topics as $topic) {
+            $topicTitle = ($topic->getMessage()) ? substr($topic->getMessage(), 0, 20) : $topic->getId();
+            //$topicTitle = trim(preg_replace('/\s\s+/', ' ', $topicTitle));
+            $topicTitle = preg_replace('/\s+/', ' ', trim($topicTitle));
+            $topicTitle = sha1($topicTitle);
+
+            $name = ($topic->getUser()) ? $topic->getUser()->getName() : '';
+
+            $msg .= $topic->getCreatedTime()->getTimeStamp().'|'.($name).'|A|'.'/'.$count.'/'.$topic->getId().'/'.$topicTitle.".Topics\n";
+        }
+        foreach ($comments as $comment) {
+            $commentMessage = substr($comment->getMessage(), 0, 30);
+            $commentMessage = trim(preg_replace('/\s\s+/', ' ', $commentMessage));
+            $commentMessage = sha1($commentMessage);
+
+            $msg .= $comment->getCreatedTime()->getTimeStamp().'|'.$comment->getUser()->getName().'|A|'.'/'.$count.'/'.$comment->getTopicId().'/'.$comment->getId().'/'.$commentMessage.".Comments\n";
+        }
+        foreach($replies as $reply) {
+            $replyMessage = substr($reply->getMessage(), 0, 30);
+            $replyMessage = trim(preg_replace('/\s\s+/', ' ', $replyMessage));
+            $replyMessage = sha1($replyMessage);
+
+            $msg .= $reply->getCreatedTime()->getTimeStamp().'|'.$reply->getUser()->getName().'|A|'.'/'.$count.'/'.$reply->getTopicId().'/'.$reply->getCommentId().'/'.$reply->getId().'/'.$replyMessage.".Replies\n";
+        }
+
+        file_put_contents($this->reportsDir.'/../gource.log', $msg, FILE_APPEND | LOCK_EX);
+
+        $data = file($this->reportsDir.'/../gource.log');
+        natsort($data);
+        $refactored = [];
+        $count = 0;
+        foreach ($data as $line) {
+            $items = explode('|', $line);
+            $items[3] = str_replace("\n", "", $items[3]);
+            $items[] = $this->randomColor()."\n";
+            $items = implode('|', $items);
+            $refactored[] = $items;
+        }
+
+        file_put_contents($this->reportsDir.'/../gource_sorted.log', $refactored);
+    }
+
+    private function randomColorPart()
+    {
+        return str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT);
+    }
+
+    private function randomColor()
+    {
+        return $this->randomColorPart().$this->randomColorPart().$this->randomColorPart();
     }
 }

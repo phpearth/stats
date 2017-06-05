@@ -39,6 +39,16 @@ class Reply
     private $message = null;
 
     /**
+     * @var int Topic id in which reply was created
+     */
+    private $topicId;
+
+    /**
+     * @var int Comment id in which reply was created
+     */
+    private $commentId;
+
+    /**
      * Set reply's id.
      *
      * @param int $id
@@ -156,5 +166,45 @@ class Reply
     public function getReactionsCount()
     {
         return $this->reactionsCount;
+    }
+
+    /**
+     * Set topic id.
+     *
+     * @param int $topicId
+     */
+    public function setTopicId($topicId)
+    {
+        $this->topicId = $topicId;
+    }
+
+    /**
+     * Get topic id.
+     *
+     * @return int
+     */
+    public function getTopicId()
+    {
+        return $this->topicId;
+    }
+
+    /**
+     * Set comment id.
+     *
+     * @param int $commentId
+     */
+    public function setCommentId($commentId)
+    {
+        $this->commentId = $commentId;
+    }
+
+    /**
+     * Get comment id.
+     *
+     * @return int
+     */
+    public function getCommentId()
+    {
+        return $this->commentId;
     }
 }
