@@ -16,7 +16,8 @@ parameters:
     default_graph_version: 'v2.9'
 
     # Facebook group ID of open, closed or secret group. For closed and secret
-    # groups, the user who generates stats must be group admin or moderator)
+    # groups, the user who generates stats must be group admin. Moderators and
+    # members can generate stats only for public groups.
     group_id: 2204685680
 
     # Locale for the report
