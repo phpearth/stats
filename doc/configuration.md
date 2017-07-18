@@ -22,3 +22,4 @@ The following parameters are used to configure the report generation:
 | top_topics               | array     |  |
 | ignored_users            | array     |  |
 | admins                   | array     |  |
+| offset                   | int       | Adjust the data from Graph API |

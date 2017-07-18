@@ -62,9 +62,9 @@ class Fetcher
 
         try {
             $pagesCount = 0;
-            $startDate = $this->config->getParameter('start_datetime');
-            $endDate = $this->config->getParameter('end_datetime');
-            $response = $this->fb->get('/'.$this->config->getParameter('group_id').'/feed?fields=comments.limit(200).summary(1){comment_count,from,created_time,message,can_comment,reactions.limit(0).summary(1),comments.limit(200).summary(1){comment_count,from,created_time,message,reactions.limit(0).summary(1)}},reactions.limit(0).summary(1),from,created_time,updated_time,message,type,attachments{type},shares&include_hidden=true&limit=50&since='.$startDate->getTimestamp().'&until='.$endDate->getTimestamp());
+            $since = $this->config->getParameter('start_datetime')->getTimestamp() - $this->config->getParameter('offset');
+            $until = $this->config->getParameter('end_datetime')->getTimestamp() + $this->config->getParameter('offset');
+            $response = $this->fb->get('/'.$this->config->getParameter('group_id').'/feed?fields=comments.limit(200).summary(1){comment_count,from,created_time,message,can_comment,reactions.limit(0).summary(1),comments.limit(200).summary(1){comment_count,from,created_time,message,reactions.limit(0).summary(1)}},reactions.limit(0).summary(1),from,created_time,updated_time,message,type,attachments{type},shares&include_hidden=true&limit=50&since='.$since.'&until='.$until);
 
             $feedEdge = $response->getGraphEdge();
 

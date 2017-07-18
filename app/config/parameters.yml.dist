@@ -56,3 +56,11 @@ parameters:
     # Array of group staff - administrators, moderators etc.
     # Format {['Name': ID],...}
     admins: {}
+
+    # Offset is used to adjust the Facebook Graph API output based on the 'since'
+    # and 'until' parameters which are based on the updated_time of the topic and
+    # not created_time. The updated_time is increased with each topic edit, comment
+    # or reply therefore you might get some topics missing in the report for certain
+    # period. By default we'll use a rule of a thumb and set it to 3 days in
+    # seconds.
+    offset: 259200
