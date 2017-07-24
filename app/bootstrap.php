@@ -32,7 +32,7 @@ $container
 $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/config'));
 $loader->load('services.yml');
 
-$application = new Application('FB Groups Stats Generator', 'v0.8.0');
+$application = new Application('FB Groups Stats Generator', 'v0.9.0');
 $application->add($container->get('generate_command'));
 $application->add($container->get('clear_reports_command'));
 $application->add($container->get('offensive_words_command'));
