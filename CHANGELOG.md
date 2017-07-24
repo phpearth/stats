@@ -6,10 +6,14 @@ All notable changes to this project will be documented in this file. This projec
 
 ## [UNREALEASED] 2017-01-01
 
+* ...
+
+## [0.8.0]  2017-07-25
+
+* Multiple bugs fixed
 * Rename namespace
 * Refactored reports logging
 * Translations
-* ...
 
 ## [0.7.0] - 2017-05-22
 
