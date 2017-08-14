@@ -17,9 +17,9 @@ class PointsTest extends TestCase
     protected function setUp()
     {
         $config = new Config([
-            __DIR__.'/../app/config/parameters.yml.dist',
-            __DIR__.'/../app/config/points.yml',
-            __DIR__.'/../app/config/offensive_words.yml',
+            __DIR__.'/../config/parameters.yml.dist',
+            __DIR__.'/../config/points.yml',
+            __DIR__.'/../config/offensive_words.yml',
             __DIR__.'/Fixtures/parameters.yml',
         ]);
 

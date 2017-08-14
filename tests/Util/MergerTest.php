@@ -17,7 +17,7 @@ class MergerTest extends TestCase
         $comments = new CommentCollection();
         $replies = new ReplyCollection();
         $userIds = [1,5,3,5,5,5,6,7,8,9,5,5,11,12,13,14,5,5];
-        $config = new Config([__DIR__.'/../../app/config/parameters.yml.dist']);
+        $config = new Config([__DIR__.'/../../config/parameters.yml.dist']);
         $points = new Points($config);
         $limit = sizeof($userIds);
 

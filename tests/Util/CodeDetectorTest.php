@@ -12,8 +12,8 @@ class CodeDetectorTest extends TestCase
     public function testIsCode()
     {
         $config = new Config([
-            __DIR__.'/../../app/config/parameters.yml.dist',
-            __DIR__.'/../../app/config/points.yml',
+            __DIR__.'/../../config/parameters.yml.dist',
+            __DIR__.'/../../config/points.yml',
         ]);
 
         $codeDetector = new CodeDetector();
