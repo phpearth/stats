@@ -39,11 +39,10 @@ carefully set for this group.
 
 ### Why some sites get negative points?
 
-[Answering other people's questions](http://dev-human.com/~mauriciojr/growing-your-experience-with-community-participation).
-is a very important part of being a member in development community. Group aims
-for quality discussions and not every answer and resource is always the best for
-the given situation. To promote the best possible answers, some links are not
-recommended and get you negative points. Every developer should know how to use
-search engines but question was probably asked for a reason. More experienced
-users might suggest better resource than those listed on the first pages of the
-search engines.
+Answering other people's questions is a very important part of being a member in
+development community. Group aims for quality discussions and not every answer
+and resource is always the best for the given situation. To promote the best
+possible answers, some links are not recommended and get you negative points.
+Every developer should know how to use search engines but question was probably
+asked for a reason. More experienced users might suggest better resource than
+those listed on the first pages of the search engines.
