@@ -36,7 +36,7 @@ phpunit
 ## Translations
 
 Translation messages for the generated stats report are in [YAML](http://yaml.org/)
-format and are located in the [app/translations](app/translations) folder.
+format and are located in the [app/translations](translations) folder.
 Translations use the
 [Symfony Translation Component](http://symfony.com/doc/current/components/translation.html).
 Variables in messages are in the format `%variable%`.
