@@ -17,9 +17,9 @@ $container->setParameter('project_dir', __DIR__.'/..');
 $container
     ->register('config', 'PhpEarth\Stats\Config')
     ->addArgument([
-        __DIR__.'/../app/config/parameters.yml',
-        __DIR__.'/../app/config/points.yml',
-        __DIR__.'/../app/config/offensive_words.yml'
+        __DIR__.'/../config/parameters.yml',
+        __DIR__.'/../config/points.yml',
+        __DIR__.'/../config/offensive_words.yml'
     ])
 ;
 $container->setParameter('locale', $container->get('config')->getParameter('locale'));
@@ -29,7 +29,7 @@ $container
     ->addArgument(__DIR__.'/templates')
 ;
 
-$loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/config'));
+$loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../config'));
 $loader->load('services.yml');
 
 $application = new Application('FB Groups Stats Generator', 'v0.9.0');

@@ -43,7 +43,7 @@ bin/stats clear-logs
 
 ### Offensive Words
 
-To manage [offensive words](/app/config/offensive_words.yml)
+To manage [offensive words](/config/offensive_words.yml)
 
 ```bash
 bin/stats offensive-words
