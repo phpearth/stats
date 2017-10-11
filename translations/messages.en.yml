@@ -1,5 +1,5 @@
 intro:            "Hello, here are weekly group stats from %start_date% to %end_date%"
-welcome:          "Warm welcome to 1 new member|Warm welcome to %count% new members"
+welcome:          "Warm welcome to a new member|Warm welcome to %count% new members"
 top_members:      "Thanks to top 1 member of the week|Thanks to top %count% members of the week"
 points:           "1 point|%count% points"
 topics:           "1 topic|%count% topics"
