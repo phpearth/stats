@@ -25,7 +25,7 @@ Read the following chapters for using this application locally:
 
 1. [Create](https://developers.facebook.com/) a new Facebook Application.
 
-2. Install with Composer
+2. Install plugin using composer
 
     ```bash
     git clone git://github.com/php-earth/stats
