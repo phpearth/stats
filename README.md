@@ -12,13 +12,13 @@ PHP application for generating Facebook groups statistics.
 
 ## Documentation
 
-The [Frequently Asked Questions](doc/faq.md) might have an answer to your question.
+The [Frequently Asked Questions](docs/faq.md) might have an answer to your question.
 
 Read the following chapters for using this application locally:
 
-* [Installation](doc/installation.md)
-* [Configuration](doc/configuration.md)
-* [Commands](doc/commands.md)
+* [Installation](docs/installation.md)
+* [Configuration](docs/configuration.md)
+* [Commands](docs/commands.md)
 
 
 ## Quick Usage
