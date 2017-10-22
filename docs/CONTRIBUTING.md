@@ -94,7 +94,7 @@ phpunit
 
 * **2. Update Changelog:**
 
-    Create an entry in [CHANGELOG.md](CHANGELOG.md) describing all the notable
+    Create an entry in [changelog](/docs/CHANGELOG.md) describing all the notable
     changes from previous release.
 
 * **3. Tag New Release:**
