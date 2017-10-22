@@ -54,4 +54,4 @@ Read the following chapters for using this application locally:
 
 This repository is released under the [MIT license](LICENSE).
 
-You are welcome to [suggest improvements or open a ticket](CONTRIBUTING.md).
+You are welcome to [suggest improvements or open a ticket](/docs/CONTRIBUTING.md).
