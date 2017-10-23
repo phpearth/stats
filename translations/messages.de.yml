@@ -4,7 +4,7 @@ top_members:      "Vielen Dank an das Mitglied der Woche|Vielen Dank an die %cou
 points:           "Ein Punkt|%count% Punkte"
 topics:           "Ein Thema|%count% Themen"
 comments:         "Ein Kommentar|%count% Kommentare"
-replies:          "Ein Antwort|%count% Antworten"
+replies:          "Eine Antwort|%count% Antworten"
 and:              "und"
 active_members:   "wurden diese Woche von einem aktiven Mitglied erstellt|wurden diese Woche von %count% aktiven Mitgliedern erstellt"
 closed:           "Ein Thema wurde geschlossen|%count% Themen wurden geschlossen"
