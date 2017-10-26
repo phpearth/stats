@@ -9,6 +9,9 @@
 
 PHP application for generating Facebook groups statistics.
 
+<div align="center">
+  <img src="https://cdn.rawgit.com/php-earth/logo/master/svg/indigo.svg" width="300">
+</div>
 
 ## Documentation
 
