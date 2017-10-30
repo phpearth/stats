@@ -15,7 +15,6 @@ The following parameters are used to configure the report generation:
 | group_id                 | int       |  |
 | locale                   | string    | Locale for the report |
 | top_users_count          | int       |  |
-| last_member_name         | string    |  |
 | last_blocked_count       | int       |  |
 | new_blocked_count        | int       |  |
 | api_pages                | int       |  |

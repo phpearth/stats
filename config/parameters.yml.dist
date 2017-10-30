@@ -26,12 +26,6 @@ parameters:
     # Number of top users listed in the output report
     top_users_count: 5
 
-    # Last name of the joined member
-    # For calculating the number of new members since previous report. Facebook Graph
-    # API currently doesn't provide chronological limit or dates when users joined the
-    # group.
-    last_member_name: 'John Doe'
-
     # Number of blocked users from previous report
     last_blocked_count: 0
 
@@ -39,7 +33,7 @@ parameters:
     new_blocked_count: 0
 
     # Maximum number of API pages to paginate when retrieving members
-    # Safety limit when retrieving members in case last_member_name is not found.
+    # Safety limit when retrieving members in case there are too many pages to retrieve.
     api_pages: 10
 
     # Array of staff picked top topics with title and URL.

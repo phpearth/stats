@@ -107,7 +107,7 @@ class Fetcher
         $pagesCount = 0;
 
         try {
-            $response = $this->fb->get('/'.$this->config->getParameter('group_id').'/members?fields=id,name&limit=1000');
+            $response = $this->fb->get('/'.$this->config->getParameter('group_id').'/members?fields=id,name,joined&limit=1000');
 
             $feedEdge = $response->getGraphEdge();
             do {
@@ -118,7 +118,7 @@ class Fetcher
                 foreach ($feedEdge as $status) {
                     $newMembers[] = [$status->asArray()['id'], $status->asArray()['name']];
 
-                    if ($status->asArray()['name'] == $this->config->getParameter('last_member_name')) {
+                    if ($status->asArray()['joined'] <= $this->config->getParameter('start_datetime')->getTimestamp()) {
                         break 2;
                     }
                 }
