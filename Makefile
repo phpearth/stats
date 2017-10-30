@@ -6,7 +6,7 @@ help: ## Output usage documentation
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
 
 generate: ## Generate stats
-	docker run --rm -it --name stats -v "$$(pwd)":/usr/src/stats -w /usr/src/stats phpearth/php bin/stats generate --from=$(from) --to=$(to) --animation
+	docker run --rm -it --name stats -v "$$(pwd)":/usr/src/stats -w /usr/src/stats phpearth/php:7.1-cli bin/stats generate --from=$(from) --to=$(to) --animation
 
 gource: ## Create PPM file from gource log
 	gource \
