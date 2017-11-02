@@ -48,7 +48,7 @@
     },
     "extra": {
         "incenteev-parameters": {
-            "file": "config/parameters.yml"
+            "file": "config/parameters.yaml"
         }
     },
     "minimum-stability" : "dev",

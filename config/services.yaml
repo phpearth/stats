@@ -14,7 +14,7 @@ services:
     arguments: ['%locale%', '@translator.message_selector']
     calls:
       - [addLoader, ['yaml', '@translator.yaml_loader']]
-      - [addResource, ['yaml', '%project_dir%/translations/messages.%locale%.yml', '%locale%']]
+      - [addResource, ['yaml', '%project_dir%/translations/messages.%locale%.yaml', '%locale%']]
       - [setFallbackLocales, [['en']]]
   generate_command:
     class: PhpEarth\Stats\Command\GenerateCommand

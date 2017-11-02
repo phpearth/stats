@@ -38,9 +38,9 @@ Read the following chapters for using this application locally:
 
 3. Configure Parameters
 
-    The componser installation script creates `config/parameters.yml` file
+    The componser installation script creates `config/parameters.yaml` file
     for your settings. Configuration parameters are described in comments in the
-    [parameters.yml.dist](config/parameters.yml.dist). Provide values for
+    [parameters.yaml.dist](config/parameters.yaml.dist). Provide values for
     your application, date range and other configuration.
 
 4. Generate Report

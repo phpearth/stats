@@ -30,9 +30,9 @@ composer install
 
 ### Configuration
 
-The Composer installation script creates `app/config/parameters.yml` file
+The Composer installation script creates `app/config/parameters.yaml` file
 by asking for configuration parameter values. Configuration parameters are
-described in comments in the [parameters.yml.dist](app/config/parameters.yml.dist).
+described in comments in the [parameters.yaml.dist](app/config/parameters.yaml.dist).
 Provide ID and secret code for your Facebook application, default Graph API version
 and other configuration. Configuration is explained in more details in the
 [configuration](configuration.md) chapter.

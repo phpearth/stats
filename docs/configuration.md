@@ -3,7 +3,7 @@
 ## Configuration
 
 When installing application with Composer the configuration parameters are added
-to the ignored `config/parameters.yml` file.
+to the ignored `config/parameters.yaml` file.
 
 The following parameters are used to configure the report generation:
 

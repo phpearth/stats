@@ -1,5 +1,5 @@
 /vendor/
-/config/parameters.yml
+/config/parameters.yaml
 /phpunit.xml
 /var/*
 !/var/reports

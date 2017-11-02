@@ -1,5 +1,5 @@
 # Default application parameters distributed with the source code. Composer and
-# Incenteev's Composer script handler creates the ignored parameters.yml file
+# Incenteev's Composer script handler creates the ignored parameters.yaml file
 
 parameters:
     # Facebook application ID

@@ -12,8 +12,8 @@ class ConfigTest extends TestCase
     public function setUp()
     {
         $this->config = new Config([
-            __DIR__.'/Fixtures/parameters.yml',
-            __DIR__.'/Fixtures/points.yml'
+            __DIR__.'/Fixtures/parameters.yaml',
+            __DIR__.'/Fixtures/points.yaml'
         ]);
 
         $this->config->setParameter('start_datetime', \DateTime::createFromFormat('Y-m-d H:i:s', '2016-05-15 00:00:00'));

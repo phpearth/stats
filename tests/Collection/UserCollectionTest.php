@@ -15,8 +15,8 @@ class UserCollectionTest extends TestCase
     public function testGetTopUsers()
     {
         $config = new Config([
-            __DIR__.'/../../config/parameters.yml.dist',
-            __DIR__.'/../Fixtures/ignoredUsers.yml'
+            __DIR__.'/../../config/parameters.yaml.dist',
+            __DIR__.'/../Fixtures/ignoredUsers.yaml'
         ]);
 
         $points = new Points($config);
