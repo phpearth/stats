@@ -13,7 +13,7 @@ parameters:
     fb_app_secret: ~
 
     # Default Facebook Graph API version
-    default_graph_version: v2.10
+    default_graph_version: v2.11
 
     # Facebook group ID of open, closed or secret group. For closed and secret
     # groups, the user who generates stats must be group admin. Moderators and
