@@ -10,21 +10,21 @@
     "type": "project",
     "license": "MIT",
     "require": {
-        "php": ">=7.1.0",
-        "facebook/graph-sdk": "^5.6",
-        "symfony/yaml": "^3.3",
-        "symfony/console": "^3.3",
-        "symfony/expression-language": "^3.3",
-        "symfony/dependency-injection": "^3.3",
-        "symfony/translation": "^3.3",
-        "symfony/config": "^3.3",
+        "php": ">=7.2.5",
+        "facebook/graph-sdk": "^5.7",
+        "symfony/yaml": "^5.1",
+        "symfony/console": "^5.1",
+        "symfony/expression-language": "^5.1",
+        "symfony/dependency-injection": "^5.1",
+        "symfony/translation": "^5.1",
+        "symfony/config": "^5.1",
         "incenteev/composer-parameter-handler": "^2.1",
-        "twig/twig": "^2.4",
-        "monolog/monolog": "^1.23"
+        "twig/twig": "^3.0",
+        "monolog/monolog": "^2.1"
     },
     "require-dev": {
         "phpunit/phpunit": "^6.4",
-        "mikey179/vfsStream": "^1.6"
+        "mikey179/vfsstream": "^1.6"
     },
     "autoload": {
         "psr-4": {"PhpEarth\\Stats\\": "src/"}
